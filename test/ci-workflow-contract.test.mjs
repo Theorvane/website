@@ -6,6 +6,7 @@ test("pull-request CI installs locked dependencies and verifies the monorepo", a
 	const workflow = await readFile(".github/workflows/verify.yml", "utf8");
 
 	assert.match(workflow, /pull_request:/);
+	assert.match(workflow, /branches: \[dev, main\]/);
 	assert.match(workflow, /permissions:\s*\n\s*contents: read/);
 	assert.match(workflow, /actions\/checkout@11bd71901bbe5b1630ceea73d27597364c9af683/);
 	assert.match(workflow, /actions\/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020/);
