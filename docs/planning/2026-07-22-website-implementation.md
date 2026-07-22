@@ -1,5 +1,7 @@
 # Theorvane and TypeMCP websites implementation plan
 
+**Status:** Completed and merged in PR #2. Issue #3 maintains the documentation boundary.
+
 > **For Hermes:** Execute this plan task-by-task with TDD and independent review checkpoints.
 
 **Goal:** Deliver two responsive, independently buildable Next.js landing pages in one npm-workspace/Turborepo repository.
