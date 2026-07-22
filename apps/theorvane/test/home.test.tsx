@@ -14,6 +14,8 @@ describe("Theorvane homepage", () => {
 		expect(screen.getByRole("link", { name: /explore typemcp/i }).getAttribute("href")).toBe(
 			"https://github.com/Theorvane/type-mcp",
 		);
+		expect(screen.getByText(/metadata declarations and immutable reads/i)).toBeTruthy();
+		expect(screen.queryByText(/building mcp servers with framework-neutral runtime contracts/i)).toBeNull();
 		expect(screen.getAllByRole("link", { name: /github organization/i })[0]?.getAttribute("href")).toBe(
 			"https://github.com/Theorvane",
 		);
