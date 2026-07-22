@@ -10,6 +10,7 @@ test("root workspace defines both public website apps and quality gates", async 
 	assert.equal(manifest.private, true);
 	assert.ok(manifest.packageManager?.startsWith("npm@"));
 	assert.deepEqual(manifest.workspaces, ["apps/*", "packages/*"]);
+	assert.deepEqual(manifest.overrides, { postcss: "8.5.21", sharp: "0.35.3" });
 	assert.ok(manifest.scripts?.lint);
 	assert.ok(manifest.scripts?.typecheck);
 	assert.ok(manifest.scripts?.test);

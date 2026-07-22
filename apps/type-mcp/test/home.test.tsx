@@ -14,7 +14,8 @@ describe("TypeMCP homepage", () => {
 				element?.tagName === "P" && element.textContent?.includes("Published type-mcp@0.1.0") === true,
 			),
 		).toBeTruthy();
-		expect(screen.getByText(/consumer-owned/i)).toBeTruthy();
+		expect(screen.getByText(/not included in the current npm release/i)).toBeTruthy();
+		expect(screen.queryByText(/repository development line provides/i)).toBeNull();
 		expect(screen.getAllByRole("link", { name: /view on github/i })[0]?.getAttribute("href")).toBe(
 			"https://github.com/Theorvane/type-mcp",
 		);
