@@ -1,11 +1,12 @@
 # Theorvane website
 
-A Next.js monorepo containing independently deployable public websites for **Theorvane** and **TypeMCP**.
+A Next.js monorepo containing independently deployable public websites for **Theorvane**, **TypeMCP**, and **OpenVideo**.
 
 ## Apps
 
-- `apps/theorvane` — the Theorvane brand homepage
-- `apps/type-mcp` — the TypeMCP open-source product homepage
+- `apps/theorvane` — the Theorvane brand homepage at `https://theorvane.tech`
+- `apps/type-mcp` — the TypeMCP open-source product homepage at `https://typemcp.theorvane.tech`
+- `apps/openvideo` — the OpenVideo local-first product homepage at `https://openvideo.theorvane.tech`
 
 ## Commands
 
