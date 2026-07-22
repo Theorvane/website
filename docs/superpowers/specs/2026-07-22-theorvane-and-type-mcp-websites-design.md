@@ -48,7 +48,7 @@ Dark, editorial, technical. Near-black canvas; high-contrast ivory text; a restr
 
 ## Site 2 — TypeMCP
 
-### Published release boundary
+### Published npm 0.1.0 boundary
 
 The published package, `type-mcp@0.1.0`, supports **decorator declarations and immutable metadata reads only**. It **does not validate, compile, invoke, or transport** MCP operations. `createMcpServer()` and the `type-mcp/http` / `createMcpHandler()` entry points are reserved and throw in the published release.
 
