@@ -45,7 +45,7 @@ The product site remains at `/`. Documentation uses `/docs` and is organized int
     └── mvp-scope
 ```
 
-The first route is a documentation index, not a copied Markdown page. It introduces the published package boundary, provides a recommended reading order, and links to the four groups.
+The first route is a documentation index, not a copied Markdown page. It introduces the published package boundary, provides a recommended reading order, and links to the five groups.
 
 The sidebar displays the same groups in this order: Start, Guides, API, Architecture, Product. It highlights the current page and remains available on desktop. On narrow viewports it becomes a keyboard-accessible disclosure control. Each article provides a local table of contents from level-two and level-three headings; the table of contents is omitted when a page has too few headings to be useful.
 
