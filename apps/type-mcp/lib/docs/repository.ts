@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { lstat, readFile } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { join, relative, resolve, sep } from "node:path";
 
 import { parseDocument, type ParsedDocument } from "./parse";
 import { publicDocuments, sourceCommit } from "./manifest";
@@ -14,6 +14,13 @@ interface CacheMetadata {
 }
 
 function hash(content: string): string { return createHash("sha256").update(content).digest("hex"); }
+
+function cachePath(sourcePath: string): string {
+  const candidate = resolve(cacheRoot, sourcePath);
+  const relativePath = relative(cacheRoot, candidate);
+  if (!relativePath || relativePath === ".." || relativePath.startsWith(`..${sep}`)) throw new Error(`Documentation path escapes cache root: ${sourcePath}`);
+  return candidate;
+}
 
 async function safeRead(path: string): Promise<string> {
   const stats = await lstat(path);
@@ -29,7 +36,7 @@ async function validatedCache(): Promise<CacheMetadata> {
   for (const document of publicDocuments) {
     const entry = metadata.documents.find((candidate) => candidate.sourcePath === document.sourcePath && candidate.route === document.route);
     if (!entry) throw new Error(`Documentation cache metadata is missing ${document.sourcePath}`);
-    const content = await safeRead(join(cacheRoot, document.sourcePath));
+    const content = await safeRead(cachePath(document.sourcePath));
     if (hash(content) !== entry.sha256) throw new Error(`Documentation cache hash mismatch for ${document.sourcePath}`);
   }
   return metadata;
@@ -45,7 +52,7 @@ export async function getDocument(route: string): Promise<RepositoryDocument | u
   await validatedCache();
   const document = publicDocuments.find((candidate) => candidate.route === route);
   if (!document) return undefined;
-  const markdown = await safeRead(join(cacheRoot, document.sourcePath));
+  const markdown = await safeRead(cachePath(document.sourcePath));
   return { document, markdown, sourceUrl: `https://github.com/Theorvane/type-mcp/blob/${sourceCommit}/${document.sourcePath}`, ...parseDocument(markdown, document) };
 }
 

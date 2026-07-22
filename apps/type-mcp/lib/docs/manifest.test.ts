@@ -43,5 +43,9 @@ describe("TypeMCP public documentation manifest", () => {
     expect(() => validateManifest([
       { ...first, sourcePath: "docs/planning/internal.md" },
     ])).toThrow(/approved docs/i);
+
+    for (const unsafeSourcePath of ["docs/../../outside.md", "docs\\outside.md", "docs/guide.txt"]) {
+      expect(() => validateManifest([{ ...first, sourcePath: unsafeSourcePath }])).toThrow(/approved docs/i);
+    }
   });
 });

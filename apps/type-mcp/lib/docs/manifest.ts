@@ -20,13 +20,19 @@ const documents: readonly PublicDocument[] = [
 
 export const publicDocuments = Object.freeze(documents.map((document) => Object.freeze({ ...document })));
 
+export function isSafeSourcePath(sourcePath: string): boolean {
+  return /^docs\/(?:[A-Za-z0-9][A-Za-z0-9._-]*\/)*[A-Za-z0-9][A-Za-z0-9._-]*\.md$/.test(sourcePath)
+    && !sourcePath.includes("..")
+    && !sourcePath.includes("\\");
+}
+
 export function validateManifest(manifest: readonly PublicDocument[]): void {
   if (!/^[0-9a-f]{40}$/.test(sourceCommit)) throw new Error("source commit must be a full SHA");
   const routes = new Set<string>();
   const paths = new Set<string>();
   const groupOrders = new Set<string>();
   for (const document of manifest) {
-    if (!document.sourcePath.startsWith("docs/") || /(?:^|\/)(?:planning|superpowers)(?:\/|$)/.test(document.sourcePath)) throw new Error(`approved docs source path required: ${document.sourcePath}`);
+    if (!isSafeSourcePath(document.sourcePath) || /(?:^|\/)(?:planning|superpowers)(?:\/|$)/.test(document.sourcePath)) throw new Error(`approved docs source path required: ${document.sourcePath}`);
     if (!document.route.startsWith("/docs/") || document.route.includes("..")) throw new Error(`approved docs route required: ${document.route}`);
     if (!document.sourceStatus.trim()) throw new Error(`source status evidence required: ${document.sourcePath}`);
     if (routes.has(document.route)) throw new Error(`duplicate route: ${document.route}`);

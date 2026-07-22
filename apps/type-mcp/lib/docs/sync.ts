@@ -1,8 +1,8 @@
 import { createHash } from "node:crypto";
 import { mkdir, rename, rm, writeFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 
-import { publicDocuments, sourceCommit } from "./manifest";
+import { isSafeSourcePath, publicDocuments, sourceCommit } from "./manifest";
 
 export interface SyncOptions {
   readonly outputDirectory: string;
@@ -22,6 +22,14 @@ function hasH1(content: string): boolean {
   return /^#\s+\S/m.test(content);
 }
 
+function containedPath(root: string, sourcePath: string): string {
+  if (!isSafeSourcePath(sourcePath)) throw new Error(`Unsafe documentation source path: ${sourcePath}`);
+  const rootPath = resolve(root);
+  const candidate = resolve(rootPath, sourcePath);
+  if (relative(rootPath, candidate).startsWith("..")) throw new Error(`Documentation path escapes cache root: ${sourcePath}`);
+  return candidate;
+}
+
 export async function syncDocuments({ outputDirectory, fetchDocument }: SyncOptions): Promise<void> {
   const stagingDirectory = `${outputDirectory}.staging`;
   await rm(stagingDirectory, { recursive: true, force: true });
@@ -39,7 +47,7 @@ export async function syncDocuments({ outputDirectory, fetchDocument }: SyncOpti
       }
       if (!hasH1(content)) throw new Error(`Invalid documentation source ${document.sourcePath} for ${document.route}: missing level-one heading`);
       if (!content.includes(document.sourceStatus)) throw new Error(`Release classification mismatch for ${document.sourcePath} at ${document.route}: expected source status evidence for ${document.classification}`);
-      const destination = join(stagingDirectory, document.sourcePath);
+      const destination = containedPath(stagingDirectory, document.sourcePath);
       await mkdir(dirname(destination), { recursive: true });
       await writeFile(destination, content, "utf8");
       documents.push({ sourcePath: document.sourcePath, route: document.route, sha256: sha256(content) });

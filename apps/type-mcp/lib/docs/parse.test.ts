@@ -17,6 +17,12 @@ describe("parseDocument", () => {
     expect(parsed.internalLinks.get("configuration.md#published-versus-repository-development")).toBe("/docs/guides/configuration#published-versus-repository-development");
   });
 
+  it("ignores fenced-code headings and rejects unsafe reference links", () => {
+    const parsed = parseDocument("# Title\n\n~~~ts\n# not a heading\n~~~\n\n## Detail\n", publicDocuments[0]!);
+    expect(parsed.toc).toEqual([{ depth: 2, id: "detail", title: "Detail" }]);
+    expect(() => parseDocument("# Title\n\n[unsafe]: javascript:alert(1)\n\n[jump][unsafe]", publicDocuments[0]!)).toThrow(/unsafe link/i);
+  });
+
   it("rejects duplicate headings and unsafe URLs", () => {
     expect(() => parseDocument("# Title\n\n## One\n\n## One", publicDocuments[0]!)).toThrow(/duplicate heading/i);
     expect(() => parseDocument("# Title\n\n[jump](javascript:alert(1))", publicDocuments[0]!)).toThrow(/unsafe link/i);
