@@ -24,10 +24,10 @@ When sources conflict, stop and update the lower-priority source before implemen
 
 ## Branch and release model
 
-- `dev` is the protected integration branch and default branch.
+- `dev` is the default integration branch.
 - `main` is release-only. It accepts reviewed `dev` → `main` promotion PRs only.
-- Never commit directly to protected `dev` or `main`.
-- Do not change branch protection, rulesets, reviewer state, approvals, or merge-policy settings unless the user explicitly directs it.
+- Never commit directly to `dev` or `main`.
+- Do not change branch protection, rulesets, reviewer state, approvals, or merge-policy settings. Repository instructions do not authorize bypassing these controls.
 - Vercel Preview deployments are disabled. Only a merge or push to `main` may create a production deployment.
 
 ## Required issue and PR triage

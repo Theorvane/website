@@ -13,6 +13,10 @@ test("contribution governance requires issue triage and independent review", asy
 	assert.match(agents, /type: feature/);
 	assert.match(agents, /area: website/);
 	assert.match(agents, /release/);
+	assert.doesNotMatch(agents, /unless the user explicitly directs/i);
+	assert.doesNotMatch(agents, /protected integration branch/i);
+	assert.doesNotMatch(agents, /protected `dev`/i);
+	assert.doesNotMatch(agents, /protected `main`/i);
 	assert.match(pullRequestTemplate, /Closes #<issue-number>/);
 	assert.match(pullRequestTemplate, /Labels/);
 	assert.match(pullRequestTemplate, /sjungwon03-ai/);
