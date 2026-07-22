@@ -19,4 +19,6 @@ export interface PublicDocument {
   readonly group: DocumentGroup;
   readonly order: number;
   readonly classification: ReleaseClassification;
+  /** Exact upstream wording that proves the assigned release classification. */
+  readonly sourceStatus: string;
 }

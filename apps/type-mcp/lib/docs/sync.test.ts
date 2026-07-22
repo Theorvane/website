@@ -12,7 +12,10 @@ describe("syncDocuments", () => {
     try {
       await syncDocuments({
         outputDirectory,
-        fetchDocument: async (sourcePath) => `# ${sourcePath}\n\n## Detail\n`,
+        fetchDocument: async (sourcePath) => {
+          const document = publicDocuments.find((candidate) => candidate.sourcePath === sourcePath)!;
+          return `# ${sourcePath}\n\n${document.sourceStatus}\n\n## Detail\n`;
+        },
       });
       const metadata = JSON.parse(await readFile(join(outputDirectory, "metadata.json"), "utf8")) as { sourceCommit: string; documents: { sourcePath: string; route: string; sha256: string }[] };
       expect(metadata.sourceCommit).toMatch(/^[0-9a-f]{40}$/);
@@ -24,10 +27,13 @@ describe("syncDocuments", () => {
     }
   });
 
-  it("names source path and target route when an approved document is invalid", async () => {
+  it("rejects a source whose release-status evidence no longer matches its classification", async () => {
     const outputDirectory = await mkdtemp(join(tmpdir(), "typemcp-docs-"));
     try {
-      await expect(syncDocuments({ outputDirectory, fetchDocument: async () => "no heading" })).rejects.toThrow(/docs\/guides\/getting-started\.md.*\/docs\/getting-started/i);
+      await expect(syncDocuments({
+        outputDirectory,
+        fetchDocument: async (sourcePath) => `# ${sourcePath}\n\n## Detail\n`,
+      })).rejects.toThrow(/release classification mismatch.*docs\/guides\/getting-started\.md.*\/docs\/getting-started/i);
     } finally {
       await rm(outputDirectory, { recursive: true, force: true });
     }

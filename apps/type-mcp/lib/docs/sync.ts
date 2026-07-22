@@ -38,6 +38,7 @@ export async function syncDocuments({ outputDirectory, fetchDocument }: SyncOpti
         throw new Error(`Unable to retrieve ${document.sourcePath} for ${document.route}: ${message}`);
       }
       if (!hasH1(content)) throw new Error(`Invalid documentation source ${document.sourcePath} for ${document.route}: missing level-one heading`);
+      if (!content.includes(document.sourceStatus)) throw new Error(`Release classification mismatch for ${document.sourcePath} at ${document.route}: expected source status evidence for ${document.classification}`);
       const destination = join(stagingDirectory, document.sourcePath);
       await mkdir(dirname(destination), { recursive: true });
       await writeFile(destination, content, "utf8");

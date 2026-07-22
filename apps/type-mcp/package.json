@@ -9,7 +9,7 @@
     "build": "next build",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "npm run sync:docs && vitest run"
   },
   "dependencies": {
     "@theorvane/design-tokens": "*",
