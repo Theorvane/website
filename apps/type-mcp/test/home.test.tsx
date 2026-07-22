@@ -14,12 +14,11 @@ describe("TypeMCP homepage", () => {
 				element?.tagName === "P" && element.textContent?.includes("Published type-mcp@0.1.0") === true,
 			),
 		).toBeTruthy();
-		expect(screen.getByText(/does not compile, invoke, or transport/i)).toBeTruthy();
-		expect(
-			screen.getByText((_, element) =>
-				element?.tagName === "P" && element.textContent?.includes("are reserved and throw") === true,
-			),
-		).toBeTruthy();
+		expect(screen.getByText(/metadata only/i)).toBeTruthy();
+		expect(screen.getByText(/does not validate, compile, invoke, or transport/i)).toBeTruthy();
+		expect(screen.queryByText(/validated runtime core/i)).toBeNull();
+		expect(screen.queryByText(/resolver-backed execution/i)).toBeNull();
+		expect(screen.queryByText(/mcp transport at the edge/i)).toBeNull();
 		expect(screen.queryByText(/repository development line provides/i)).toBeNull();
 		expect(screen.getAllByRole("link", { name: /view on github/i })[0]?.getAttribute("href")).toBe(
 			"https://github.com/Theorvane/type-mcp",
