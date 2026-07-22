@@ -14,6 +14,11 @@ describe("Theorvane technical SEO", () => {
 		expect(metadata.robots).toEqual({ index: true, follow: true });
 		expect(metadata.openGraph?.url?.toString()).toBe("https://theorvane.tech/");
 		expect((metadata.twitter as { card?: string } | undefined)?.card).toBe("summary");
+		expect(metadata.icons).toEqual({
+			icon: [{ url: "/icon.png", sizes: "460x460", type: "image/png" }],
+			apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+			shortcut: ["/favicon.ico"],
+		});
 	});
 
 	it("publishes crawl directives and a canonical sitemap", () => {
