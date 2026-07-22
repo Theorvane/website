@@ -22,7 +22,7 @@ A visible release-boundary callout appears on the docs index and on pages whose 
 
 ## Information architecture
 
-The product site remains at `/`. Documentation uses `/docs` and is organized into four public groups:
+The product site remains at `/`. Documentation uses `/docs` and is organized into five public groups: Start, Guides, API, Architecture, and Product.
 
 ```text
 /docs

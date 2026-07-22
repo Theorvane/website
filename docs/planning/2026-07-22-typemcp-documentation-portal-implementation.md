@@ -14,7 +14,7 @@
 
 ## Approved public source manifest
 
-Use one fixed source commit resolved from `Theorvane/type-mcp` `dev` at the beginning of the implementation PR. Record it as the literal `sourceCommit` in `apps/type-mcp/lib/docs/manifest.ts`; do not use a branch name, `HEAD`, or a floating URL.
+Use Issue #20's approved fixed TypeMCP source commit: `6480a45887a262f354f5691d3d3d19ca04304e96`. Record that exact literal as `sourceCommit` in `apps/type-mcp/lib/docs/manifest.ts`; do not resolve `dev`, use `HEAD`, or use a floating URL during this implementation. A later documentation-refresh Issue and PR may intentionally advance this commit only after reviewing the changed source files and rerunning the full portal verification.
 
 | Group | Source path | Route | Boundary classification |
 | --- | --- | --- | --- |
@@ -200,7 +200,7 @@ git commit -m "feat(docs): parse safe TypeMCP articles"
 
 **Step 1: Write failing rendered-component tests**
 
-Assert the desktop sidebar has a `Documentation` navigation label, each group contains only its manifest pages, the active page exposes `aria-current="page"`, the release callout exists for repository-development/product-target classifications and not published classification, and the TOC links point to normalized heading anchors.
+Assert the desktop sidebar has a `Documentation` navigation label, each group contains only its manifest pages, the active page exposes `aria-current="page"`, the release callout exists for `published-with-boundary`, `repository-development`, and `product-target` classifications but not `published`, and the TOC links point to normalized heading anchors.
 
 **Step 2: Verify red**
 
@@ -387,7 +387,7 @@ Apply Issue labels `type: feature`, `area: website`, `priority: high`, assign `s
 
 **Step 1: Create a release Issue and `dev` → `main` PR**
 
-Use labels `release`, `area: website`, and `priority: high`. The PR body names the pinned TypeMCP source commit and all published docs route groups.
+Create the release Issue and PR with the required primary type label `type: feature`, plus `release`, `area: website`, and `priority: high`; assign both to `sjungwon03`. The PR body names the pinned TypeMCP source commit and all published docs route groups. Request `sjungwon03-ai` formal independent review after the final release PR head is pushed and before waiting for its latest-head approval.
 
 **Step 2: Verify required controls**
 
