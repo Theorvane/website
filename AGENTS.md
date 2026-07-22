@@ -8,7 +8,7 @@ This repository delivers two independently deployable public Next.js application
 - `apps/type-mcp/`: the TypeMCP product site, canonical at `https://typemcp.theorvane.tech`
 - `packages/`: neutral shared UI and design tokens only
 - `docs/`: approved product and design specifications
-- `.agent/`: tracked task briefs and agent operating aids; never imported by application runtime code
+- `.agents/`: tracked task briefs and agent operating aids; never imported by application runtime code
 
 Keep runtime code strict TypeScript. Do not add server-side product features, CMS, auth, analytics, or package-runtime claims without an approved scope change.
 
@@ -50,7 +50,7 @@ Keep labels focused; do not add unrelated labels merely for coverage.
 1. Inspect existing Issues and PRs; avoid duplicate work.
 2. Create or update one focused Issue with scope, acceptance criteria, non-goals, labels, and `sjungwon03` as assignee.
 3. Branch from current `origin/dev` using `<type>/<issue-number>-<short-description>`.
-4. For multi-behavior work, create `.agent/task-briefs/<issue-number>-<slug>.md` from the task brief convention.
+4. For multi-behavior work, create `.agents/task-briefs/<issue-number>-<slug>.md` from the task brief convention.
 5. Write a focused failing test before production code when behavior changes. Record the observed failure.
 6. Implement the smallest safe change; update public docs for user-visible behavior.
 7. Run applicable verification: focused tests, `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm audit --omit=dev --audit-level=high`, and `git diff --check`.

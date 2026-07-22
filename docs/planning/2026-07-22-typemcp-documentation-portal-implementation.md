@@ -334,7 +334,7 @@ git commit -m "test(docs): verify TypeMCP static portal build"
 **Files:**
 - Modify: `README.md`
 - Modify: `docs/superpowers/specs/2026-07-22-typemcp-documentation-portal-design.md` only to mark implemented decisions accurately
-- Modify: `.agent/task-briefs/20-typemcp-documentation-portal.md`
+- Modify: `.agents/task-briefs/20-typemcp-documentation-portal.md`
 
 **Step 1: Write failing documentation contract**
 
@@ -371,7 +371,7 @@ Start the TypeMCP app after a production build. Visit `/`, `/docs`, `/docs/getti
 **Step 6: Commit and delivery PR**
 
 ```bash
-git add README.md docs/superpowers/specs/2026-07-22-typemcp-documentation-portal-design.md .agent/task-briefs/20-typemcp-documentation-portal.md test/
+git add README.md docs/superpowers/specs/2026-07-22-typemcp-documentation-portal-design.md .agents/task-briefs/20-typemcp-documentation-portal.md test/
 git commit -m "docs: publish TypeMCP portal guidance"
 git push -u origin feat/20-typemcp-documentation-portal
 gh pr create --base dev --title "feat: build TypeMCP documentation portal" --body-file /tmp/pr20-implementation.md
