@@ -13,6 +13,7 @@ Make `https://theorvane.tech` the canonical, crawlable Theorvane homepage with a
 - Canonical metadata, robots directives, Open Graph, Twitter, and JSON-LD.
 - Generated `robots.txt` and `sitemap.xml`.
 - Vercel `www.theorvane.tech` → apex 308 redirect.
+- The Theorvane homepage’s TypeMCP destination uses the verified `typemcp.theorvane.tech` site.
 
 ## Test-first evidence
 

@@ -2,7 +2,7 @@ import { ExternalLink, SkipLink } from "@theorvane/ui";
 
 const siteUrl = "https://theorvane.tech/";
 const github = "https://github.com/Theorvane";
-const typeMcp = "https://github.com/Theorvane/type-mcp";
+const typeMcp = "https://typemcp.theorvane.tech/";
 
 const schema = {
 	"@context": "https://schema.org",
