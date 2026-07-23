@@ -11,6 +11,8 @@ export interface SyncOptions {
   readonly renameDirectory?: (from: string, to: string) => Promise<void>;
   /** Test seam invoked while this sync holds the publication lock. */
   readonly beforePublish?: () => Promise<void>;
+  /** Test seam invoked after the live cache has been rotated to the backup path. */
+  readonly afterLiveCacheMoved?: () => Promise<void>;
   /** Test seam invoked after this sync observes a competing publisher lock. */
   readonly onLockContention?: () => void;
 }
@@ -62,7 +64,7 @@ async function acquirePublicationLock(lockDirectory: string, onContention?: () =
   }
 }
 
-export async function syncDocuments({ outputDirectory, fetchDocument, renameDirectory = rename, beforePublish, onLockContention }: SyncOptions): Promise<void> {
+export async function syncDocuments({ outputDirectory, fetchDocument, renameDirectory = rename, beforePublish, afterLiveCacheMoved, onLockContention }: SyncOptions): Promise<void> {
   const previousDirectory = `${outputDirectory}.previous`;
   const lockDirectory = `${outputDirectory}.lock`;
   const stagingDirectory = await mkdtemp(`${outputDirectory}.staging-`);
@@ -98,6 +100,7 @@ export async function syncDocuments({ outputDirectory, fetchDocument, renameDire
       } catch (error: unknown) {
         if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
       }
+      if (movedPreviousCache) await afterLiveCacheMoved?.();
       try {
         await renameDirectory(stagingDirectory, outputDirectory);
       } catch (publishError) {

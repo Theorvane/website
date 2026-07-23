@@ -8,6 +8,8 @@ import { parseDocument, type ParsedDocument } from "./parse";
 import type { PublicDocument } from "./types";
 
 const cacheRoot = resolve(process.cwd(), ".generated-docs");
+const publicationRetryDelayMs = 5;
+const publicationRetryTimeoutMs = 15_000;
 
 interface CacheMetadata {
   readonly sourceCommit: string;
@@ -22,11 +24,11 @@ function safeSegments(sourcePath: string): string[] {
   return segments;
 }
 
-/**
- * Reads through descriptor-pinned directory handles, preventing intermediate
- * symbolic-link traversal even if a cache directory is replaced during reads.
- */
-export async function readTrustedText(root: string, sourcePath: string): Promise<string> {
+function delay(milliseconds: number): Promise<void> {
+  return new Promise((resolveDelay) => setTimeout(resolveDelay, milliseconds));
+}
+
+async function readTrustedTextOnce(root: string, sourcePath: string): Promise<string> {
   const rootHandle = await open(root, constants.O_RDONLY | constants.O_DIRECTORY | constants.O_NOFOLLOW);
   const parentHandles: FileHandle[] = [];
   let fileHandle: FileHandle | undefined;
@@ -55,6 +57,32 @@ export async function readTrustedText(root: string, sourcePath: string): Promise
     await fileHandle?.close();
     for (const handle of parentHandles.reverse()) await handle.close();
     await rootHandle.close();
+  }
+}
+
+/**
+ * Reads through descriptor-pinned directory handles. If publication briefly
+ * rotates the live cache pathname, retry ENOENT until a complete cache appears.
+ */
+export interface TrustedReadOptions {
+  /** Test seam invoked after a read observes a temporarily absent live cache. */
+  readonly onPublicationRetry?: () => void;
+}
+
+export async function readTrustedText(root: string, sourcePath: string, { onPublicationRetry }: TrustedReadOptions = {}): Promise<string> {
+  const deadline = Date.now() + publicationRetryTimeoutMs;
+  let reportedRetry = false;
+  while (true) {
+    try {
+      return await readTrustedTextOnce(root, sourcePath);
+    } catch (error: unknown) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT" || Date.now() >= deadline) throw error;
+      if (!reportedRetry) {
+        onPublicationRetry?.();
+        reportedRetry = true;
+      }
+      await delay(publicationRetryDelayMs);
+    }
   }
 }
 
