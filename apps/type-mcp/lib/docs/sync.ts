@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdir, rename, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, rename, rm, writeFile } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
 
 import { isSafeSourcePath, publicDocuments, sourceCommit } from "./manifest";
@@ -9,12 +9,17 @@ export interface SyncOptions {
   readonly fetchDocument: (sourcePath: string) => Promise<string>;
   /** Test seam for injecting a failure during atomic cache publication. */
   readonly renameDirectory?: (from: string, to: string) => Promise<void>;
+  /** Test seam invoked while this sync holds the publication lock. */
+  readonly beforePublish?: () => Promise<void>;
 }
 
 interface CacheMetadata {
   readonly sourceCommit: string;
   readonly documents: readonly { readonly sourcePath: string; readonly route: string; readonly sha256: string }[];
 }
+
+const lockRetryDelayMs = 10;
+const lockTimeoutMs = 15_000;
 
 function sha256(content: string): string {
   return createHash("sha256").update(content).digest("hex");
@@ -32,11 +37,28 @@ function containedPath(root: string, sourcePath: string): string {
   return candidate;
 }
 
-export async function syncDocuments({ outputDirectory, fetchDocument, renameDirectory = rename }: SyncOptions): Promise<void> {
-  const stagingDirectory = `${outputDirectory}.staging`;
+function delay(milliseconds: number): Promise<void> {
+  return new Promise((resolveDelay) => setTimeout(resolveDelay, milliseconds));
+}
+
+async function acquirePublicationLock(lockDirectory: string): Promise<void> {
+  const deadline = Date.now() + lockTimeoutMs;
+  while (true) {
+    try {
+      await mkdir(lockDirectory);
+      return;
+    } catch (error: unknown) {
+      if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+      if (Date.now() >= deadline) throw new Error(`Timed out waiting for documentation publication lock: ${lockDirectory}`);
+      await delay(lockRetryDelayMs);
+    }
+  }
+}
+
+export async function syncDocuments({ outputDirectory, fetchDocument, renameDirectory = rename, beforePublish }: SyncOptions): Promise<void> {
   const previousDirectory = `${outputDirectory}.previous`;
-  await rm(stagingDirectory, { recursive: true, force: true });
-  await mkdir(stagingDirectory, { recursive: true });
+  const lockDirectory = `${outputDirectory}.lock`;
+  const stagingDirectory = await mkdtemp(`${outputDirectory}.staging-`);
 
   try {
     const documents = [] as { sourcePath: string; route: string; sha256: string }[];
@@ -57,31 +79,37 @@ export async function syncDocuments({ outputDirectory, fetchDocument, renameDire
     }
     const metadata: CacheMetadata = { sourceCommit, documents };
     await writeFile(join(stagingDirectory, "metadata.json"), `${JSON.stringify(metadata, null, 2)}\n`, "utf8");
-    await rm(previousDirectory, { recursive: true, force: true });
-    let movedPreviousCache = false;
+
+    await acquirePublicationLock(lockDirectory);
     try {
-      await renameDirectory(outputDirectory, previousDirectory);
-      movedPreviousCache = true;
-    } catch (error: unknown) {
-      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
-    }
-    try {
-      await renameDirectory(stagingDirectory, outputDirectory);
-    } catch (publishError) {
-      if (movedPreviousCache) {
-        try {
-          await renameDirectory(previousDirectory, outputDirectory);
-        } catch (restoreError) {
-          const detail = restoreError instanceof Error ? restoreError.message : String(restoreError);
-          throw new Error(`Unable to publish documentation cache; prior cache remains recoverable at ${previousDirectory}: ${detail}`);
-        }
+      await beforePublish?.();
+      await rm(previousDirectory, { recursive: true, force: true });
+      let movedPreviousCache = false;
+      try {
+        await renameDirectory(outputDirectory, previousDirectory);
+        movedPreviousCache = true;
+      } catch (error: unknown) {
+        if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
       }
-      throw publishError;
+      try {
+        await renameDirectory(stagingDirectory, outputDirectory);
+      } catch (publishError) {
+        if (movedPreviousCache) {
+          try {
+            await renameDirectory(previousDirectory, outputDirectory);
+          } catch (restoreError) {
+            const detail = restoreError instanceof Error ? restoreError.message : String(restoreError);
+            throw new Error(`Unable to publish documentation cache; prior cache remains recoverable at ${previousDirectory}: ${detail}`);
+          }
+        }
+        throw publishError;
+      }
+      await rm(previousDirectory, { recursive: true, force: true });
+    } finally {
+      await rm(lockDirectory, { recursive: true, force: true });
     }
-    await rm(previousDirectory, { recursive: true, force: true });
-  } catch (error) {
+  } finally {
     await rm(stagingDirectory, { recursive: true, force: true });
-    throw error;
   }
 }
 
