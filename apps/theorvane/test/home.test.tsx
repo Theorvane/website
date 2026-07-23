@@ -20,4 +20,15 @@ describe("Theorvane homepage", () => {
 			"https://github.com/Theorvane",
 		);
 	});
+
+	it("features OpenVideo with its official local-first product destination", () => {
+		render(createElement(HomePage));
+
+		expect(screen.getByRole("heading", { name: "OpenVideo" })).toBeTruthy();
+		expect(screen.getByRole("link", { name: /explore openvideo/i }).getAttribute("href")).toBe(
+			"https://openvideo.theorvane.tech/",
+		);
+		expect(screen.getByText(/local-first, open-source video editor/i)).toBeTruthy();
+		expect(screen.getByText(/no cloud uploads, accounts, or analytics/i)).toBeTruthy();
+	});
 });
