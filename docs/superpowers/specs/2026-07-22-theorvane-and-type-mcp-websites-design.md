@@ -10,7 +10,7 @@ Build one public Next.js monorepo that delivers two independently deployable, re
 - **Theorvane**: the parent brand’s editorial, high-trust company homepage.
 - **TypeMCP**: the open-source project’s developer-first product site. Its public copy must distinguish the published npm package from unreleased repository-source work.
 
-The first release is deliberately static. It does not include a CMS, user accounts, a blog engine, release feed, search service, or documentation migration.
+The first release was deliberately static. Its documentation-migration non-goal is superseded by [`2026-07-22-typemcp-documentation-portal-design.md`](2026-07-22-typemcp-documentation-portal-design.md); CMS, user accounts, a blog engine, release feed, and search service remain out of scope.
 
 ## Architecture
 
