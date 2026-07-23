@@ -6,7 +6,7 @@ A Next.js monorepo containing independently deployable public websites for **The
 
 - `apps/theorvane` — the Theorvane brand homepage at `https://theorvane.tech`
 - `apps/type-mcp` — the TypeMCP product site and technical documentation at `https://typemcp.theorvane.tech`
-- `apps/openvideo` — the OpenVideo local-first product homepage at `https://openvideo.theorvane.tech`
+- `apps/openvideo` — the OpenVideo local-first hybrid AI video-editor product site at `https://openvideo.theorvane.tech`; current AI capabilities remain explicitly availability-scoped in the approved product direction
 
 ## TypeMCP documentation
 
