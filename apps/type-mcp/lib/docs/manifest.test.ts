@@ -8,13 +8,14 @@ import {
 
 describe("TypeMCP public documentation manifest", () => {
   it("pins exactly the approved public documents to a full commit SHA", () => {
-    expect(sourceCommit).toBe("6480a45887a262f354f5691d3d3d19ca04304e96");
-    expect(publicDocuments).toHaveLength(13);
+    expect(sourceCommit).toBe("c13c7c99ab893bbcfdee3d5e88461daf1098e8d5");
+    expect(publicDocuments).toHaveLength(15);
     expect(publicDocuments.map((document) => document.route)).toEqual([
       "/docs/getting-started",
       "/docs/guides/configuration",
       "/docs/guides/agent-integration",
       "/docs/guides/http-and-nextjs",
+      "/docs/guides/langchain-langgraph",
       "/docs/guides/agile-delivery",
       "/docs/guides/npm-release",
       "/docs/guides/open-source-launch",
@@ -22,6 +23,7 @@ describe("TypeMCP public documentation manifest", () => {
       "/docs/architecture/overview",
       "/docs/architecture/framework-neutral-core",
       "/docs/architecture/fetch-streamable-http",
+      "/docs/architecture/langchain-langgraph-integration",
       "/docs/product/vision",
       "/docs/product/mvp-scope",
     ]);
