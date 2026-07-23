@@ -8,4 +8,5 @@ coverage/
 .env.*
 !.env.example
 *.tsbuildinfo
+apps/type-mcp/.generated-docs/
 .DS_Store
