@@ -16,6 +16,10 @@ describe("TypeMCP homepage", () => {
 		).toBeTruthy();
 		expect(screen.getByText(/metadata only/i)).toBeTruthy();
 		expect(screen.getByText(/does not validate, compile, invoke, or transport/i)).toBeTruthy();
+		expect(screen.getByText(/LangChain tools/i)).toBeTruthy();
+		expect(screen.getAllByText(/LangGraph/i).length).toBeGreaterThan(0);
+		expect(screen.getByText("ToolNode")).toBeTruthy();
+		expect(screen.getByText(/consumer-owned/i)).toBeTruthy();
 		expect(screen.queryByText(/validated runtime core/i)).toBeNull();
 		expect(screen.queryByText(/resolver-backed execution/i)).toBeNull();
 		expect(screen.queryByText(/mcp transport at the edge/i)).toBeNull();
