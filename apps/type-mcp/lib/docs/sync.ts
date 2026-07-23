@@ -11,6 +11,8 @@ export interface SyncOptions {
   readonly renameDirectory?: (from: string, to: string) => Promise<void>;
   /** Test seam invoked while this sync holds the publication lock. */
   readonly beforePublish?: () => Promise<void>;
+  /** Test seam invoked after this sync observes a competing publisher lock. */
+  readonly onLockContention?: () => void;
 }
 
 interface CacheMetadata {
@@ -41,21 +43,26 @@ function delay(milliseconds: number): Promise<void> {
   return new Promise((resolveDelay) => setTimeout(resolveDelay, milliseconds));
 }
 
-async function acquirePublicationLock(lockDirectory: string): Promise<void> {
+async function acquirePublicationLock(lockDirectory: string, onContention?: () => void): Promise<void> {
   const deadline = Date.now() + lockTimeoutMs;
+  let reportedContention = false;
   while (true) {
     try {
       await mkdir(lockDirectory);
       return;
     } catch (error: unknown) {
       if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+      if (!reportedContention) {
+        onContention?.();
+        reportedContention = true;
+      }
       if (Date.now() >= deadline) throw new Error(`Timed out waiting for documentation publication lock: ${lockDirectory}`);
       await delay(lockRetryDelayMs);
     }
   }
 }
 
-export async function syncDocuments({ outputDirectory, fetchDocument, renameDirectory = rename, beforePublish }: SyncOptions): Promise<void> {
+export async function syncDocuments({ outputDirectory, fetchDocument, renameDirectory = rename, beforePublish, onLockContention }: SyncOptions): Promise<void> {
   const previousDirectory = `${outputDirectory}.previous`;
   const lockDirectory = `${outputDirectory}.lock`;
   const stagingDirectory = await mkdtemp(`${outputDirectory}.staging-`);
@@ -80,7 +87,7 @@ export async function syncDocuments({ outputDirectory, fetchDocument, renameDire
     const metadata: CacheMetadata = { sourceCommit, documents };
     await writeFile(join(stagingDirectory, "metadata.json"), `${JSON.stringify(metadata, null, 2)}\n`, "utf8");
 
-    await acquirePublicationLock(lockDirectory);
+    await acquirePublicationLock(lockDirectory, onLockContention);
     try {
       await beforePublish?.();
       await rm(previousDirectory, { recursive: true, force: true });

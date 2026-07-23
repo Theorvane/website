@@ -56,6 +56,7 @@ describe("syncDocuments", () => {
   it("serializes overlapping publications while retaining complete cache output", async () => {
     const outputDirectory = await mkdtemp(join(tmpdir(), "typemcp-docs-"));
     const firstEntered = deferred();
+    const secondContended = deferred();
     const releaseFirst = deferred();
     let secondEntered = false;
     try {
@@ -69,8 +70,9 @@ describe("syncDocuments", () => {
         outputDirectory,
         fetchDocument: fetchWithMarker("second cache"),
         beforePublish: async () => { secondEntered = true; },
+        onLockContention: secondContended.resolve,
       });
-      await new Promise((resolveDelay) => setTimeout(resolveDelay, 30));
+      await secondContended.promise;
       expect(secondEntered).toBe(false);
       releaseFirst.resolve();
       await Promise.all([first, second]);
