@@ -7,6 +7,8 @@ import { isSafeSourcePath, publicDocuments, sourceCommit } from "./manifest";
 export interface SyncOptions {
   readonly outputDirectory: string;
   readonly fetchDocument: (sourcePath: string) => Promise<string>;
+  /** Test seam for injecting a failure during atomic cache publication. */
+  readonly renameDirectory?: (from: string, to: string) => Promise<void>;
 }
 
 interface CacheMetadata {
@@ -30,8 +32,9 @@ function containedPath(root: string, sourcePath: string): string {
   return candidate;
 }
 
-export async function syncDocuments({ outputDirectory, fetchDocument }: SyncOptions): Promise<void> {
+export async function syncDocuments({ outputDirectory, fetchDocument, renameDirectory = rename }: SyncOptions): Promise<void> {
   const stagingDirectory = `${outputDirectory}.staging`;
+  const previousDirectory = `${outputDirectory}.previous`;
   await rm(stagingDirectory, { recursive: true, force: true });
   await mkdir(stagingDirectory, { recursive: true });
 
@@ -54,10 +57,28 @@ export async function syncDocuments({ outputDirectory, fetchDocument }: SyncOpti
     }
     const metadata: CacheMetadata = { sourceCommit, documents };
     await writeFile(join(stagingDirectory, "metadata.json"), `${JSON.stringify(metadata, null, 2)}\n`, "utf8");
-    await rm(`${outputDirectory}.previous`, { recursive: true, force: true });
-    try { await rename(outputDirectory, `${outputDirectory}.previous`); } catch (error: unknown) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
-    await rename(stagingDirectory, outputDirectory);
-    await rm(`${outputDirectory}.previous`, { recursive: true, force: true });
+    await rm(previousDirectory, { recursive: true, force: true });
+    let movedPreviousCache = false;
+    try {
+      await renameDirectory(outputDirectory, previousDirectory);
+      movedPreviousCache = true;
+    } catch (error: unknown) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+    }
+    try {
+      await renameDirectory(stagingDirectory, outputDirectory);
+    } catch (publishError) {
+      if (movedPreviousCache) {
+        try {
+          await renameDirectory(previousDirectory, outputDirectory);
+        } catch (restoreError) {
+          const detail = restoreError instanceof Error ? restoreError.message : String(restoreError);
+          throw new Error(`Unable to publish documentation cache; prior cache remains recoverable at ${previousDirectory}: ${detail}`);
+        }
+      }
+      throw publishError;
+    }
+    await rm(previousDirectory, { recursive: true, force: true });
   } catch (error) {
     await rm(stagingDirectory, { recursive: true, force: true });
     throw error;

@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rename, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -24,6 +24,31 @@ describe("syncDocuments", () => {
       expect(metadata.documents.every((document) => /^[0-9a-f]{64}$/.test(document.sha256))).toBe(true);
     } finally {
       await rm(outputDirectory, { recursive: true, force: true });
+    }
+  });
+
+  it("restores the prior cache when publication fails after the first rename", async () => {
+    const outputDirectory = await mkdtemp(join(tmpdir(), "typemcp-docs-"));
+    const fetchWithMarker = (marker: string) => async (sourcePath: string) => {
+      const document = publicDocuments.find((candidate) => candidate.sourcePath === sourcePath)!;
+      return `# ${sourcePath}\n\n${document.sourceStatus}\n\n${marker}\n`;
+    };
+    try {
+      await syncDocuments({ outputDirectory, fetchDocument: fetchWithMarker("old cache") });
+      const stagingDirectory = `${outputDirectory}.staging`;
+      await expect(syncDocuments({
+        outputDirectory,
+        fetchDocument: fetchWithMarker("new cache"),
+        renameDirectory: async (from, to) => {
+          if (from === stagingDirectory && to === outputDirectory) throw new Error("injected publish failure");
+          await rename(from, to);
+        },
+      })).rejects.toThrow(/injected publish failure/i);
+      await expect(readFile(join(outputDirectory, "docs/guides/getting-started.md"), "utf8")).resolves.toContain("old cache");
+    } finally {
+      await rm(outputDirectory, { recursive: true, force: true });
+      await rm(`${outputDirectory}.previous`, { recursive: true, force: true });
+      await rm(`${outputDirectory}.staging`, { recursive: true, force: true });
     }
   });
 
