@@ -5,10 +5,11 @@
 
 ## Goal
 
-Build one public Next.js monorepo that delivers two independently deployable, responsive marketing sites:
+Build one public Next.js monorepo that delivers independently deployable, responsive marketing sites:
 
 - **Theorvane**: the parent brand’s editorial, high-trust company homepage.
 - **TypeMCP**: the open-source project’s developer-first product site. Its public copy must distinguish the published npm package from unreleased repository-source work.
+- **OpenVideo**: the open-source product site for a local-first Electron recording and editing studio. Its scope is specified in [`2026-07-23-openvideo-product-site-design.md`](2026-07-23-openvideo-product-site-design.md).
 
 The first release was deliberately static. Its documentation-migration non-goal is superseded by [`2026-07-22-typemcp-documentation-portal-design.md`](2026-07-22-typemcp-documentation-portal-design.md); CMS, user accounts, a blog engine, release feed, and search service remain out of scope.
 
@@ -19,7 +20,8 @@ The repository uses npm workspaces and Turborepo. npm is selected because it is 
 ```text
 apps/
   theorvane/                 # Next.js App Router: the brand homepage
-  type-mcp/                  # Next.js App Router: the open-source homepage
+  type-mcp/                  # Next.js App Router: the TypeMCP product homepage
+  openvideo/                 # Next.js App Router: the OpenVideo product homepage
 packages/
   ui/                        # accessible, unbranded React primitives
   design-tokens/             # CSS custom-property foundations and shared type scale

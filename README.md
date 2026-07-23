@@ -1,11 +1,12 @@
 # Theorvane website
 
-A Next.js monorepo containing independently deployable public websites for **Theorvane** and **TypeMCP**.
+A Next.js monorepo containing independently deployable public websites for **Theorvane**, **TypeMCP**, and **OpenVideo**.
 
 ## Apps
 
-- `apps/theorvane` — the Theorvane brand homepage
+- `apps/theorvane` — the Theorvane brand homepage at `https://theorvane.tech`
 - `apps/type-mcp` — the TypeMCP product site and technical documentation at `https://typemcp.theorvane.tech`
+- `apps/openvideo` — the OpenVideo local-first product homepage at `https://openvideo.theorvane.tech`
 
 ## TypeMCP documentation
 
@@ -28,4 +29,4 @@ npm test
 npm run build
 ```
 
-See [`docs/superpowers/specs/2026-07-22-theorvane-and-type-mcp-websites-design.md`](docs/superpowers/specs/2026-07-22-theorvane-and-type-mcp-websites-design.md) and [`docs/superpowers/specs/2026-07-22-typemcp-documentation-portal-design.md`](docs/superpowers/specs/2026-07-22-typemcp-documentation-portal-design.md) for the approved scope.
+See [`docs/superpowers/specs/2026-07-22-theorvane-and-type-mcp-websites-design.md`](docs/superpowers/specs/2026-07-22-theorvane-and-type-mcp-websites-design.md), [`docs/superpowers/specs/2026-07-22-typemcp-documentation-portal-design.md`](docs/superpowers/specs/2026-07-22-typemcp-documentation-portal-design.md), and [`docs/superpowers/specs/2026-07-23-openvideo-product-site-design.md`](docs/superpowers/specs/2026-07-23-openvideo-product-site-design.md) for the approved scope.
