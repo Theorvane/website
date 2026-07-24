@@ -8,7 +8,7 @@ import {
 
 describe("TypeMCP public documentation manifest", () => {
   it("pins exactly the approved public documents to a full commit SHA", () => {
-    expect(sourceCommit).toBe("2b5f05438509c8be1e43e3372c614d7a86e2272d");
+    expect(sourceCommit).toBe("79e6582aa910fdd36afa92bb8c22ade5651853d0");
     expect(publicDocuments).toHaveLength(15);
     expect(publicDocuments.map((document) => document.route)).toEqual([
       "/docs/getting-started",
@@ -34,6 +34,9 @@ describe("TypeMCP public documentation manifest", () => {
       "docs/guides/http-and-nextjs.md",
       "docs/guides/langchain-langgraph.md",
       "docs/guides/npm-release.md",
+      "docs/api/decorator-api.md",
+      "docs/architecture/overview.md",
+      "docs/product/mvp-scope.md",
     ]);
   });
 

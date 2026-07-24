@@ -1,6 +1,6 @@
 import { documentGroups, type PublicDocument } from "./types";
 
-export const sourceCommit = "2b5f05438509c8be1e43e3372c614d7a86e2272d";
+export const sourceCommit = "79e6582aa910fdd36afa92bb8c22ade5651853d0";
 
 const documents: readonly PublicDocument[] = [
   { sourcePath: "docs/guides/getting-started.md", route: "/docs/getting-started", title: "Getting started", summary: "Install TypeMCP and inspect a declaration with the published package.", group: "Start", order: 1, classification: "published", sourceStatus: "@theorvane/type-mcp@0.2.0" },
@@ -11,13 +11,13 @@ const documents: readonly PublicDocument[] = [
   { sourcePath: "docs/guides/agile-delivery.md", route: "/docs/guides/agile-delivery", title: "Agile delivery", summary: "Repository-development delivery practices and milestones.", group: "Guides", order: 5, classification: "repository-development", sourceStatus: "GitHub Issues, milestones, labels, pull requests" },
   { sourcePath: "docs/guides/npm-release.md", route: "/docs/guides/npm-release", title: "npm release", summary: "npm release process and package supply-chain boundary.", group: "Guides", order: 6, classification: "published", sourceStatus: "TypeMCP publishes one public npm organization package" },
   { sourcePath: "docs/guides/open-source-launch.md", route: "/docs/guides/open-source-launch", title: "Open-source launch", summary: "Repository-development launch and governance guidance.", group: "Guides", order: 7, classification: "repository-development", sourceStatus: "operational safeguards" },
-  { sourcePath: "docs/api/decorator-api.md", route: "/docs/api/decorator-api", title: "Decorator API contract", summary: "Decorator declarations and the repository-development API boundary.", group: "API", order: 1, classification: "repository-development", sourceStatus: "Repository release target:" },
-  { sourcePath: "docs/architecture/overview.md", route: "/docs/architecture/overview", title: "Architecture overview", summary: "Metadata, compiler, resolver, and transport architecture.", group: "Architecture", order: 1, classification: "repository-development", sourceStatus: "Release target:" },
+  { sourcePath: "docs/api/decorator-api.md", route: "/docs/api/decorator-api", title: "Decorator API contract", summary: "Published decorator declarations, runtime compilation, and transport boundaries.", group: "API", order: 1, classification: "published", sourceStatus: "@theorvane/type-mcp@0.2.0" },
+  { sourcePath: "docs/architecture/overview.md", route: "/docs/architecture/overview", title: "Architecture overview", summary: "Published metadata, compiler, resolver, and transport architecture.", group: "Architecture", order: 1, classification: "published", sourceStatus: "@theorvane/type-mcp@0.2.0" },
   { sourcePath: "docs/architecture/adr/0001-framework-neutral-core.md", route: "/docs/architecture/framework-neutral-core", title: "Framework-neutral core", summary: "Superseded ADR for the framework-neutral TypeMCP core.", group: "Architecture", order: 2, classification: "repository-development", sourceStatus: "**Status:** Superseded" },
   { sourcePath: "docs/architecture/adr/0002-fetch-streamable-http.md", route: "/docs/architecture/fetch-streamable-http", title: "Fetch Streamable HTTP", summary: "ADR for the Fetch-standard Streamable HTTP adapter.", group: "Architecture", order: 3, classification: "repository-development", sourceStatus: "**Status:** Accepted" },
   { sourcePath: "docs/architecture/adr/0002-langchain-langgraph-integration.md", route: "/docs/architecture/langchain-langgraph-integration", title: "LangChain and LangGraph integration", summary: "ADR for tools-only LangChain and consumer-owned LangGraph composition.", group: "Architecture", order: 4, classification: "repository-development", sourceStatus: "**Status:** Accepted" },
   { sourcePath: "docs/product/vision.md", route: "/docs/product/vision", title: "Product vision", summary: "The TypeMCP product target and design principles.", group: "Product", order: 1, classification: "product-target", sourceStatus: "**Status:** Product target." },
-  { sourcePath: "docs/product/mvp-scope.md", route: "/docs/product/mvp-scope", title: "MVP scope", summary: "Included, deferred, and excluded product capabilities.", group: "Product", order: 2, classification: "product-target", sourceStatus: "Release target:" },
+  { sourcePath: "docs/product/mvp-scope.md", route: "/docs/product/mvp-scope", title: "MVP scope", summary: "Published, deferred, and excluded product capabilities.", group: "Product", order: 2, classification: "published", sourceStatus: "@theorvane/type-mcp@0.2.0" },
 ];
 
 export const publicDocuments = Object.freeze(documents.map((document) => Object.freeze({ ...document })));

@@ -47,8 +47,8 @@ export default async function DocsIndex() {
           <ol>
             <li><a href="/docs/getting-started">Getting started</a> — install the published package and inspect a declaration.</li>
             <li><a href="/docs/guides/configuration">Configuration and compatibility</a> — configure TypeScript and package loading.</li>
-            <li><a href="/docs/api/decorator-api">Decorator API contract</a> — compare the published API with repository-development work.</li>
-            <li><a href="/docs/architecture/overview">Architecture overview</a> — explore the planned compiler and transport boundaries.</li>
+            <li><a href="/docs/api/decorator-api">Decorator API contract</a> — use the published declarations, runtime, and transport contract.</li>
+            <li><a href="/docs/architecture/overview">Architecture overview</a> — understand the published compiler and transport boundaries.</li>
           </ol>
         </section>
         {groups.map((group) => <section key={group}>
