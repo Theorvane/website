@@ -40,7 +40,7 @@ A concise home for a technical studio that signals focus, craft, and open-source
 1. **Navigation** — wordmark, Projects anchor, Principles anchor, and a GitHub external link.
 2. **Hero** — short statement: building precise developer tools for the AI-native web; one primary project CTA and an outward GitHub CTA.
 3. **Signal strip** — three proof points: TypeScript-first, protocol-aware, open-source.
-4. **Featured project** — a TypeMCP card linking to the project repository. Public wording for the published package is limited to metadata declarations and immutable reads.
+4. **Featured project** — a TypeMCP card linking to the project repository. Public wording reflects the published scoped package and its validated runtime boundary.
 5. **Principles** — framework neutrality, explicit contracts, small verifiable releases.
 6. **Closing CTA/footer** — GitHub organization and contact placeholder. The contact address is intentionally not invented.
 
@@ -50,23 +50,23 @@ Dark, editorial, technical. Near-black canvas; high-contrast ivory text; a restr
 
 ## Site 2 — TypeMCP
 
-### Published npm 0.1.0 boundary
+### Published npm 0.2.0 boundary
 
-The published package, `type-mcp@0.1.0`, supports **decorator declarations and immutable metadata reads only**. It **does not validate, compile, invoke, or transport** MCP operations. `createMcpServer()` and the `type-mcp/http` / `createMcpHandler()` entry points are reserved and throw in the published release.
+The published package, `@theorvane/type-mcp@0.2.0`, supports **decorator declarations, definition validation, MCP SDK compilation, stdio, and Streamable HTTP**. Its `@theorvane/type-mcp/langchain` subpath is a tools-only adapter. Applications own hosting, authorization, persistence, models, and LangGraph graph composition.
 
-Repository-source development can contain additional work, but it is not released npm API until published. The website must never present unreleased functionality as available from `type-mcp@0.1.0`.
+Repository-source development can contain additional work, but it is not released npm API until published. The website must link visitors to `@theorvane/type-mcp@0.2.0` and must not imply that TypeMCP owns application policy or LangGraph topology.
 
 ### Intent
 
-Explain the published capability honestly to TypeScript and agent-platform developers, then direct them to inspect the source, read the release-boundary documentation, or inspect the npm package.
+Explain the published capability honestly to TypeScript and agent-platform developers, then direct them to inspect the source, read the integration boundaries, or install the npm package.
 
 ### Page sections
 
 1. **Navigation** — logo/wordmark, Overview, Architecture, published-release boundary, GitHub CTA.
-2. **Hero** — decorator-first MCP declarations for strict TypeScript with a readable source-code panel and metadata-only wording.
-3. **Capability cards** — decorators/metadata, immutable metadata inspection, and explicit release boundary.
-4. **Architecture** — semantic HTML/CSS explanation of declaration input and metadata output; no runtime flow is claimed for npm `0.1.0`.
-5. **Published release boundary** — state that `0.1.0` does not validate, compile, invoke, or transport MCP operations and that reserved server/HTTP entry points throw.
+2. **Hero** — decorator-first MCP declarations for strict TypeScript with a readable source-code panel and published runtime wording.
+3. **Capability cards** — decorators/validation, explicit runtime compilation, and transport boundaries.
+4. **Architecture** — semantic HTML/CSS explanation of declaration input, validation, MCP SDK compilation, and application-owned transport hosting.
+5. **Published release boundary** — state that `@theorvane/type-mcp@0.2.0` includes runtime compilation, stdio, Streamable HTTP, and a tools-only LangChain adapter while LangGraph composition remains consumer-owned.
 6. **Get started** — source and npm CTAs with release-boundary wording.
 7. **Footer** — GitHub repository, npm, and Theorvane cross-link.
 

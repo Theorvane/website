@@ -8,11 +8,11 @@ const canonicalBase = "https://typemcp.theorvane.tech";
 
 export const metadata: Metadata = {
   title: "Documentation | TypeMCP",
-  description: "Install TypeMCP, inspect decorator metadata, and understand the published package boundary and repository-development documentation.",
+  description: "Install TypeMCP, validate and compile decorator declarations, and understand application-owned boundaries.",
   alternates: { canonical: "/docs" },
   openGraph: {
     title: "Documentation | TypeMCP",
-    description: "Technical documentation for TypeMCP decorator metadata and its published-package boundary.",
+    description: "Technical documentation for TypeMCP's published runtime and application-owned boundaries.",
     url: `${canonicalBase}/docs`,
   },
 };
@@ -29,7 +29,7 @@ export default async function DocsIndex() {
         <a href="/">Product</a>
         <a href="/docs" aria-current="page">Documentation</a>
         <a href="https://github.com/Theorvane/type-mcp" target="_blank" rel="noopener noreferrer">GitHub <span className="sr-only">(opens in a new tab)</span></a>
-        <a href="https://www.npmjs.com/package/type-mcp" target="_blank" rel="noopener noreferrer">npm <span className="sr-only">(opens in a new tab)</span></a>
+        <a href="https://www.npmjs.com/package/@theorvane/type-mcp" target="_blank" rel="noopener noreferrer">npm <span className="sr-only">(opens in a new tab)</span></a>
       </nav>
     </header>
     <main className="docs-layout">
@@ -37,18 +37,18 @@ export default async function DocsIndex() {
       <article id="docs-content" className="docs-index">
         <p className="eyebrow">TypeMCP technical documentation</p>
         <h1>TypeMCP documentation</h1>
-        <p>The published npm package provides decorator declarations and immutable metadata reads. Repository-development documents describe work that is not installed API until it appears in a released package.</p>
+        <p>The published npm package provides decorator declarations, definition validation, MCP SDK compilation, stdio, Streamable HTTP, and a tools-only LangChain adapter. Applications retain ownership of hosting, authorization, and LangGraph composition.</p>
         <aside className="release-callout">
           <strong>Read the release boundary first</strong>
-          <p><code>type-mcp@0.1.0</code> does not validate, compile, invoke, or transport MCP operations.</p>
+          <p><code>@theorvane/type-mcp@0.2.0</code> is the current public release.</p>
         </aside>
         <section className="reading-order" aria-labelledby="reading-order-heading">
           <h2 id="reading-order-heading">Recommended reading order</h2>
           <ol>
             <li><a href="/docs/getting-started">Getting started</a> — install the published package and inspect a declaration.</li>
             <li><a href="/docs/guides/configuration">Configuration and compatibility</a> — configure TypeScript and package loading.</li>
-            <li><a href="/docs/api/decorator-api">Decorator API contract</a> — compare the published API with repository-development work.</li>
-            <li><a href="/docs/architecture/overview">Architecture overview</a> — explore the planned compiler and transport boundaries.</li>
+            <li><a href="/docs/api/decorator-api">Decorator API contract</a> — use the published declarations, runtime, and transport contract.</li>
+            <li><a href="/docs/architecture/overview">Architecture overview</a> — understand the published compiler and transport boundaries.</li>
           </ol>
         </section>
         {groups.map((group) => <section key={group}>

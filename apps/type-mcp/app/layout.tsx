@@ -4,8 +4,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://typemcp.theorvane.tech"),
-	title: "TypeMCP — decorator metadata for TypeScript",
-	description: "Declare MCP declaration metadata with TypeScript decorators and inspect it explicitly.",
+	title: "TypeMCP — strict TypeScript MCP runtime",
+	description: "Declare, validate, and compile MCP server surfaces with strict TypeScript decorators.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="en"><body>{children}</body></html>; }
