@@ -27,7 +27,7 @@ function sourceHref(href: string, document: RepositoryDocument): string {
 
 export function ReleaseBoundaryCallout({ classification }: Pick<RepositoryDocument["document"], "classification">) {
   if (classification === "published") return null;
-  return <aside className="release-callout"><strong>Published package boundary</strong><p><code>type-mcp@0.1.0</code> publishes decorator declarations and immutable metadata reads only. This page describes repository-development or product-target work; treat runtime APIs as unavailable until a release explicitly documents them.</p></aside>;
+  return <aside className="release-callout"><strong>Published package boundary</strong><p><code>@theorvane/type-mcp@0.2.0</code> provides definition validation, MCP SDK compilation, stdio, Streamable HTTP, and a tools-only LangChain adapter. Applications retain ownership of hosting, authorization, and LangGraph composition; this page may describe repository-development or product-target decisions beyond the installed package.</p></aside>;
 }
 
 export function DocsSidebar({ documents, activeRoute }: { documents: readonly RepositoryDocument[]; activeRoute?: string }) {
