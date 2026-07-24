@@ -8,7 +8,7 @@ import {
 
 describe("TypeMCP public documentation manifest", () => {
   it("pins exactly the approved public documents to a full commit SHA", () => {
-    expect(sourceCommit).toBe("79e6582aa910fdd36afa92bb8c22ade5651853d0");
+    expect(sourceCommit).toBe("fe7e85972c23c166d0d74fb712af2a380e1dff90");
     expect(publicDocuments).toHaveLength(15);
     expect(publicDocuments.map((document) => document.route)).toEqual([
       "/docs/getting-started",

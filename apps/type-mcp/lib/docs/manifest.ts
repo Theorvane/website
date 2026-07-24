@@ -1,6 +1,6 @@
 import { documentGroups, type PublicDocument } from "./types";
 
-export const sourceCommit = "79e6582aa910fdd36afa92bb8c22ade5651853d0";
+export const sourceCommit = "fe7e85972c23c166d0d74fb712af2a380e1dff90";
 
 const documents: readonly PublicDocument[] = [
   { sourcePath: "docs/guides/getting-started.md", route: "/docs/getting-started", title: "Getting started", summary: "Install TypeMCP and inspect a declaration with the published package.", group: "Start", order: 1, classification: "published", sourceStatus: "@theorvane/type-mcp@0.2.0" },
