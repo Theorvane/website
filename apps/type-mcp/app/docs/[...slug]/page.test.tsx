@@ -8,7 +8,7 @@ describe("TypeMCP article routes", () => {
     expect(generateStaticParams()).toContainEqual({ slug: ["api", "decorator-api"] });
     expect(generateStaticParams()).toContainEqual({ slug: ["guides", "langchain-langgraph"] });
     const metadata = await generateMetadata({ params: Promise.resolve({ slug: ["getting-started"] }) });
-    expect(metadata.title).toBe("Getting started with type-mcp@0.1.0 | TypeMCP");
+    expect(metadata.title).toBe("Getting started with @theorvane/type-mcp@0.2.0 | TypeMCP");
     expect(metadata.alternates?.canonical).toBe("/docs/getting-started");
   });
 });
