@@ -8,4 +8,13 @@ export const metadata: Metadata = {
 	description: "Declare, validate, and compile MCP server surfaces with strict TypeScript decorators.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="en"><body>{children}</body></html>; }
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+	return (
+		<html lang="en">
+			<head>
+				<script src="https://rybbit.handgarden.kr/api/script.js" data-site-id="c37c7591084c" defer />
+			</head>
+			<body>{children}</body>
+		</html>
+	);
+}

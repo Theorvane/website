@@ -107,4 +107,4 @@ The final release requires an independent latest-head review, successful require
 
 ## Non-goals
 
-This work does not add runtime GitHub fetches, documentation editing in the browser, analytics, authentication, comments, search indexing infrastructure, API version switching, a blog, or TypeORM-derived visual assets/copy. It does not widen the published `type-mcp@0.1.0` capability boundary.
+This work does not add runtime GitHub fetches, documentation editing in the browser, authentication, comments, search indexing infrastructure, API version switching, a blog, or TypeORM-derived visual assets/copy. The public TypeMCP website may use the explicitly approved deferred RybbIt script for website traffic measurement; this does not widen the published `type-mcp@0.1.0` capability boundary.
