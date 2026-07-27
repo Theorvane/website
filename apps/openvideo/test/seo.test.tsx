@@ -3,11 +3,24 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { metadata } from "../app/layout";
+import RootLayout from "../app/layout";
 import HomePage from "../app/page";
 import robots from "../app/robots";
 import sitemap from "../app/sitemap";
 
 describe("OpenVideo technical SEO", () => {
+	it("configures the approved RybbIt site script", () => {
+		const layout = RootLayout({ children: null });
+		const [head] = layout.props.children;
+		const script = head.props.children;
+
+		expect(script.props).toMatchObject({
+			src: "https://rybbit.handgarden.kr/api/script.js",
+			"data-site-id": "765035acbe87",
+			defer: true,
+		});
+	});
+
 	it("publishes canonical and social metadata for its product subdomain", () => {
 		expect(metadata.metadataBase?.toString()).toBe("https://openvideo.theorvane.tech/");
 		expect(metadata.alternates?.canonical).toBe("/");

@@ -92,6 +92,6 @@ A separate Vercel project builds from the monorepo root with `apps/openvideo` as
 ## Non-goals
 
 - No provider or model integration in this documentation-only change.
-- No cloud storage, automatic telemetry, analytics, account system, CMS, installer hosting, or download flow.
+- No cloud storage, automatic telemetry, account system, CMS, installer hosting, or download flow. The desktop application remains analytics-free; the separate public website may use the explicitly approved deferred RybbIt script for website traffic measurement.
 - No claim that planned AI capabilities are currently released.
 - No changes to the existing Theorvane or TypeMCP routing in this documentation-only change.

@@ -95,7 +95,7 @@ Bright, developer-tool interface: warm off-white canvas, graphite type, cobalt b
 
 ## Non-goals
 
-- CMS, blog, documentation search, contact form delivery, analytics, authentication, database, or paid marketing integrations.
+- CMS, blog, documentation search, contact form delivery, authentication, database, or paid marketing integrations. The public Theorvane and TypeMCP websites may use the explicitly approved deferred RybbIt script for website traffic measurement.
 - Re-implementing the TypeMCP repository documentation site in this first release.
 - Shared brand CSS that forces either site to use the other’s colors or layout.
 - Domain wiring or hosting configuration until final domain ownership and deployment preferences are provided.

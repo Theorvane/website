@@ -19,5 +19,12 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-	return <html lang="en"><body>{children}</body></html>;
+	return (
+		<html lang="en">
+			<head>
+				<script src="https://rybbit.handgarden.kr/api/script.js" data-site-id="765035acbe87" defer />
+			</head>
+			<body>{children}</body>
+		</html>
+	);
 }
