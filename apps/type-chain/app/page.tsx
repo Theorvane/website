@@ -1,4 +1,33 @@
 import { ExternalLink, SkipLink } from "@theorvane/ui";
+
 const github = "https://github.com/Theorvane/type-chain";
 const npm = "https://www.npmjs.com/package/@theorvane/type-chain";
-export default function HomePage() { return <><SkipLink /><header className="shell"><a className="logo" href="#top">TYPE<span>CHAIN</span></a><nav aria-label="Primary"><a href="#tools">Tools</a><a href="#boundaries">Boundaries</a><a href="/docs">Documentation</a><ExternalLink className="nav-cta" href={github}>GitHub ↗</ExternalLink></nav></header><main id="main-content"><section className="hero shell" id="top"><div><p className="eyebrow">TypeScript · LangChain · Stage 3 decorators</p><h1>Typed tools.<br /><em>Explicit boundaries.</em></h1><p>Published <code>@theorvane/type-chain@0.1.1</code> makes LangChain JS tools and agents easier to author without hiding schemas, policy, or application ownership.</p><div className="actions"><a className="button primary" href="/docs">Documentation →</a><ExternalLink className="button" href={npm}>npm package ↗</ExternalLink></div></div><pre><code>{`@Tool({ name: "find_product",\n  description: "Find a product.",\n  schema: z.object({ id: z.string() })\n})\nfindProduct({ id }: { id: string }) {\n  return catalog.get(id);\n}`}</code></pre></section><section className="capabilities shell" id="tools"><article><b>01</b><h2>Decorate intent</h2><p>Declare explicit names, descriptions, and runtime schemas beside real methods.</p></article><article><b>02</b><h2>Adapt, don’t replace</h2><p>Create standard LangChain tools and agents through dedicated subpaths.</p></article><article><b>03</b><h2>Keep control</h2><p>Your application owns models, credentials, authorization, state, and deployment.</p></article></section><section className="architecture shell" id="boundaries"><p className="eyebrow">Runtime boundary</p><h2>Metadata in.<br />Ownership stays out.</h2><ol><li><span>01</span> Stage 3 decorator declarations</li><li><span>02</span> Immutable, receiver-bound definitions</li><li><span>03</span> LangChain or in-process TypeMCP adaptation</li><li><span>04</span> Application-owned policy and hosting</li></ol></section><section className="start shell"><p className="eyebrow">Get started</p><h2>Start with a tool.<br />Keep the system yours.</h2><div className="actions"><a className="button primary" href="/docs/getting-started">Read the guide →</a><ExternalLink className="button" href={github}>View source ↗</ExternalLink></div></section></main><footer className="shell"><span>TypeChain is open source by <ExternalLink href="https://github.com/Theorvane">Theorvane ↗</ExternalLink></span><ExternalLink href={github}>GitHub ↗</ExternalLink></footer></>; }
+
+export default function HomePage() {
+	return (
+		<>
+			<SkipLink />
+			<header className="shell">
+				<a className="logo" href="#top">TYPE<span>CHAIN</span></a>
+				<nav aria-label="Primary"><a href="#tools">Tools</a><a href="#boundaries">Boundaries</a><a href="/docs">Documentation</a><ExternalLink className="nav-cta" href={github}>GitHub ↗</ExternalLink></nav>
+			</header>
+			<main id="main-content">
+				<section className="hero shell" id="top"><div><p className="eyebrow">TypeScript · LangChain · Stage 3 decorators</p><h1>Typed tools.<br /><em>Explicit boundaries.</em></h1><p>Published <code>@theorvane/type-chain@0.1.1</code> makes LangChain JS tools and agents easier to author without hiding schemas, policy, or application ownership.</p><div className="actions"><a className="button primary" href="/docs">Documentation →</a><ExternalLink className="button" href={npm}>npm package ↗</ExternalLink></div></div><pre><code>{`@Tool({ name: "find_product",\n  description: "Find a product.",\n  schema: z.object({ id: z.string() })\n})\nfindProduct({ id }: { id: string }) {\n  return catalog.get(id);\n}`}</code></pre></section>
+				<section className="capabilities shell" id="tools"><article><b>01</b><h2>Decorate intent</h2><p>Declare explicit names, descriptions, and runtime schemas beside real methods.</p></article><article><b>02</b><h2>Adapt, don’t replace</h2><p>Create standard LangChain tools and agents through dedicated subpaths.</p></article><article><b>03</b><h2>Keep control</h2><p>Your application owns models, credentials, authorization, state, and deployment.</p></article></section>
+				<section className="architecture shell" id="boundaries"><p className="eyebrow">Runtime boundary</p><h2>Metadata in.<br />Ownership stays out.</h2><ol><li><span>01</span> Stage 3 decorator declarations</li><li><span>02</span> Immutable, receiver-bound definitions</li><li><span>03</span> LangChain or in-process TypeMCP adaptation</li><li><span>04</span> Application-owned policy and hosting</li></ol></section>
+				<section className="start shell"><p className="eyebrow">Get started</p><h2>Start with a tool.<br />Keep the system yours.</h2><div className="actions"><a className="button primary" href="/docs/getting-started">Read the guide →</a><ExternalLink className="button" href={github}>View source ↗</ExternalLink></div></section>
+			</main>
+			<footer className="site-footer">
+				<div className="shell footer-grid">
+					<div className="footer-brand"><a className="logo" href="#top">TYPE<span>CHAIN</span></a><p>Decorator-first, type-safe authoring for LangChain tools and agents.</p></div>
+					<nav aria-label="TypeChain footer" className="footer-nav">
+						<div><strong>Explore</strong><a href="/docs">Documentation</a><a href="/docs/getting-started">Getting started</a></div>
+						<div><strong>Project</strong><ExternalLink href={github}>GitHub ↗</ExternalLink><ExternalLink href={npm}>npm ↗</ExternalLink></div>
+						<div><strong>Company</strong><ExternalLink href="https://theorvane.tech/">Theorvane ↗</ExternalLink></div>
+					</nav>
+				</div>
+				<div className="shell footer-legal"><span>© 2026 Theorvane. TypeChain is open source.</span><span>Typed tools. Explicit boundaries.</span></div>
+			</footer>
+		</>
+	);
+}

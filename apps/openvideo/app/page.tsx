@@ -74,9 +74,16 @@ export default function HomePage() {
 				<ExternalLink href={repositoryUrl}>Inspect the source ↗</ExternalLink>
 			</section>
 		</main>
-		<footer className="shell">
-			<p>OpenVideo is an open-source project by Theorvane.</p>
-			<div><ExternalLink href={repositoryUrl}>Repository ↗</ExternalLink><ExternalLink href={releasesUrl}>Releases ↗</ExternalLink><ExternalLink href={theorvaneUrl}>Theorvane ↗</ExternalLink></div>
+		<footer className="site-footer">
+			<div className="shell footer-grid">
+				<div className="footer-brand"><a className="wordmark" href="#top">OPEN<span>VIDEO</span></a><p>A local-first desktop studio for recording, editing, and exporting video.</p></div>
+				<nav aria-label="OpenVideo footer" className="footer-nav">
+					<div><strong>Explore</strong><a href="#features">Features</a><a href="#local-first">Local-first</a></div>
+					<div><strong>Project</strong><ExternalLink href={repositoryUrl}>Repository ↗</ExternalLink><ExternalLink href={releasesUrl}>Releases ↗</ExternalLink></div>
+					<div><strong>Company</strong><ExternalLink href={theorvaneUrl}>Theorvane ↗</ExternalLink></div>
+				</nav>
+			</div>
+			<div className="shell footer-legal"><span>© 2026 Theorvane. OpenVideo is open source.</span><span>Local by design.</span></div>
 		</footer>
 	</>;
 }

@@ -5,6 +5,16 @@ import { describe, expect, it } from "vitest";
 import HomePage from "../app/page";
 
 describe("OpenVideo homepage", () => {
+	it("publishes a complete, accessible product footer", () => {
+		render(createElement(HomePage));
+
+		const footer = screen.getByRole("contentinfo");
+		expect(footer.textContent).toContain("OpenVideo");
+		expect(screen.getByRole("navigation", { name: /OpenVideo footer/i })).toBeTruthy();
+		expect(screen.getAllByRole("link", { name: /releases/i }).some((link) => link.getAttribute("href") === "https://github.com/Theorvane/openvideo/releases")).toBe(true);
+		expect(screen.getByRole("link", { name: /Theorvane/i }).getAttribute("href")).toBe("https://theorvane.tech/");
+	});
+
 	it("makes the local-first product boundary and official destinations discoverable", () => {
 		render(createElement(HomePage));
 
