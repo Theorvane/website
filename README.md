@@ -1,11 +1,12 @@
 # Theorvane website
 
-A Next.js monorepo containing independently deployable public websites for **Theorvane**, **TypeMCP**, and **OpenVideo**.
+A Next.js monorepo containing independently deployable public websites for **Theorvane**, **TypeMCP**, **TypeChain**, and **OpenVideo**.
 
 ## Apps
 
 - `apps/theorvane` — the Theorvane brand homepage at `https://theorvane.tech`
 - `apps/type-mcp` — the TypeMCP product site and technical documentation at `https://typemcp.theorvane.tech`
+- `apps/type-chain` — the TypeChain product site and technical documentation at `https://typechain.theorvane.tech`
 - `apps/openvideo` — the OpenVideo local-first hybrid AI video-editor product site at `https://openvideo.theorvane.tech`; current AI capabilities remain explicitly availability-scoped in the approved product direction
 
 ## TypeMCP documentation
@@ -17,6 +18,16 @@ npm run sync:docs --workspace=@theorvane/type-mcp-site
 ```
 
 The portal distinguishes the installed `type-mcp@0.1.0` package—decorator declarations and immutable metadata reads—from repository-development documentation. Updating the pinned commit requires review of the manifest, generated documentation, and the published-package boundary.
+
+## TypeChain documentation
+
+The TypeChain portal is published at `https://typechain.theorvane.tech/docs`. It renders a manifest-approved subset of `Theorvane/type-chain/docs/` from a full immutable source commit and verifies cache integrity before rendering. After intentionally advancing the canonical TypeChain `main` source commit in `apps/type-chain/lib/docs/manifest.ts`, refresh the local cache with:
+
+```bash
+npm run sync:docs --workspace=@theorvane/type-chain-site
+```
+
+The portal describes the published `@theorvane/type-chain@0.1.1` boundary: Stage 3 decorator declarations, immutable definitions, LangChain adapters, an agent builder, and an in-process TypeMCP bridge. Applications retain ownership of models, credentials, policy enforcement, state, hosting, and deployment.
 
 ## Commands
 
