@@ -79,6 +79,19 @@ class CatalogTools {
         </div>
       </section>
     </main>
-    <footer className="shell"><span>TypeMCP is open source by <ExternalLink href="https://github.com/Theorvane">Theorvane ↗</ExternalLink></span><ExternalLink href={github}>GitHub ↗</ExternalLink></footer>
+    <footer className="site-footer">
+      <div className="shell footer-grid">
+        <div className="footer-brand">
+          <a className="logo" href="#top">type<span>mcp</span></a>
+          <p>Strict TypeScript MCP runtime for explicit server contracts.</p>
+        </div>
+        <nav aria-label="TypeMCP footer" className="footer-nav">
+          <div><strong>Explore</strong><a href="/docs">Documentation</a><a href="#architecture">Architecture</a></div>
+          <div><strong>Project</strong><ExternalLink href={github}>GitHub ↗</ExternalLink><ExternalLink href={npm}>npm ↗</ExternalLink></div>
+          <div><strong>Company</strong><ExternalLink href="https://theorvane.tech/">Theorvane ↗</ExternalLink></div>
+        </nav>
+      </div>
+      <div className="shell footer-legal"><span>© 2026 Theorvane. TypeMCP is open source.</span><span>Built with explicit boundaries.</span></div>
+    </footer>
   </>;
 }
