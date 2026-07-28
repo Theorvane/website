@@ -2,10 +2,11 @@
 
 ## Purpose and repository boundaries
 
-This repository delivers three independently deployable public Next.js applications:
+This repository delivers four independently deployable public Next.js applications:
 
 - `apps/theorvane/`: the Theorvane brand site, canonical at `https://theorvane.tech`
 - `apps/type-mcp/`: the TypeMCP product site, canonical at `https://typemcp.theorvane.tech`
+- `apps/type-chain/`: the TypeChain product site, canonical at `https://typechain.theorvane.tech`
 - `apps/openvideo/`: the OpenVideo local-first product site, canonical at `https://openvideo.theorvane.tech`
 - `packages/`: neutral shared UI and design tokens only
 - `docs/`: approved product and design specifications

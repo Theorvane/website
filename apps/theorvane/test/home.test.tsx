@@ -21,6 +21,17 @@ describe("Theorvane homepage", () => {
 		);
 	});
 
+	it("features TypeChain with its official typed-tool product destination", () => {
+		render(createElement(HomePage));
+
+		expect(screen.getByRole("heading", { name: "TypeChain" })).toBeTruthy();
+		expect(screen.getByRole("link", { name: /explore typechain/i }).getAttribute("href")).toBe(
+			"https://typechain.theorvane.tech/",
+		);
+		expect(screen.getByText(/decorator-first, type-safe authoring layer for LangChain JS tools and agents/i)).toBeTruthy();
+		expect(screen.getByText(/models, credentials, policy enforcement, and deployment/i)).toBeTruthy();
+	});
+
 	it("features OpenVideo with its official local-first product destination", () => {
 		render(createElement(HomePage));
 

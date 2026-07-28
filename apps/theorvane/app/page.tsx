@@ -3,6 +3,7 @@ import { ExternalLink, SkipLink } from "@theorvane/ui";
 const siteUrl = "https://theorvane.tech/";
 const github = "https://github.com/Theorvane";
 const typeMcp = "https://typemcp.theorvane.tech/";
+const typeChain = "https://typechain.theorvane.tech/";
 const openVideo = "https://openvideo.theorvane.tech/";
 
 const schema = {
@@ -71,6 +72,20 @@ status() {
 				<p className="eyebrow">02 / Featured project</p>
 				<div className="feature-grid">
 					<div>
+						<h2>TypeChain</h2>
+						<p>A decorator-first, type-safe authoring layer for LangChain JS tools and agents. It keeps schemas and integration boundaries explicit while applications retain ownership of models, credentials, policy enforcement, and deployment.</p>
+						<ExternalLink href={typeChain}>Explore TypeChain ↗</ExternalLink>
+					</div>
+					<pre aria-label="TypeChain code preview"><code>{`@Tool({ name: "find_product" })
+findProduct({ id }) {
+  return catalog.get(id);
+}`}</code></pre>
+				</div>
+			</section>
+			<section className="feature shell">
+				<p className="eyebrow">03 / Featured project</p>
+				<div className="feature-grid">
+					<div>
 						<h2>OpenVideo</h2>
 						<p>A local-first, open-source video editor for recording, editing, and exporting footage on your device. No cloud uploads, accounts, or analytics.</p>
 						<ExternalLink href={openVideo}>Explore OpenVideo ↗</ExternalLink>
@@ -81,7 +96,7 @@ Your footage stays on your device.`}</code></pre>
 				</div>
 			</section>
 			<section className="principles shell" id="principles">
-				<p className="eyebrow">03 / How we work</p>
+				<p className="eyebrow">04 / How we work</p>
 				<div className="principle-grid">
 					<article><h2>Framework-neutral</h2><p>Runtime cores should stay portable. Integrations belong at the edges.</p></article>
 					<article><h2>Explicit by default</h2><p>Good developer tools make contracts visible, typed, and easy to verify.</p></article>
