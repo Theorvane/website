@@ -6,13 +6,13 @@ export const theorvaneScrollWorld: ScrollWorldManifest = {
 	desktop: {
 		src: "/scroll-world/desktop/timeline.mp4",
 		poster: "/scroll-world/desktop/poster.webp",
-		duration: 45,
+		duration: 20,
 		aspectRatio: "16:9",
 	},
 	mobile: {
 		src: "/scroll-world/mobile/timeline.mp4",
 		poster: "/scroll-world/mobile/poster.webp",
-		duration: 45,
+		duration: 20,
 		aspectRatio: "9:16",
 	},
 	scenes: [
