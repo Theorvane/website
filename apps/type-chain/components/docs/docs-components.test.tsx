@@ -40,6 +40,18 @@ describe("TypeChain documentation pager", () => {
     expect(screen.getByRole("link", { name: /Next step: Petstore walkthrough/i }).getAttribute("href")).toBe("/docs/petstore-walkthrough");
     expect(screen.queryByRole("link", { name: /Next: Choose a composition boundary/i })).toBeNull();
   });
+
+  it("does not fall through to manifest adjacency after the terminal Build lesson", () => {
+    const curriculumDocuments = [
+      { document: { route: "/docs/build/petstore-policy-and-composition", title: "Petstore policy and composition", curriculumStep: 5, curriculumTotal: 6, nextRoute: "/docs/petstore-walkthrough" } },
+      { document: { route: "/docs/petstore-walkthrough", title: "Petstore walkthrough", curriculumStep: 6, curriculumTotal: 6, nextRoute: null } },
+      { document: { route: "/docs/guides/composition-selection", title: "Choose a composition boundary" } },
+    ] as never;
+
+    render(<DocumentPager documents={curriculumDocuments} route="/docs/petstore-walkthrough" />);
+
+    expect(screen.queryByRole("link", { name: /Next:/i })).toBeNull();
+  });
 });
 
 describe("TypeChain Build article curriculum context", () => {

@@ -58,6 +58,18 @@ describe("TypeMCP documentation pager", () => {
     expect(screen.getByRole("link", { name: /Next step: Petstore walkthrough/i }).getAttribute("href")).toBe("/docs/petstore-walkthrough");
     expect(screen.queryByRole("link", { name: /Next: Choose a runtime boundary/i })).toBeNull();
   });
+
+  it("does not fall through to manifest adjacency after the terminal Build lesson", () => {
+    const curriculumDocuments = [
+      { document: { route: "/docs/build/petstore-typemcp-foundation", title: "Petstore TypeMCP foundation", curriculumStep: 2, curriculumTotal: 3, nextRoute: "/docs/petstore-walkthrough" } },
+      { document: { route: "/docs/petstore-walkthrough", title: "Petstore walkthrough", curriculumStep: 3, curriculumTotal: 3, nextRoute: null } },
+      { document: { route: "/docs/guides/runtime-selection", title: "Choose a runtime boundary" } },
+    ] as never;
+
+    render(<DocumentPager documents={curriculumDocuments} route="/docs/petstore-walkthrough" />);
+
+    expect(screen.queryByRole("link", { name: /Next:/i })).toBeNull();
+  });
 });
 
 describe("TypeMCP Build article curriculum context", () => {
