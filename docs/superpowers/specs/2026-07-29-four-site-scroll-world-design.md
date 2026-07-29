@@ -1,6 +1,6 @@
 # Four-site Scroll World production design
 
-**Issue:** #82  
+**Issue:** #82
 **Status:** Proposed — no media generation, purchase, deployment, or product-copy change is authorized by this document alone.
 
 ## 1. Purpose and product boundary
