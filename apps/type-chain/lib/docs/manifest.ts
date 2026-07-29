@@ -1,7 +1,7 @@
 import { documentGroups, type PublicDocument } from "./types";
 
-// Updated only after the canonical TypeChain documentation PR is promoted to main.
-export const sourceCommit = "a0889d6406835082a62103bd903bbffb93044e1a";
+// Pin only after the canonical TypeChain documentation source is promoted to main.
+export const sourceCommit = "033ad244a1be87093d4ad8748b16cf1034300adf";
 
 const documents: readonly PublicDocument[] = [
   { sourcePath: "docs/guides/getting-started.md", route: "/docs/getting-started", title: "Getting started", summary: "Install TypeChain, configure Stage 3 decorators, and declare a first tool.", group: "Start", order: 1, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
@@ -10,6 +10,7 @@ const documents: readonly PublicDocument[] = [
   { sourcePath: "docs/guides/langchain-integration.md", route: "/docs/guides/langchain-integration", title: "LangChain integration", summary: "Adapt decorated methods into standard LangChain tools.", group: "Guides", order: 3, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
   { sourcePath: "docs/guides/agent-builder.md", route: "/docs/guides/agent-builder", title: "Agent builder", summary: "Build LangChain agents while retaining application control.", group: "Guides", order: 4, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
   { sourcePath: "docs/guides/typemcp-bridge.md", route: "/docs/guides/typemcp-bridge", title: "TypeMCP bridge", summary: "Compose a TypeMCP server into LangChain tools in process.", group: "Guides", order: 5, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
+  { sourcePath: "docs/guides/composition-selection.md", route: "/docs/guides/composition-selection", title: "Choose a composition boundary", summary: "Choose metadata, LangChain, agent, or in-process TypeMCP composition.", group: "Guides", order: 6, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
   { sourcePath: "docs/api/decorator-api.md", route: "/docs/api/decorator-api", title: "Decorator API contract", summary: "Published exports and integration boundaries.", group: "API", order: 1, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
   { sourcePath: "docs/architecture.md", route: "/docs/architecture", title: "Architecture", summary: "Decorator-first LangChain authoring architecture.", group: "Architecture", order: 1, classification: "published-with-boundary", sourceStatus: "TypeChain does not enforce runtime policy." },
 ];
