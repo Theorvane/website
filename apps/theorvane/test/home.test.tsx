@@ -35,6 +35,7 @@ describe("Theorvane homepage", () => {
 		render(createElement(HomePage));
 
 		expect(screen.getByRole("region", { name: /theorvane product world/i })).toBeTruthy();
+		expect(screen.getByTestId("cinematic-handoff")).toBeTruthy();
 		expect(screen.getByRole("navigation", { name: /world scenes/i })).toBeTruthy();
 		expect(screen.getByRole("link", { name: /boundary atlas/i }).getAttribute("href")).toBe("#products");
 		expect(screen.getByRole("heading", { name: /three surfaces\. explicit junctions\./i })).toBeTruthy();

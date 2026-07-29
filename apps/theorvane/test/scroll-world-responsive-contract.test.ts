@@ -14,5 +14,7 @@ describe("Theorvane Scroll World responsive contract", () => {
 		expect(css).toMatch(/\.ambient-world\{[^}]*position:fixed/);
 		expect(css).toMatch(/\.ambient-world__grid\{/);
 		expect(css).toMatch(/\.video-hero\{[^}]*position:absolute/);
+		expect(css).toMatch(/\.scroll-world\{[^}]*min-height:500vh/);
+		expect(css).toMatch(/\.cinematic-handoff\{/);
 	});
 });

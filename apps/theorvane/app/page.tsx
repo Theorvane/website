@@ -57,6 +57,7 @@ export default function HomePage() {
 					<li id="product-constellation"><p className="eyebrow">Scene 05</p><h3>Return with the system still yours.</h3><p>Browse the focused products, inspect their public boundaries, and integrate only what your team needs.</p><a className="button primary" href="#products">Explore products</a></li>
 				</ol>
 			</ScrollWorld>
+			<div aria-hidden="true" className="cinematic-handoff" data-testid="cinematic-handoff" />
 			<section className="products shell" id="products">
 				<p className="eyebrow">01 / Product index</p><h2>Choose a focused tool.</h2>
 				<div className="product-grid">{products.map(([number, name, description, signal, href]) => <article key={name} className="product-card"><p className="eyebrow">{number} / {signal}</p><h3>{name}</h3><p>{description}</p><ExternalLink href={href}>Explore {name} ↗</ExternalLink></article>)}</div>
