@@ -4,7 +4,9 @@ import { generateStaticParams, generateMetadata } from "./page";
 
 describe("TypeMCP article routes", () => {
   it("generates every approved static article and route metadata", async () => {
-    expect(generateStaticParams()).toHaveLength(16);
+    expect(generateStaticParams()).toHaveLength(18);
+    expect(generateStaticParams()).toContainEqual({ slug: ["core-concepts"] });
+    expect(generateStaticParams()).toContainEqual({ slug: ["petstore-walkthrough"] });
     expect(generateStaticParams()).toContainEqual({ slug: ["api", "decorator-api"] });
     expect(generateStaticParams()).toContainEqual({ slug: ["guides", "langchain-langgraph"] });
     expect(generateStaticParams()).toContainEqual({ slug: ["guides", "runtime-selection"] });

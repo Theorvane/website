@@ -1,10 +1,12 @@
 import { documentGroups, type PublicDocument } from "./types";
 
 // Pin only after the canonical TypeChain documentation source is promoted to main.
-export const sourceCommit = "033ad244a1be87093d4ad8748b16cf1034300adf";
+export const sourceCommit = "bc54cf1adca02faaa1db7d5533a5ceed3c152916";
 
 const documents: readonly PublicDocument[] = [
   { sourcePath: "docs/guides/getting-started.md", route: "/docs/getting-started", title: "Getting started", summary: "Install TypeChain, configure Stage 3 decorators, and declare a first tool.", group: "Start", order: 1, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
+  { sourcePath: "docs/guides/core-concepts.md", route: "/docs/core-concepts", title: "Core concepts", summary: "Understand tool metadata, immutable definitions, policy intent, and explicit integration boundaries.", group: "Start", order: 2, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
+  { sourcePath: "docs/guides/petstore-walkthrough.md", route: "/docs/petstore-walkthrough", title: "Petstore walkthrough", summary: "Build one typed catalog tool, then choose a LangChain, agent, or in-process TypeMCP boundary.", group: "Start", order: 3, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
   { sourcePath: "docs/guides/tools-and-definitions.md", route: "/docs/guides/tools-and-definitions", title: "Tools and definitions", summary: "The @Tool() contract, immutable definitions, and inheritance.", group: "Guides", order: 1, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
   { sourcePath: "docs/guides/policy.md", route: "/docs/guides/policy", title: "Policy and guards", summary: "Declarative policy intent with application-owned enforcement.", group: "Guides", order: 2, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
   { sourcePath: "docs/guides/langchain-integration.md", route: "/docs/guides/langchain-integration", title: "LangChain integration", summary: "Adapt decorated methods into standard LangChain tools.", group: "Guides", order: 3, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },
