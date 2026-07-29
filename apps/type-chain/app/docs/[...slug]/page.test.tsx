@@ -3,8 +3,10 @@ import { generateMetadata, generateStaticParams } from "./page";
 
 describe("TypeChain article routes", () => {
   it("generates a static route and canonical metadata for each approved document", async () => {
-    expect(generateStaticParams()).toHaveLength(11);
+    expect(generateStaticParams()).toHaveLength(13);
     expect(generateStaticParams()).toContainEqual({ slug: ["core-concepts"] });
+    expect(generateStaticParams()).toContainEqual({ slug: ["build", "petstore-typechain-foundation"] });
+    expect(generateStaticParams()).toContainEqual({ slug: ["build", "petstore-policy-and-composition"] });
     expect(generateStaticParams()).toContainEqual({ slug: ["petstore-walkthrough"] });
     expect(generateStaticParams()).toContainEqual({ slug: ["guides", "langchain-integration"] });
     expect(generateStaticParams()).toContainEqual({ slug: ["guides", "composition-selection"] });

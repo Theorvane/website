@@ -28,6 +28,11 @@ describe("syncDocuments", () => {
       expect(metadata.sourceCommit).toMatch(/^[0-9a-f]{40}$/);
       expect(metadata.documents).toHaveLength(publicDocuments.length);
       expect(metadata.documents[0]).toMatchObject({ sourcePath: "docs/guides/getting-started.md", route: "/docs/getting-started" });
+      expect(metadata.documents).toEqual(expect.arrayContaining([
+        expect.objectContaining({ sourcePath: "docs/guides/petstore-project-setup.md", route: "/docs/build/petstore-project-setup" }),
+        expect.objectContaining({ sourcePath: "docs/guides/petstore-typemcp-foundation.md", route: "/docs/build/petstore-typemcp-foundation" }),
+        expect.objectContaining({ sourcePath: "docs/guides/petstore-walkthrough.md", route: "/docs/petstore-walkthrough" }),
+      ]));
       expect(metadata.documents.every((document) => /^[0-9a-f]{64}$/.test(document.sha256))).toBe(true);
     } finally {
       await rm(outputDirectory, { recursive: true, force: true });

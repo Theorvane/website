@@ -25,25 +25,37 @@ function sourceHref(href: string, document: RepositoryDocument): string {
   return `https://github.com/Theorvane/type-chain/blob/${sourceCommit}/${target}${fragment ? `#${fragment}` : ""}`;
 }
 
+function routeTitle(route: string): string {
+  const titles: Record<string, string> = {
+    "/docs/build/petstore-typechain-foundation": "Petstore TypeChain foundation",
+    "/docs/build/petstore-policy-and-composition": "Petstore policy and composition",
+    "/docs/petstore-walkthrough": "Petstore walkthrough",
+  };
+  return titles[route] ?? route.split("/").at(-1)!.split("-").map((word) => word[0]!.toUpperCase() + word.slice(1)).join(" ");
+}
+
 export function ReleaseBoundaryCallout({ classification }: Pick<RepositoryDocument["document"], "classification">) {
   if (classification === "published") return null;
   return <aside className="release-callout"><strong>Published package boundary</strong><p><code>@theorvane/type-chain@0.1.1</code> provides Stage 3 decorator declarations, immutable definitions, LangChain adapters, an agent builder, and an in-process TypeMCP bridge. Applications retain ownership of models, credentials, policy enforcement, hosting, and deployment; this page may describe architecture beyond the installed package.</p></aside>;
 }
 
 export function DocsSidebar({ documents, activeRoute }: { documents: readonly RepositoryDocument[]; activeRoute?: string }) {
-  const groups = ["Start", "Guides", "API", "Architecture"] as const;
-  return <aside className="docs-sidebar"><details><summary>Documentation navigation</summary><nav aria-label="Documentation">{groups.map((group) => <section key={group}><h2>{group}</h2>{documents.filter((document) => document.document.group === group).map((document) => <a key={document.document.route} href={document.document.route} aria-current={activeRoute === document.document.route ? "page" : undefined}>{document.document.title}</a>)}</section>)}</nav></details></aside>;
+  const groups = ["Start", "Guides", "Build", "API", "Architecture"] as const;
+  return <aside className="docs-sidebar"><details><summary>Documentation navigation</summary><nav aria-label="Documentation">{groups.map((group) => <section key={group}><p className="docs-sidebar-group">{group}</p>{documents.filter((document) => document.document.group === group).map((document) => <a key={document.document.route} href={document.document.route} aria-current={activeRoute === document.document.route ? "page" : undefined}>{document.document.title}</a>)}</section>)}</nav></details></aside>;
 }
 
 export function DocumentPager({ documents, route }: { documents: readonly RepositoryDocument[]; route: string }) {
   const index = documents.findIndex(({ document }) => document.route === route);
   if (index < 0) return null;
+  const current = documents[index]!.document;
+  const nextByCurriculum = current.curriculumStep ? documents.find(({ document }) => document.route === current.nextRoute) : undefined;
   const previous = documents[index - 1];
-  const next = documents[index + 1];
+  const next = nextByCurriculum ?? documents[index + 1];
   if (!previous && !next) return null;
+  const nextLabel = nextByCurriculum ? `Next step: ${next!.document.title}` : `Next: ${next?.document.title}`;
   return <nav className="document-pager" aria-label="Document sequence">
     {previous ? <a href={previous.document.route}>Previous: {previous.document.title}</a> : <span />}
-    {next ? <a href={next.document.route}>Next: {next.document.title}</a> : <span />}
+    {next ? <a href={next.document.route}>{nextLabel}</a> : <span />}
   </nav>;
 }
 
@@ -52,8 +64,21 @@ export function ArticleToc({ document }: { document: RepositoryDocument }) {
   return <aside className="article-toc"><p>On this page</p><nav aria-label="On this page">{document.toc.map((entry) => <a className={`depth-${entry.depth}`} href={`#${entry.id}`} key={entry.id}>{entry.title}</a>)}</nav></aside>;
 }
 
+function CurriculumContext({ document }: { document: RepositoryDocument }) {
+  const metadata = document.document;
+  if (!metadata.curriculumStep || !metadata.curriculumTotal || !metadata.outcome || !metadata.applicationBoundary) return null;
+  const hasFailureGuide = /^##\s+Failure guide\s*$/im.test(document.markdown);
+  return <aside className="curriculum-context" aria-label="Curriculum context">
+    <p className="eyebrow">Build / Step {metadata.curriculumStep} of {metadata.curriculumTotal}</p>
+    <p><strong>Outcome:</strong> {metadata.outcome}</p>
+    <p><strong>Application boundary:</strong> {metadata.applicationBoundary}</p>
+    {metadata.prerequisites?.map((route) => <p key={route} className="docs-context-link"><a href={route}>Prerequisite: {routeTitle(route)}</a></p>)}
+    {hasFailureGuide ? <p className="docs-context-link"><a href="#failure-guide">Troubleshooting and limitations</a></p> : null}
+  </aside>;
+}
+
 export function MarkdownArticle({ document }: { document: RepositoryDocument }) {
-  return <article id="docs-content" className="markdown-article"><p className="breadcrumb">Documentation / {document.document.group}</p><h1>{document.title}</h1><ReleaseBoundaryCallout classification={document.document.classification} /><ReactMarkdown remarkPlugins={[remarkGfm]} components={{
+  return <article id="docs-content" className="markdown-article"><p className="breadcrumb">Documentation / {document.document.group}</p><h1>{document.title}</h1><CurriculumContext document={document} /><ReleaseBoundaryCallout classification={document.document.classification} /><ReactMarkdown remarkPlugins={[remarkGfm]} components={{
     h2: ({ children }) => <h2 id={slugify(textContent(children))}>{children}</h2>,
     h3: ({ children }) => <h3 id={slugify(textContent(children))}>{children}</h3>,
     a: ({ href, children }) => { const safe = safeHref(href); const resolved = document.internalLinks.get(href ?? "") ?? sourceHref(safe, document); const external = /^https?:\/\//.test(resolved); return <a href={resolved} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{children}{external ? <span className="sr-only"> (opens in a new tab)</span> : null}</a>; },
