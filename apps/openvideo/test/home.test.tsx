@@ -15,29 +15,69 @@ describe("OpenVideo homepage", () => {
 		expect(screen.getByRole("link", { name: /Theorvane/i }).getAttribute("href")).toBe("https://theorvane.tech/");
 	});
 
-	it("shows the released local capture-to-export workflow", () => {
+	it("leads with the agent-driven editor rather than the capture-only workflow", () => {
 		render(createElement(HomePage));
 
-		for (const stage of ["Capture", "Edit", "Export"]) {
-			expect(screen.getAllByRole("heading", { name: stage }).length).toBeGreaterThan(0);
-		}
-		expect(screen.getByText(/recordings, projects, imported assets, voice profiles, and exports stay local/i)).toBeTruthy();
-		expect(screen.queryByText(/AI-assisted editing is available/i)).toBeNull();
-	});
-
-	it("makes the local-first product boundary and official destinations discoverable", () => {
-		render(createElement(HomePage));
-
-		expect(screen.getByRole("heading", { name: /record\. edit\.\s*keep it local/i })).toBeTruthy();
+		expect(screen.getByRole("heading", { level: 1 }).textContent).toMatch(/edits with you/i);
 		expect(screen.getByRole("main")).toBeTruthy();
 		expect(screen.getByRole("navigation", { name: /primary/i })).toBeTruthy();
-		expect(screen.getByText(/projects and media stay on your device/i)).toBeTruthy();
-		expect(screen.getByText(/no cloud upload, analytics, or accounts/i)).toBeTruthy();
+		expect(screen.getByText(/your media stays on your machine/i)).toBeTruthy();
+	});
+
+	it("offers source and run-from-source instead of a download the project does not publish", () => {
+		render(createElement(HomePage));
+
 		expect(screen.getByRole("link", { name: /view source on github/i }).getAttribute("href")).toBe(
 			"https://github.com/Theorvane/openvideo",
 		);
-		expect(screen.getByRole("link", { name: /browse releases/i }).getAttribute("href")).toBe(
-			"https://github.com/Theorvane/openvideo/releases",
-		);
+		// The repository publishes no releases or tags, so a download or
+		// installer call to action would be a claim the project cannot meet.
+		expect(screen.queryByRole("link", { name: /^download/i })).toBeNull();
+		expect(screen.getByTestId("run-from-source").textContent).toContain("npm run dev");
+	});
+
+	it("names the capabilities the application actually ships", () => {
+		render(createElement(HomePage));
+
+		for (const capability of ["Edit", "Delegate", "Watch", "Generate", "Connect", "Keep"]) {
+			expect(screen.getAllByRole("heading", { name: new RegExp(capability, "i") }).length).toBeGreaterThan(0);
+		}
+	});
+
+	it("states the agent's operations and that project changes need approval", () => {
+		render(createElement(HomePage));
+
+		const agentSection = screen.getByRole("region", { name: /what the agent can do/i });
+		expect(agentSection.textContent).toContain("addClipToTimeline");
+		expect(agentSection.textContent).toContain("watchProjectVideo");
+		expect(agentSection.textContent).toContain("importGeneratedResult");
+		expect(screen.getByText(/asks for approval/i)).toBeTruthy();
+	});
+
+	it("describes provider choice, including running with no account at all", () => {
+		render(createElement(HomePage));
+
+		const providers = screen.getByRole("region", { name: /providers/i });
+		expect(providers.textContent).toMatch(/models\.dev/i);
+		expect(providers.textContent).toMatch(/ollama/i);
+		expect(providers.textContent).toMatch(/no account/i);
+	});
+
+	it("keeps the privacy boundary to what the application enforces", () => {
+		render(createElement(HomePage));
+
+		expect(screen.getByText(/no account, no telemetry/i)).toBeTruthy();
+		// The app does call connected providers, so the old absolute claim must not return.
+		expect(screen.queryByText(/no cloud upload, analytics, or accounts are built into the application/i)).toBeNull();
+		expect(screen.getByText(/only when you ask it to/i)).toBeTruthy();
+	});
+
+	it("answers the questions a first-time visitor asks", () => {
+		render(createElement(HomePage));
+
+		const faq = screen.getByRole("region", { name: /questions/i });
+		expect(faq.textContent).toMatch(/free/i);
+		expect(faq.textContent).toMatch(/subscription/i);
+		expect(faq.textContent).toMatch(/FFmpeg/i);
 	});
 });
