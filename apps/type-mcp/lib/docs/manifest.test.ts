@@ -8,10 +8,12 @@ import {
 
 describe("TypeMCP public documentation manifest", () => {
   it("pins exactly the approved public documents to a full commit SHA", () => {
-    expect(sourceCommit).toBe("361c91fdb65cf111f2ca4a300ecb602af1858686");
-    expect(publicDocuments).toHaveLength(16);
+    expect(sourceCommit).toBe("203cead4a5a6446adaa5bef388f93effafb203f7");
+    expect(publicDocuments).toHaveLength(18);
     expect(publicDocuments.map((document) => document.route)).toEqual([
       "/docs/getting-started",
+      "/docs/core-concepts",
+      "/docs/petstore-walkthrough",
       "/docs/guides/configuration",
       "/docs/guides/agent-integration",
       "/docs/guides/http-and-nextjs",
@@ -30,6 +32,8 @@ describe("TypeMCP public documentation manifest", () => {
     ]);
     expect(publicDocuments.filter((document) => document.classification === "published").map((document) => document.sourcePath)).toEqual([
       "docs/guides/getting-started.md",
+      "docs/guides/core-concepts.md",
+      "docs/guides/petstore-walkthrough.md",
       "docs/guides/configuration.md",
       "docs/guides/agent-integration.md",
       "docs/guides/http-and-nextjs.md",

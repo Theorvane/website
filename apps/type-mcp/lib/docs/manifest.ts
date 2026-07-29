@@ -1,9 +1,11 @@
 import { documentGroups, type PublicDocument } from "./types";
 
-export const sourceCommit = "361c91fdb65cf111f2ca4a300ecb602af1858686";
+export const sourceCommit = "203cead4a5a6446adaa5bef388f93effafb203f7";
 
 const documents: readonly PublicDocument[] = [
   { sourcePath: "docs/guides/getting-started.md", route: "/docs/getting-started", title: "Getting started", summary: "Install TypeMCP and inspect a declaration with the published package.", group: "Start", order: 1, classification: "published", sourceStatus: "@theorvane/type-mcp@0.2.2" },
+  { sourcePath: "docs/guides/core-concepts.md", route: "/docs/core-concepts", title: "Core concepts", summary: "Learn declarations, immutable definitions, compiler boundaries, and application-owned responsibilities.", group: "Start", order: 2, classification: "published", sourceStatus: "@theorvane/type-mcp@0.2.2" },
+  { sourcePath: "docs/guides/petstore-walkthrough.md", route: "/docs/petstore-walkthrough", title: "Petstore walkthrough", summary: "Build one catalog tool and select a published TypeMCP runtime boundary.", group: "Start", order: 3, classification: "published", sourceStatus: "@theorvane/type-mcp@0.2.2" },
   { sourcePath: "docs/guides/configuration.md", route: "/docs/guides/configuration", title: "Configuration and compatibility", summary: "Configure standard decorators, Node, and module loading.", group: "Guides", order: 1, classification: "published", sourceStatus: "@theorvane/type-mcp@0.2.2" },
   { sourcePath: "docs/guides/agent-integration.md", route: "/docs/guides/agent-integration", title: "Agent integration guide", summary: "A deterministic workflow for coding agents using the published package.", group: "Guides", order: 2, classification: "published", sourceStatus: "published runtime validates and compiles" },
   { sourcePath: "docs/guides/http-and-nextjs.md", route: "/docs/guides/http-and-nextjs", title: "HTTP framework integration", summary: "Published Streamable HTTP and Next.js integration shape.", group: "Guides", order: 3, classification: "published", sourceStatus: "Streamable HTTP" },
