@@ -37,17 +37,19 @@ The world uses **dark technical dioramas**: warm black ground, mineral/steel for
 
 Connector generation must use the real extracted last frame of clip *n* and real extracted first frame of clip *n+1*. A visible seam stops the batch until corrected.
 
-## 3. Site-wide ambient background
+## 3. Video-led background world
 
-The homepage receives a separate, decorative `AmbientWorld` layer behind every section—not a canvas and not a second source of meaning.
+The homepage uses the cinematic media as its **primary background**, not merely as an isolated card or decorative preview. The hero, bounded Scroll World, and the transition into the product index share one continuous visual horizon. The video remains decorative support: HTML continues to own all product claims, navigation, and calls to action.
 
-1. **Foundation:** fixed near-black base, ultra-low-contrast grain, and a perspective terrain/grid that fades at readable-content edges.
-2. **Depth:** three CSS-only, GPU-friendly layers (distant aura, grid/contour, foreground vignette). Their transforms and opacity consume a single scroll-progress CSS custom property; there is no WebGL dependency.
-3. **Product echoes:** the world stage changes an accent variable by current scene—chartreuse base with restrained indigo/amber/oxide highlights—then returns to the studio palette. Product cards and ordinary content retain a neutral, calm treatment.
-4. **Legibility:** every text section carries a solid or high-opacity surface/backdrop and meets contrast requirements. Background layers have `pointer-events: none`, are `aria-hidden`, and sit beneath landmarks.
-5. **Motion fallback:** `prefers-reduced-motion` freezes transforms, omits video attachment, and retains a static grain/grid/poster treatment. On narrow screens the grid is simplified before it can cause overflow or visual noise.
+1. **Hero background:** Scene 01’s native source fills the first viewport behind the wordmark and hero copy. It begins poster-first, then may play as a muted low-motion loop while the visitor is at the top. As the visitor enters the cinematic section, the loop yields to the scroll-scrubbed five-scene timeline rather than competing with it.
+2. **Cinematic background:** inside `ScrollWorld`, native 16:9 or 9:16 media covers the sticky viewport. Scene copy is layered in document flow over a restrained gradient/vignette; the visual frame changes with scroll while controls remain consistently visible.
+3. **Continuous transitions:** the scene’s final frame, a tinted still/poster, and CSS depth layers bridge the world into the product index. This prevents a hard cut from moving media to a blank black page.
+4. **Depth treatment:** video is supported by an ultra-low-contrast grain, perspective terrain/grid, distant aura, and foreground vignette. These CSS layers consume a scroll-progress custom property and add depth without a WebGL dependency.
+5. **Product echoes:** the active scene controls an accent variable—chartreuse base with restrained indigo, amber, and oxide highlights—then returns to the studio palette. Product cards and ordinary content retain a quiet, neutral surface.
+6. **Legibility:** hero and scene copy always sit on a contrast-safe directional scrim/backdrop. Background layers have `pointer-events: none`, are `aria-hidden`, and sit beneath landmarks. No copy may depend on a bright or readable part of a video frame.
+7. **Performance and fallback:** use a poster-first image, lazy source attachment, muted `playsInline` video, and no autoplay with audio. `prefers-reduced-motion` omits every video source, freezes CSS transforms, and retains static poster/grid treatment plus the complete semantic journey. On narrow screens, use native 9:16 footage and simplify the grid before it can create overflow or visual noise.
 
-The result is intentional between scenes and below the world stage: depth, texture, and continuity rather than empty flat black.
+The result is a film-like continuous studio world: motion establishes atmosphere at entry, scroll controls the main journey, and the visual language persists through the product index instead of leaving empty flat-black sections.
 
 ## 4. Component boundaries
 

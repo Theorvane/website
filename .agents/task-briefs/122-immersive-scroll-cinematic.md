@@ -9,7 +9,8 @@
 
 - Theorvane is an immersive five-scene scroll-cinematic studio world.
 - Each story has five dive clips plus four exact-frame connectors in native desktop 16:9 and mobile 9:16 variants.
-- The whole site has a CSS-only ambient world: depth grid, restrained grain, scene accent light, and content-safe vignettes.
+- The whole site is a video-led cinematic world: Scene 01 provides a poster-first, muted hero background that hands off to the scroll-scrubbed timeline; the timeline then transitions visually into the product index.
+- The site-wide CSS ambient layer supports—rather than replaces—the video with depth grid, restrained grain, scene accent light, and content-safe vignettes.
 - Semantic document-flow copy, product CTA links, keyboard navigation, media failure UI, and reduced-motion poster/static fallback remain mandatory.
 
 ## Guardrails
