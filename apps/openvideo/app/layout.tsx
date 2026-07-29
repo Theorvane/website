@@ -16,6 +16,11 @@ export const metadata: Metadata = {
 	robots: { index: true, follow: true },
 	openGraph: { type: "website", url: siteUrl, title, description, siteName: "OpenVideo", locale: "en_US" },
 	twitter: { card: "summary", title, description },
+	icons: {
+		icon: [{ url: "/icon.png", sizes: "460x460", type: "image/png" }],
+		apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+		shortcut: ["/favicon.ico"],
+	},
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

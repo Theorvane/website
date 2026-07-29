@@ -48,7 +48,7 @@ const schema = {
 
 export default function HomePage() {
 	return <><SkipLink /><script data-testid="openvideo-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-		<header className="shell"><a className="wordmark" href="#top">OPEN<span>VIDEO</span></a><nav aria-label="Primary"><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="#faq">FAQ</a><ExternalLink href={repositoryUrl}>GitHub ↗</ExternalLink></nav></header>
+		<header className="shell"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>VIDEO</span></a><nav aria-label="Primary"><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="#faq">FAQ</a><ExternalLink href={repositoryUrl}>GitHub ↗</ExternalLink></nav></header>
 
 		<main id="main-content">
 			<section className="hero shell" id="top">
@@ -105,6 +105,6 @@ export default function HomePage() {
 			</section>
 		</main>
 
-		<footer className="site-footer"><div className="shell footer-grid"><div className="footer-brand"><a className="wordmark" href="#top">OPEN<span>VIDEO</span></a><p>A local-first desktop video editor with an agent that can drive it.</p></div><nav aria-label="OpenVideo footer" className="footer-nav"><div><strong>Explore</strong><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="#faq">FAQ</a></div><div><strong>Project</strong><ExternalLink href={repositoryUrl}>Repository ↗</ExternalLink><ExternalLink href={readmeUrl}>Documentation ↗</ExternalLink><ExternalLink href={releasesUrl}>Releases ↗</ExternalLink></div><div><strong>Company</strong><ExternalLink href={theorvaneUrl}>Theorvane ↗</ExternalLink></div></nav></div><div className="shell footer-legal"><span>© 2026 Theorvane. OpenVideo is open source under the MIT License.</span><span>Local by design.</span></div></footer>
+		<footer className="site-footer"><div className="shell footer-grid"><div className="footer-brand"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>VIDEO</span></a><p>A local-first desktop video editor with an agent that can drive it.</p></div><nav aria-label="OpenVideo footer" className="footer-nav"><div><strong>Explore</strong><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="#faq">FAQ</a></div><div><strong>Project</strong><ExternalLink href={repositoryUrl}>Repository ↗</ExternalLink><ExternalLink href={readmeUrl}>Documentation ↗</ExternalLink><ExternalLink href={releasesUrl}>Releases ↗</ExternalLink></div><div><strong>Company</strong><ExternalLink href={theorvaneUrl}>Theorvane ↗</ExternalLink></div></nav></div><div className="shell footer-legal"><span>© 2026 Theorvane. OpenVideo is open source under the MIT License.</span><span>Local by design.</span></div></footer>
 	</>;
 }
