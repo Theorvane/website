@@ -25,23 +25,21 @@ describe("TypeMCP docs index", () => {
         name: /Build a typed Petstore workflow/i,
       }),
     ).toBeTruthy();
-    expect(screen.getByText("Your learning path")).toBeTruthy();
-    expect(screen.getByText("Step 1 of 6")).toBeTruthy();
-    expect(
-      screen.getByRole("link", { name: /Start the Petstore workspace/i }).getAttribute("href"),
-    ).toBe("/docs/build/petstore-project-setup");
-
     const workflow = screen.getByRole("region", { name: /Petstore workflow/i });
-    const workflowLinks = within(workflow)
+    const workflowContent = within(workflow);
+    expect(workflowContent.getByText("Your learning path")).toBeTruthy();
+    expect(workflowContent.getByText("Step 1 of 6")).toBeTruthy();
+
+    const workflowLinks = workflowContent
       .getAllByRole("link")
       .map((link) => link.getAttribute("href"));
-    for (const href of [
-      "/docs/build/petstore-project-setup",
-      "/docs/build/petstore-typemcp-foundation",
-      "/docs/petstore-walkthrough",
-    ]) {
-      expect(workflowLinks).toContain(href);
-    }
+    expect(workflowLinks).toEqual(
+      expect.arrayContaining([
+        "/docs/build/petstore-project-setup",
+        "/docs/build/petstore-typemcp-foundation",
+        "/docs/petstore-walkthrough",
+      ]),
+    );
 
     for (const heading of ["Get started", "Learn", "Integrate", "Reference"]) {
       expect(screen.getByRole("heading", { name: heading })).toBeTruthy();
