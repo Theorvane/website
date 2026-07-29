@@ -1,8 +1,8 @@
 # Reference-first TypeMCP and TypeChain documentation portals — design specification
 
-**Issue:** [Theorvane/website#87](https://github.com/Theorvane/website/issues/87)  
-**Related canonical-source issues:** [TypeMCP#115](https://github.com/Theorvane/type-mcp/issues/115), [TypeChain#78](https://github.com/Theorvane/type-chain/issues/78)  
-**Status:** Approved design; awaiting written-spec review before implementation  
+**Issue:** [Theorvane/website#87](https://github.com/Theorvane/website/issues/87)
+**Related canonical-source issues:** [TypeMCP#115](https://github.com/Theorvane/type-mcp/issues/115), [TypeChain#78](https://github.com/Theorvane/type-chain/issues/78)
+**Status:** Approved design; implementation in progress
 **Language:** English for repository artifacts and public documentation
 
 ## Purpose
