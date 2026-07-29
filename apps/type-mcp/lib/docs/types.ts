@@ -1,4 +1,4 @@
-export const documentGroups = ["Start", "Guides", "API", "Architecture", "Product"] as const;
+export const documentGroups = ["Start", "Guides", "Build", "API", "Architecture", "Product"] as const;
 
 export type DocumentGroup = (typeof documentGroups)[number];
 
@@ -21,4 +21,11 @@ export interface PublicDocument {
   readonly classification: ReleaseClassification;
   /** Exact upstream wording that proves the assigned release classification. */
   readonly sourceStatus: string;
+  /** Portal-local navigation metadata; canonical tutorial prose remains upstream. */
+  readonly curriculumStep?: number;
+  readonly curriculumTotal?: number;
+  readonly prerequisites?: readonly string[];
+  readonly nextRoute?: string | null;
+  readonly outcome?: string;
+  readonly applicationBoundary?: string;
 }
