@@ -1,7 +1,7 @@
 # Four-site landing refresh — design specification
 
-**Status:** Approved for planning and implementation  
-**Date:** 2026-07-29  
+**Status:** Approved for planning and implementation
+**Date:** 2026-07-29
 **Issue:** #72
 
 ## Purpose
