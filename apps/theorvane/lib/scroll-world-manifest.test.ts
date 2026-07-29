@@ -11,7 +11,8 @@ describe("Theorvane Scroll World manifest", () => {
 			"openvideo-local-studio",
 			"product-constellation",
 		]);
-		expect(theorvaneScrollWorld.desktop.aspectRatio).toBe("16:9");
+		expect(theorvaneScrollWorld.scenes[0]).toMatchObject({ id: "studio-beacon", title: "Boundary Atlas", href: "#products" });
+		expect(theorvaneScrollWorld.desktop.src).toBe("/scroll-world/desktop/timeline.mp4");
 		expect(theorvaneScrollWorld.mobile.aspectRatio).toBe("9:16");
 		expect(theorvaneScrollWorld.desktop.src).not.toBe(theorvaneScrollWorld.mobile.src);
 		expect(theorvaneScrollWorld.desktop.poster).not.toBe(theorvaneScrollWorld.mobile.poster);

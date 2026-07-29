@@ -1,5 +1,6 @@
 import { ExternalLink, ScrollWorld, SkipLink } from "@theorvane/ui";
 
+import { BoundaryAtlasStage } from "../components/boundary-atlas-stage";
 import { theorvaneScrollWorld } from "../lib/scroll-world-manifest";
 
 const siteUrl = "https://theorvane.tech/";
@@ -45,7 +46,7 @@ export default function HomePage() {
 					<p>Move through the work without giving up the written map: every scene has a destination, and every product keeps its own surface explicit.</p>
 				</section>
 				<ol className="world-story shell">
-					<li id="studio-beacon"><p className="eyebrow">Scene 01</p><h3>Start from a visible boundary.</h3><p>The studio beacon is a product index, not a platform promise. Choose the narrow tool that matches the system you own.</p><a href="#products">Explore the product index ↓</a></li>
+					<li id="studio-beacon"><p className="eyebrow">Scene 01 / Boundary Atlas</p><h3>Three surfaces. Explicit junctions.</h3><p>TypeMCP, TypeChain, and OpenVideo stay independent. Connect only at the point your system requires—without turning a focused tool into an opaque platform.</p><BoundaryAtlasStage /><a href="#products">Explore the product index ↓</a></li>
 					<li id="typemcp-contract-island"><p className="eyebrow">Scene 02 / TypeMCP</p><h3>Declare the contract.</h3><p>TypeMCP makes MCP declarations and immutable read shapes inspectable, while your application owns runtime policy and deployment.</p><ExternalLink href={typeMcp}>Visit TypeMCP site ↗</ExternalLink></li>
 					<li id="typechain-composition-island"><p className="eyebrow">Scene 03 / TypeChain</p><h3>Compose at the edge.</h3><p>TypeChain offers typed tool and agent authoring boundaries. Models, credentials, policy decisions, state, and hosting remain yours.</p><ExternalLink href={typeChain}>Visit TypeChain site ↗</ExternalLink></li>
 					<li id="openvideo-local-studio"><p className="eyebrow">Scene 04 / OpenVideo</p><h3>Keep the edit local.</h3><p>OpenVideo records, edits, and exports on your device—without cloud uploads, accounts, or analytics.</p><ExternalLink href={openVideo}>Visit OpenVideo site ↗</ExternalLink></li>
