@@ -15,6 +15,15 @@ describe("TypeMCP homepage", () => {
 		expect(screen.getByRole("link", { name: /Theorvane/i }).getAttribute("href")).toBe("https://theorvane.tech/");
 	});
 
+	it("leads developers through the documentation-first MCP flow", () => {
+		render(createElement(HomePage));
+
+		expect(screen.getAllByRole("link", { name: /read documentation/i }).some((link) => link.getAttribute("href") === "/docs")).toBe(true);
+		for (const stage of ["Declare", "Validate", "Compile", "Host"]) {
+			expect(screen.getByRole("heading", { name: stage })).toBeTruthy();
+		}
+	});
+
 	it("states the product boundary and directs visitors to source and npm", () => {
 		render(createElement(HomePage));
 

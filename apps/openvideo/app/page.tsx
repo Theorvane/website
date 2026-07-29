@@ -4,86 +4,15 @@ const siteUrl = "https://openvideo.theorvane.tech/";
 const repositoryUrl = "https://github.com/Theorvane/openvideo";
 const releasesUrl = "https://github.com/Theorvane/openvideo/releases";
 const theorvaneUrl = "https://theorvane.tech/";
-
-const schema = {
-	"@context": "https://schema.org",
-	"@graph": [
-		{
-			"@type": "SoftwareApplication",
-			"@id": `${siteUrl}#application`,
-			name: "OpenVideo",
-			url: siteUrl,
-			applicationCategory: "VideoApplication",
-			description: "A local-first Electron studio for recording, editing, and exporting video on your device.",
-			isAccessibleForFree: true,
-			codeRepository: repositoryUrl,
-		},
-		{
-			"@type": "WebSite",
-			"@id": `${siteUrl}#website`,
-			name: "OpenVideo",
-			url: siteUrl,
-			publisher: { "@id": "https://theorvane.tech/#organization" },
-		},
-	],
-};
-
-const features = [
-	["01", "Capture with intent", "Choose a window, preview it, and make a local WebM recording without routing footage through a service."],
-	["02", "Shape the timeline", "Organize clips and assets in a local editing workspace with a best-effort Program Monitor preview."],
-	["03", "Export on your device", "Compile saved timelines into MP4 through local FFmpeg export jobs and keep control of the resulting file."],
-	["04", "Keep narration local", "Use optional, user-configured local narration tooling without model downloads or provider calls from the app."],
-] as const;
+const workflow = [["01", "Capture", "Choose a window, preview it, and make a local WebM recording without routing footage through a service."], ["02", "Edit", "Arrange clips and assets in a local timeline workspace with a best-effort Program Monitor preview."], ["03", "Export", "Compile saved timelines into MP4 through local FFmpeg export jobs and keep control of the resulting file."]] as const;
+const schema = { "@context": "https://schema.org", "@graph": [{ "@type": "SoftwareApplication", "@id": `${siteUrl}#application`, name: "OpenVideo", url: siteUrl, applicationCategory: "VideoApplication", description: "A local-first Electron studio for recording, editing, and exporting video on your device.", isAccessibleForFree: true, codeRepository: repositoryUrl }, { "@type": "WebSite", "@id": `${siteUrl}#website`, name: "OpenVideo", url: siteUrl, publisher: { "@id": "https://theorvane.tech/#organization" } }] };
 
 export default function HomePage() {
-	return <>
-		<SkipLink />
-		<script data-testid="openvideo-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-		<header className="shell">
-			<a className="wordmark" href="#top">OPEN<span>VIDEO</span></a>
-			<nav aria-label="Primary">
-				<a href="#features">Features</a>
-				<a href="#local-first">Local-first</a>
-				<ExternalLink href={repositoryUrl}>GitHub ↗</ExternalLink>
-			</nav>
-		</header>
-		<main id="main-content">
-			<section className="hero shell" id="top">
-				<div>
-					<p className="eyebrow">Open-source desktop video studio</p>
-					<h1>Record. Edit.<br /><em>Keep it local.</em></h1>
-					<p className="lede">OpenVideo is a local-first Electron studio for selected-window recording, timeline editing, and export. Projects and media stay on your device.</p>
-					<div className="actions">
-						<ExternalLink className="button primary" href={repositoryUrl}>View source on GitHub ↗</ExternalLink>
-						<ExternalLink className="button" href={releasesUrl}>Browse releases ↗</ExternalLink>
-					</div>
-				</div>
-				<div className="preview" aria-label="OpenVideo local workflow">
-					<p>LOCAL WORKFLOW</p>
-					<ol><li>Capture a window</li><li>Arrange the timeline</li><li>Export an MP4</li></ol>
-					<span>On your device · under your control</span>
-				</div>
-			</section>
-			<section className="features shell" id="features" aria-label="OpenVideo features">
-				{features.map(([number, title, description]) => <article key={number}><b>{number}</b><h2>{title}</h2><p>{description}</p></article>)}
-			</section>
-			<section className="local shell" id="local-first">
-				<p className="eyebrow">A privacy boundary you can inspect</p>
-				<h2>Your footage is not our product.</h2>
-				<p>OpenVideo stores recordings, projects, imported assets, voice profiles, and exports locally. No cloud upload, analytics, or accounts are built into the application.</p>
-				<ExternalLink href={repositoryUrl}>Inspect the source ↗</ExternalLink>
-			</section>
-		</main>
-		<footer className="site-footer">
-			<div className="shell footer-grid">
-				<div className="footer-brand"><a className="wordmark" href="#top">OPEN<span>VIDEO</span></a><p>A local-first desktop studio for recording, editing, and exporting video.</p></div>
-				<nav aria-label="OpenVideo footer" className="footer-nav">
-					<div><strong>Explore</strong><a href="#features">Features</a><a href="#local-first">Local-first</a></div>
-					<div><strong>Project</strong><ExternalLink href={repositoryUrl}>Repository ↗</ExternalLink><ExternalLink href={releasesUrl}>Releases ↗</ExternalLink></div>
-					<div><strong>Company</strong><ExternalLink href={theorvaneUrl}>Theorvane ↗</ExternalLink></div>
-				</nav>
-			</div>
-			<div className="shell footer-legal"><span>© 2026 Theorvane. OpenVideo is open source.</span><span>Local by design.</span></div>
-		</footer>
+	return <><SkipLink /><script data-testid="openvideo-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+		<header className="shell"><a className="wordmark" href="#top">OPEN<span>VIDEO</span></a><nav aria-label="Primary"><a href="#workflow">Workflow</a><a href="#local-first">Local-first</a><ExternalLink href={repositoryUrl}>GitHub ↗</ExternalLink></nav></header>
+		<main id="main-content"><section className="hero shell" id="top"><div><p className="eyebrow">Open-source desktop video studio</p><h1>Record. Edit.<br /><em>Keep it local.</em></h1><p className="lede">OpenVideo is a local-first Electron studio for selected-window recording, timeline editing, and export. Projects and media stay on your device.</p><div className="actions"><ExternalLink className="button primary" href={repositoryUrl}>View source on GitHub ↗</ExternalLink><ExternalLink className="button" href={releasesUrl}>Browse releases ↗</ExternalLink></div></div><section className="preview" aria-label="OpenVideo local workflow"><p>LOCAL WORKFLOW</p>{workflow.map(([number, title]) => <div className="workflow-step" key={title}><b>{number}</b><h2>{title}</h2></div>)}<span>On your device · under your control</span></section></section>
+			<section className="features shell" id="workflow" aria-label="OpenVideo features">{workflow.map(([number, title, description]) => <article key={title}><b>{number}</b><h2>{title}</h2><p>{description}</p></article>)}<article><b>04</b><h2>Keep narration local</h2><p>Use optional, user-configured local narration tooling without model downloads or provider calls from the app.</p></article></section>
+			<section className="local shell" id="local-first"><p className="eyebrow">A privacy boundary you can inspect</p><h2>Your footage is not our product.</h2><p>Recordings, projects, imported assets, voice profiles, and exports stay local. No cloud upload, analytics, or accounts are built into the application.</p><p>OpenVideo’s released workflow is local capture, local editing, and local export. AI-assisted editing, AI generation, and connected services are not presented as available.</p><ExternalLink href={repositoryUrl}>Inspect the source ↗</ExternalLink></section></main>
+		<footer className="site-footer"><div className="shell footer-grid"><div className="footer-brand"><a className="wordmark" href="#top">OPEN<span>VIDEO</span></a><p>A local-first desktop studio for recording, editing, and exporting video.</p></div><nav aria-label="OpenVideo footer" className="footer-nav"><div><strong>Explore</strong><a href="#workflow">Workflow</a><a href="#local-first">Local-first</a></div><div><strong>Project</strong><ExternalLink href={repositoryUrl}>Repository ↗</ExternalLink><ExternalLink href={releasesUrl}>Releases ↗</ExternalLink></div><div><strong>Company</strong><ExternalLink href={theorvaneUrl}>Theorvane ↗</ExternalLink></div></nav></div><div className="shell footer-legal"><span>© 2026 Theorvane. OpenVideo is open source.</span><span>Local by design.</span></div></footer>
 	</>;
 }
