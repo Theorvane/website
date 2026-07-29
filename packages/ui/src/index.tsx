@@ -1,5 +1,12 @@
 import type { AnchorHTMLAttributes, ReactNode } from "react";
 
+import { ScrollWorld } from "./scroll-world";
+export { ScrollWorld };
+export type { ScrollWorldManifest, ScrollWorldScene, ScrollWorldVariant, ScrollWorldAspectRatio } from "./scroll-world";
+export { MOBILE_SCROLL_WORLD_BREAKPOINT, assertScrollWorldManifest, chooseScrollWorldVariant, clampScrollWorldProgress, scrollWorldTimeAtProgress } from "./scroll-world";
+export { createScrollWorldController } from "./scroll-world-controller";
+export type { ScrollWorldController, ScrollWorldScheduler, ScrollWorldVideo } from "./scroll-world-controller";
+
 export function SkipLink({ children = "Skip to content" }: { readonly children?: ReactNode }) {
 	return <a className="skip-link" href="#main-content">{children}</a>;
 }

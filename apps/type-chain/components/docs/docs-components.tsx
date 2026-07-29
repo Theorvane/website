@@ -32,7 +32,19 @@ export function ReleaseBoundaryCallout({ classification }: Pick<RepositoryDocume
 
 export function DocsSidebar({ documents, activeRoute }: { documents: readonly RepositoryDocument[]; activeRoute?: string }) {
   const groups = ["Start", "Guides", "API", "Architecture"] as const;
-  return <aside className="docs-sidebar"><details open><summary>Documentation navigation</summary><nav aria-label="Documentation">{groups.map((group) => <section key={group}><h2>{group}</h2>{documents.filter((document) => document.document.group === group).map((document) => <a key={document.document.route} href={document.document.route} aria-current={activeRoute === document.document.route ? "page" : undefined}>{document.document.title}</a>)}</section>)}</nav></details></aside>;
+  return <aside className="docs-sidebar"><details><summary>Documentation navigation</summary><nav aria-label="Documentation">{groups.map((group) => <section key={group}><h2>{group}</h2>{documents.filter((document) => document.document.group === group).map((document) => <a key={document.document.route} href={document.document.route} aria-current={activeRoute === document.document.route ? "page" : undefined}>{document.document.title}</a>)}</section>)}</nav></details></aside>;
+}
+
+export function DocumentPager({ documents, route }: { documents: readonly RepositoryDocument[]; route: string }) {
+  const index = documents.findIndex(({ document }) => document.route === route);
+  if (index < 0) return null;
+  const previous = documents[index - 1];
+  const next = documents[index + 1];
+  if (!previous && !next) return null;
+  return <nav className="document-pager" aria-label="Document sequence">
+    {previous ? <a href={previous.document.route}>Previous: {previous.document.title}</a> : <span />}
+    {next ? <a href={next.document.route}>Next: {next.document.title}</a> : <span />}
+  </nav>;
 }
 
 export function ArticleToc({ document }: { document: RepositoryDocument }) {
