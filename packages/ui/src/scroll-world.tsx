@@ -2,6 +2,8 @@
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
 
+import { createScrollWorldController, type ScrollWorldController } from "./scroll-world-controller";
+
 export type ScrollWorldAspectRatio = "16:9" | "9:16";
 export type ScrollWorldVariant = Readonly<{ src: string; poster: string; duration: number; aspectRatio: ScrollWorldAspectRatio }>;
 export type ScrollWorldScene = Readonly<{ id: string; title: string; start: number; end: number; href: string }>;
@@ -44,8 +46,6 @@ export function assertScrollWorldManifest(manifest: ScrollWorldManifest): Scroll
 	if (cursor !== 1) throw new Error("Scroll World scenes must end at one");
 	return manifest;
 }
-
-import { createScrollWorldController, type ScrollWorldController } from "./scroll-world-controller";
 
 export type ScrollWorldProps = Readonly<{
 	manifest: ScrollWorldManifest;

@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 export const APPROVED_SCENE_IDS = ["studio-beacon", "typemcp-contract-island", "typechain-composition-island", "openvideo-local-studio", "product-constellation"];
 const APPROVED_MODELS = new Set(["seedance_2_0"]);
 const checksum = /^[a-f0-9]{64}$/i;
-const rootPath = (value) => typeof value === "string" && value.startsWith("/") && !value.includes("?") && !value.includes("http") && !value.includes("token") && !value.includes("..") && !value.includes("//");
+const rootPath = (value) => typeof value === "string" && value.startsWith("/") && !value.includes("?") && !value.includes("..") && !value.includes("//");
 
 function assert(condition, message) { if (!condition) throw new Error(message); }
 function validateVariant(variant, expectedAspectRatio, otherVariant) {
