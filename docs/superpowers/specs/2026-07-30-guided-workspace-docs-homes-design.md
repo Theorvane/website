@@ -1,7 +1,7 @@
 # Guided Workspace Documentation Homes
 
-**Issue:** Theorvane/website#120  
-**Status:** approved visual direction — ready for implementation planning  
+**Issue:** Theorvane/website#120
+**Status:** approved visual direction — ready for implementation planning
 **Products:** TypeMCP and TypeChain documentation homes
 
 ## Intent
