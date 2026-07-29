@@ -1,4 +1,6 @@
-import { ExternalLink, SkipLink } from "@theorvane/ui";
+import { ExternalLink, ScrollWorld, SkipLink } from "@theorvane/ui";
+
+import { theorvaneScrollWorld } from "../lib/scroll-world-manifest";
 
 const siteUrl = "https://theorvane.tech/";
 const github = "https://github.com/Theorvane";
@@ -36,6 +38,20 @@ export default function HomePage() {
 				<div className="actions"><a className="button primary" href="#products">Explore products</a><ExternalLink className="button" href={github}>GitHub organization ↗</ExternalLink></div>
 			</section>
 			<section className="signals shell" aria-label="What Theorvane values"><p>TypeScript-first</p><p>Protocol-aware</p><p>Open-source</p></section>
+			<ScrollWorld manifest={theorvaneScrollWorld}>
+				<section className="world-intro shell">
+					<p className="eyebrow">A five-scene product passage</p>
+					<h2>One studio. Clearer boundaries.</h2>
+					<p>Move through the work without giving up the written map: every scene has a destination, and every product keeps its own surface explicit.</p>
+				</section>
+				<ol className="world-story shell">
+					<li id="studio-beacon"><p className="eyebrow">Scene 01</p><h3>Start from a visible boundary.</h3><p>The studio beacon is a product index, not a platform promise. Choose the narrow tool that matches the system you own.</p><a href="#products">Explore the product index ↓</a></li>
+					<li id="typemcp-contract-island"><p className="eyebrow">Scene 02 / TypeMCP</p><h3>Declare the contract.</h3><p>TypeMCP makes MCP declarations and immutable read shapes inspectable, while your application owns runtime policy and deployment.</p><ExternalLink href={typeMcp}>Visit TypeMCP site ↗</ExternalLink></li>
+					<li id="typechain-composition-island"><p className="eyebrow">Scene 03 / TypeChain</p><h3>Compose at the edge.</h3><p>TypeChain offers typed tool and agent authoring boundaries. Models, credentials, policy decisions, state, and hosting remain yours.</p><ExternalLink href={typeChain}>Visit TypeChain site ↗</ExternalLink></li>
+					<li id="openvideo-local-studio"><p className="eyebrow">Scene 04 / OpenVideo</p><h3>Keep the edit local.</h3><p>OpenVideo records, edits, and exports on your device—without cloud uploads, accounts, or analytics.</p><ExternalLink href={openVideo}>Visit OpenVideo site ↗</ExternalLink></li>
+					<li id="product-constellation"><p className="eyebrow">Scene 05</p><h3>Return with the system still yours.</h3><p>Browse the focused products, inspect their public boundaries, and integrate only what your team needs.</p><a className="button primary" href="#products">Explore products</a></li>
+				</ol>
+			</ScrollWorld>
 			<section className="products shell" id="products">
 				<p className="eyebrow">01 / Product index</p><h2>Choose a focused tool.</h2>
 				<div className="product-grid">{products.map(([number, name, description, signal, href]) => <article key={name} className="product-card"><p className="eyebrow">{number} / {signal}</p><h3>{name}</h3><p>{description}</p><ExternalLink href={href}>Explore {name} ↗</ExternalLink></article>)}</div>
