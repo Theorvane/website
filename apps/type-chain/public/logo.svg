@@ -1,0 +1,12 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TypeChain">
+  <defs>
+    <linearGradient id="tchain" gradientUnits="userSpaceOnUse" x1="10" y1="10" x2="54" y2="54">
+      <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#036c4d"/>
+    </linearGradient>
+  </defs>
+  <!-- Two links sharing one joint: composition with the seam left visible. -->
+  <g stroke="url(#tchain)" stroke-width="6.5" fill="none">
+    <rect x="6" y="23" width="30" height="18" rx="9" transform="rotate(-45 21 32)"/>
+    <rect x="28" y="23" width="30" height="18" rx="9" transform="rotate(-45 43 32)"/>
+  </g>
+</svg>
