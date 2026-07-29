@@ -1,6 +1,7 @@
 import { ExternalLink, ScrollWorld, SkipLink } from "@theorvane/ui";
 
 import { BoundaryAtlasStage } from "../components/boundary-atlas-stage";
+import { VideoHero } from "../components/video-hero";
 import { theorvaneScrollWorld } from "../lib/scroll-world-manifest";
 
 const siteUrl = "https://theorvane.tech/";
@@ -32,6 +33,7 @@ export default function HomePage() {
 			<nav aria-label="Primary"><a href="#products">Projects</a><a href="#principles">Principles</a><ExternalLink href={github}>GitHub organization ↗</ExternalLink></nav>
 		</header>
 		<main id="main-content">
+			<VideoHero poster="/scroll-world/desktop/studio-beacon-poster.webp" src="/scroll-world/desktop/studio-beacon.mp4" />
 			<section className="hero shell" id="top">
 				<p className="eyebrow">Independent software studio · Seoul / internet</p>
 				<h1>Precise tools for<br /><em>the AI-native web.</em></h1>
