@@ -21,3 +21,9 @@
 - Do not put OAuth data, signed URLs, external media URLs, raw media, generated build files, or secrets in source control.
 - The calibration pair and the full media batch each require a separate explicit in-chat cost approval after verified preflight evidence.
 - Before PR merge: full verification, exact-head independent approval, all required checks, and no unresolved review threads.
+
+## Completed no-spend preflight
+
+- Date: 2026-07-29.
+- Candidate model IDs: `soul_location` for native stills and `seedance_2_0` for start/end-frame video with silent output.
+- Dynamic balance and workspace facts remain local at `/tmp/theorvane-scroll-world-production/preflight-2026-07-29T073600Z.md`; no media job is authorized.

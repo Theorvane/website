@@ -10,4 +10,7 @@ coverage/
 *.tsbuildinfo
 apps/type-mcp/.generated-docs/
 apps/type-chain/.generated-docs/
+/tmp/theorvane-scroll-world-production/
+apps/theorvane/public/scroll-world/.work/
+apps/theorvane/public/scroll-world/*.local.json
 .DS_Store
