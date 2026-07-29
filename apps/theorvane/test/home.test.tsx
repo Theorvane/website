@@ -36,7 +36,8 @@ describe("Theorvane homepage", () => {
 
 		expect(screen.getByRole("region", { name: /theorvane product world/i })).toBeTruthy();
 		expect(screen.getByRole("navigation", { name: /world scenes/i })).toBeTruthy();
-		expect(screen.getByRole("link", { name: /studio beacon/i }).getAttribute("href")).toBe("#products");
+		expect(screen.getByRole("link", { name: /boundary atlas/i }).getAttribute("href")).toBe("#products");
+		expect(screen.getByRole("heading", { name: /three surfaces\. explicit junctions\./i })).toBeTruthy();
 		expect(screen.getByRole("link", { name: /typemcp contract island/i }).getAttribute("href")).toBe("https://typemcp.theorvane.tech/");
 		expect(screen.getByRole("link", { name: /typechain composition island/i }).getAttribute("href")).toBe("https://typechain.theorvane.tech/");
 		expect(screen.getByRole("link", { name: /openvideo local studio/i }).getAttribute("href")).toBe("https://openvideo.theorvane.tech/");
