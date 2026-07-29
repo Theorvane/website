@@ -3,8 +3,9 @@ import { generateMetadata, generateStaticParams } from "./page";
 
 describe("TypeChain article routes", () => {
   it("generates a static route and canonical metadata for each approved document", async () => {
-    expect(generateStaticParams()).toHaveLength(8);
+    expect(generateStaticParams()).toHaveLength(9);
     expect(generateStaticParams()).toContainEqual({ slug: ["guides", "langchain-integration"] });
+    expect(generateStaticParams()).toContainEqual({ slug: ["guides", "composition-selection"] });
     const metadata = await generateMetadata({ params: Promise.resolve({ slug: ["getting-started"] }) });
     expect(metadata.title).toBe("Getting started with @theorvane/type-chain@0.1.1 | TypeChain");
     expect(metadata.alternates?.canonical).toBe("/docs/getting-started");
