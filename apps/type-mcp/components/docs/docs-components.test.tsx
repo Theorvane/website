@@ -4,10 +4,10 @@ import { describe, expect, it } from "vitest";
 import { ReleaseBoundaryCallout } from "./docs-components";
 
 describe("TypeMCP documentation release callout", () => {
-  it("identifies the public scoped 0.2.0 runtime for non-published document classifications", () => {
+  it("identifies the public scoped 0.2.2 runtime for non-published document classifications", () => {
     render(<ReleaseBoundaryCallout classification="repository-development" />);
 
-    expect(screen.getByText("@theorvane/type-mcp@0.2.0")).toBeTruthy();
+    expect(screen.getByText("@theorvane/type-mcp@0.2.2")).toBeTruthy();
     expect(screen.getByText(/definition validation, MCP SDK compilation, stdio, Streamable HTTP/i)).toBeTruthy();
     expect(screen.getByText(/tools-only LangChain adapter/i)).toBeTruthy();
     expect(screen.getByText(/Applications retain ownership of hosting, authorization, and LangGraph composition/i)).toBeTruthy();

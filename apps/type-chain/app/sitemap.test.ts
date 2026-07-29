@@ -6,6 +6,8 @@ describe("TypeChain sitemap", () => {
     const routes = sitemap().map((entry) => entry.url);
     expect(routes).toContain("https://typechain.theorvane.tech");
     expect(routes).toContain("https://typechain.theorvane.tech/docs");
+    expect(routes).toContain("https://typechain.theorvane.tech/docs/core-concepts");
+    expect(routes).toContain("https://typechain.theorvane.tech/docs/petstore-walkthrough");
     expect(routes).toContain("https://typechain.theorvane.tech/docs/guides/typemcp-bridge");
   });
 });
