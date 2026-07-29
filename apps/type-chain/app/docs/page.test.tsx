@@ -21,7 +21,7 @@ describe("TypeChain docs index", () => {
     expect(screen.getByRole("heading", { level: 1, name: /Continue the typed Petstore workflow/i })).toBeTruthy();
     const workflow = screen.getByRole("region", { name: /Petstore workflow/i });
     const workflowContent = within(workflow);
-    const currentStage = within(workflow).getByRole("status", { name: "Current learning stage" });
+    const currentStage = within(workflow).getByRole("group", { name: "Current learning stage" });
     expect(within(currentStage).getByText("Your learning path")).toBeTruthy();
     expect(within(currentStage).getByText("Step 4 of 6")).toBeTruthy();
     expect(within(workflow).getByRole("link", { name: /Continue the Petstore workspace/i }).getAttribute("href")).toBe("/docs/build/petstore-typechain-foundation");
