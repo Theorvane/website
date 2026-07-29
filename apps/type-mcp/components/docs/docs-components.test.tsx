@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { ReleaseBoundaryCallout, DocumentPager } from "./docs-components";
+import { DocsSidebar, DocumentPager, ReleaseBoundaryCallout } from "./docs-components";
 
 describe("TypeMCP documentation release callout", () => {
   it("identifies the public scoped 0.2.2 runtime for non-published document classifications", () => {
@@ -18,6 +18,13 @@ describe("TypeMCP documentation release callout", () => {
     const { container } = render(<ReleaseBoundaryCallout classification="published" />);
 
     expect(container.innerHTML).toBe("");
+  });
+});
+
+describe("TypeMCP documentation sidebar", () => {
+  it("starts as a closed disclosure for a compact mobile reading path", () => {
+    const { container } = render(<DocsSidebar documents={[{ document: { route: "/docs/getting-started", title: "Getting started", group: "Start" } }] as never} activeRoute="/docs/getting-started" />);
+    expect(container.querySelector("details")?.hasAttribute("open")).toBe(false);
   });
 });
 

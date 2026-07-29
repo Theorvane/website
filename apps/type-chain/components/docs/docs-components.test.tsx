@@ -1,7 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { DocumentPager } from "./docs-components";
+import { DocsSidebar, DocumentPager } from "./docs-components";
+
+describe("TypeChain documentation sidebar", () => {
+  it("starts as a closed disclosure for a compact mobile reading path", () => {
+    const { container } = render(<DocsSidebar documents={[{ document: { route: "/docs/getting-started", title: "Getting started", group: "Start" } }] as never} activeRoute="/docs/getting-started" />);
+    expect(container.querySelector("details")?.hasAttribute("open")).toBe(false);
+  });
+});
 
 describe("TypeChain documentation pager", () => {
   const documents = [
