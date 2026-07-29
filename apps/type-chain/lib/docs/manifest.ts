@@ -1,7 +1,7 @@
 import { documentGroups, type PublicDocument } from "./types";
 
 // Pin only after the canonical TypeChain documentation source is promoted to main.
-export const sourceCommit = "edb33a1a074b2a92c8a294313d046ac8ebbd930b";
+export const sourceCommit = "bc54cf1adca02faaa1db7d5533a5ceed3c152916";
 
 const documents: readonly PublicDocument[] = [
   { sourcePath: "docs/guides/getting-started.md", route: "/docs/getting-started", title: "Getting started", summary: "Install TypeChain, configure Stage 3 decorators, and declare a first tool.", group: "Start", order: 1, classification: "published", sourceStatus: "@theorvane/type-chain@0.1.1" },

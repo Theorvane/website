@@ -3,7 +3,7 @@ import { publicDocuments, sourceCommit, validateManifest } from "./manifest";
 
 describe("TypeChain public documentation manifest", () => {
   it("uses an immutable source commit and approved public routes", () => {
-    expect(sourceCommit).toBe("edb33a1a074b2a92c8a294313d046ac8ebbd930b");
+    expect(sourceCommit).toBe("bc54cf1adca02faaa1db7d5533a5ceed3c152916");
     expect(publicDocuments).toHaveLength(11);
     expect(publicDocuments.map((document) => document.route)).toContain("/docs/core-concepts");
     expect(publicDocuments.map((document) => document.route)).toContain("/docs/petstore-walkthrough");
