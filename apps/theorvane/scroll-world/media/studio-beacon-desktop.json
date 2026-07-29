@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "sceneId": "studio-beacon",
+  "variant": "desktop",
+  "aspectRatio": "16:9",
+  "status": "approved-calibration",
+  "productionScope": "desktop-scene-calibration-only",
+  "mobileEquivalent": null,
+  "timelineEquivalent": null,
+  "model": "seedance-1-5-pro-251215",
+  "watermarkReview": "none-visible",
+  "hasAudio": false,
+  "poster": "/scroll-world/desktop/studio-beacon-poster.webp",
+  "lastFrame": "/scroll-world/desktop/studio-beacon-last.png",
+  "video": {
+    "path": "/scroll-world/desktop/studio-beacon.mp4",
+    "codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "framesPerSecond": 24,
+    "durationSeconds": 5.041667
+  },
+  "checksums": {
+    "/scroll-world/desktop/studio-beacon.mp4": "8d2f414c50e8c481876a5a432baf3b9ec5ede4bc49499f71abe070602ed678bf",
+    "/scroll-world/desktop/studio-beacon-last.png": "2b461e02dfcfea62ef8555c1907ca1dfd12457e1c308e6717eb7742a2ccf0070",
+    "/scroll-world/desktop/studio-beacon-poster.webp": "5f9d57e96b613ad76d77f3c1e15ed05e4903f4633ec8d23c714cdc83a9d853c6"
+  }
+}
