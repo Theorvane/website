@@ -13,9 +13,16 @@ Promote only the approved desktop Studio Beacon calibration assets into public r
 
 ## Non-goals
 
-- No new provider calls, credits, or media generation.
+- This follow-up is limited to the user-approved regeneration of one Boundary Atlas desktop still and one five-second I2V clip; it does not expand to mobile, connectors, or a full timeline.
 - No mobile rendition, connectors, full timeline, deploy, or Vercel/provider configuration.
 - No credentials, URLs, provider response records, or raw prompt payloads in Git.
+
+## Regeneration evidence
+
+- User explicitly approved a constrained Boundary Atlas replacement after rejecting the literal beacon creative direction.
+- Still: `seedream-5-0-260128`; video: `seedance-1-5-pro-251215` with first/last-frame conditioning.
+- Runtime candidate is the localized video-only derivative after stream inspection; it has no audio stream.
+- Visual review found no visible watermark, text, logo, person, or UI. A full timeline must use a short poster/video crossfade rather than a hard pixel seam.
 
 ## RED evidence
 
