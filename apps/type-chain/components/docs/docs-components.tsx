@@ -48,11 +48,13 @@ export function DocumentPager({ documents, route }: { documents: readonly Reposi
   const index = documents.findIndex(({ document }) => document.route === route);
   if (index < 0) return null;
   const current = documents[index]!.document;
-  const nextByCurriculum = current.curriculumStep ? documents.find(({ document }) => document.route === current.nextRoute) : undefined;
+  const hasCurriculum = current.curriculumStep !== undefined;
+  const next = hasCurriculum
+    ? documents.find(({ document }) => document.route === current.nextRoute)
+    : documents[index + 1];
   const previous = documents[index - 1];
-  const next = nextByCurriculum ?? documents[index + 1];
   if (!previous && !next) return null;
-  const nextLabel = nextByCurriculum ? `Next step: ${next!.document.title}` : `Next: ${next?.document.title}`;
+  const nextLabel = next ? (hasCurriculum ? `Next step: ${next.document.title}` : `Next: ${next.document.title}`) : undefined;
   return <nav className="document-pager" aria-label="Document sequence">
     {previous ? <a href={previous.document.route}>Previous: {previous.document.title}</a> : <span />}
     {next ? <a href={next.document.route}>{nextLabel}</a> : <span />}
