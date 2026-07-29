@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { constants } from "node:fs";
 import { open, type FileHandle } from "node:fs/promises";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 
 import { publicDocuments, sourceCommit } from "./manifest";
 import { parseDocument, type ParsedDocument } from "./parse";
@@ -28,7 +28,35 @@ function delay(milliseconds: number): Promise<void> {
   return new Promise((resolveDelay) => setTimeout(resolveDelay, milliseconds));
 }
 
+/**
+ * Linux publishes an open directory descriptor as a traversable path under
+ * /proc/self/fd, which pins each parent against a rename between the check and
+ * the open. macOS has no equivalent — /dev/fd/<fd> is not traversable — so the
+ * walk falls back to joined paths there. Every component is still opened
+ * O_NOFOLLOW, so a symlinked component is refused rather than followed; only
+ * the extra rename-race protection is unavailable.
+ */
+let descriptorTraversal: Promise<boolean> | undefined;
+
+function supportsDescriptorTraversal(): Promise<boolean> {
+  descriptorTraversal ??= (async () => {
+    let handle: FileHandle | undefined;
+    try {
+      handle = await open(".", constants.O_RDONLY | constants.O_DIRECTORY);
+      const probe = await open(`/proc/self/fd/${handle.fd}`, constants.O_RDONLY | constants.O_DIRECTORY);
+      await probe.close();
+      return true;
+    } catch {
+      return false;
+    } finally {
+      await handle?.close();
+    }
+  })();
+  return descriptorTraversal;
+}
+
 async function readTrustedTextOnce(root: string, sourcePath: string): Promise<string> {
+  const pinned = await supportsDescriptorTraversal();
   const rootHandle = await open(root, constants.O_RDONLY | constants.O_DIRECTORY | constants.O_NOFOLLOW);
   const parentHandles: FileHandle[] = [];
   let fileHandle: FileHandle | undefined;
@@ -37,10 +65,12 @@ async function readTrustedTextOnce(root: string, sourcePath: string): Promise<st
     if (!(await rootHandle.stat()).isDirectory()) throw new Error("Unsafe documentation cache root");
     const segments = safeSegments(sourcePath);
     let parent = rootHandle;
+    let parentPath = root;
 
     for (let index = 0; index < segments.length; index += 1) {
       const segment = segments[index]!;
-      const descriptorPath = `/proc/self/fd/${parent.fd}/${segment}`;
+      const joinedPath = join(parentPath, segment);
+      const descriptorPath = pinned ? `/proc/self/fd/${parent.fd}/${segment}` : joinedPath;
       if (index === segments.length - 1) {
         fileHandle = await open(descriptorPath, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
         if (!(await fileHandle.stat()).isFile()) throw new Error(`Unsafe documentation cache file: ${sourcePath}`);
@@ -51,6 +81,7 @@ async function readTrustedTextOnce(root: string, sourcePath: string): Promise<st
       if (!(await child.stat()).isDirectory()) throw new Error(`Unsafe documentation cache directory: ${sourcePath}`);
       parentHandles.push(child);
       parent = child;
+      parentPath = joinedPath;
     }
     throw new Error(`Unsafe documentation cache path: ${sourcePath}`);
   } finally {
