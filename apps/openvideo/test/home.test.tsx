@@ -15,6 +15,16 @@ describe("OpenVideo homepage", () => {
 		expect(screen.getByRole("link", { name: /Theorvane/i }).getAttribute("href")).toBe("https://theorvane.tech/");
 	});
 
+	it("shows the released local capture-to-export workflow", () => {
+		render(createElement(HomePage));
+
+		for (const stage of ["Capture", "Edit", "Export"]) {
+			expect(screen.getAllByRole("heading", { name: stage }).length).toBeGreaterThan(0);
+		}
+		expect(screen.getByText(/recordings, projects, imported assets, voice profiles, and exports stay local/i)).toBeTruthy();
+		expect(screen.queryByText(/AI-assisted editing is available/i)).toBeNull();
+	});
+
 	it("makes the local-first product boundary and official destinations discoverable", () => {
 		render(createElement(HomePage));
 

@@ -3,9 +3,10 @@ import { publicDocuments, sourceCommit, validateManifest } from "./manifest";
 
 describe("TypeChain public documentation manifest", () => {
   it("uses an immutable source commit and approved public routes", () => {
-    expect(sourceCommit).toBe("a0889d6406835082a62103bd903bbffb93044e1a");
-    expect(publicDocuments).toHaveLength(8);
+    expect(sourceCommit).toBe("033ad244a1be87093d4ad8748b16cf1034300adf");
+    expect(publicDocuments).toHaveLength(9);
     expect(publicDocuments.map((document) => document.route)).toContain("/docs/api/decorator-api");
+    expect(publicDocuments.map((document) => document.route)).toContain("/docs/guides/composition-selection");
     expect(publicDocuments.every((document) => document.sourceStatus.includes("@theorvane/type-chain@0.1.1") || document.sourcePath === "docs/architecture.md")).toBe(true);
   });
   it("rejects unsafe documentation paths", () => {
