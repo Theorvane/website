@@ -31,6 +31,18 @@ describe("Theorvane homepage", () => {
 		expect(screen.getAllByRole("link", { name: /openvideo/i }).some((link) => link.getAttribute("href") === "https://openvideo.theorvane.tech/")).toBe(true);
 	});
 
+	it("renders the five-scene Scroll World as semantic content with canonical destinations", () => {
+		render(createElement(HomePage));
+
+		expect(screen.getByRole("region", { name: /theorvane product world/i })).toBeTruthy();
+		expect(screen.getByRole("navigation", { name: /world scenes/i })).toBeTruthy();
+		expect(screen.getByRole("link", { name: /studio beacon/i }).getAttribute("href")).toBe("#products");
+		expect(screen.getByRole("link", { name: /typemcp contract island/i }).getAttribute("href")).toBe("https://typemcp.theorvane.tech/");
+		expect(screen.getByRole("link", { name: /typechain composition island/i }).getAttribute("href")).toBe("https://typechain.theorvane.tech/");
+		expect(screen.getByRole("link", { name: /openvideo local studio/i }).getAttribute("href")).toBe("https://openvideo.theorvane.tech/");
+		expect(screen.getByRole("link", { name: /product constellation/i }).getAttribute("href")).toBe("#products");
+	});
+
 	it("features TypeChain with its official typed-tool product destination", () => {
 		render(createElement(HomePage));
 

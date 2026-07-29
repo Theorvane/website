@@ -68,6 +68,7 @@ export function ScrollWorld({ manifest: inputManifest, children }: ScrollWorldPr
 	const [shouldLoad, setShouldLoad] = useState(false);
 
 	useEffect(() => {
+		if (typeof window.matchMedia !== "function") return;
 		const compact = window.matchMedia(`(max-width: ${MOBILE_SCROLL_WORLD_BREAKPOINT}px)`);
 		const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
 		const updateVariant = () => setVariant(compact.matches ? manifest.mobile : manifest.desktop);
@@ -83,7 +84,7 @@ export function ScrollWorld({ manifest: inputManifest, children }: ScrollWorldPr
 	}, [manifest]);
 
 	useEffect(() => {
-		if (reducedMotion || !stage.current) return;
+		if (reducedMotion || !stage.current || typeof IntersectionObserver === "undefined") return;
 		const observer = new IntersectionObserver((entries) => {
 			if (entries.some((entry) => entry.isIntersecting)) setShouldLoad(true);
 		}, { rootMargin: "200px" });

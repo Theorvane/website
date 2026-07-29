@@ -60,6 +60,12 @@ describe("ScrollWorld", () => {
 		expect(screen.getByRole("region", { name: "Product world" }).getAttribute("data-motion")).toBe("reduced");
 	});
 
+	it("keeps semantic content usable when media browser APIs are unavailable", () => {
+		render(<ScrollWorld manifest={manifest}><p>Story without media APIs</p></ScrollWorld>);
+		expect(screen.getByText("Story without media APIs")).toBeTruthy();
+		expect(screen.getByTestId("scroll-world-video").getAttribute("src")).toBeNull();
+	});
+
 	it("keeps the poster and reveals a visible fallback after media failure", () => {
 		configureMedia();
 		render(<ScrollWorld manifest={manifest}><p>Story</p></ScrollWorld>);
