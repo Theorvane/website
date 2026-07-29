@@ -40,8 +40,9 @@ export function ReleaseBoundaryCallout({ classification }: Pick<RepositoryDocume
 }
 
 export function DocsSidebar({ documents, activeRoute }: { documents: readonly RepositoryDocument[]; activeRoute?: string }) {
-  const groups = ["Start", "Guides", "Build", "API", "Architecture"] as const;
-  return <aside className="docs-sidebar"><details><summary>Documentation navigation</summary><nav aria-label="Documentation">{groups.map((group) => <section key={group}><p className="docs-sidebar-group">{group}</p>{documents.filter((document) => document.document.group === group).map((document) => <a key={document.document.route} href={document.document.route} aria-current={activeRoute === document.document.route ? "page" : undefined}>{document.document.title}</a>)}</section>)}</nav></details></aside>;
+  const groups = ["Start", "Guides", "Build", "API", "Architecture", "Product"] as const;
+  const navigation = (className?: string) => <nav className={className} aria-label="Documentation">{groups.map((group) => <section key={group}><p className="docs-sidebar-group">{group}</p>{documents.filter((document) => document.document.group === group).map((document) => <a key={document.document.route} href={document.document.route} aria-current={activeRoute === document.document.route ? "page" : undefined}>{document.document.title}</a>)}</section>)}</nav>;
+  return <aside className="docs-sidebar">{navigation("docs-sidebar-desktop")}<details><summary>Documentation navigation</summary>{navigation("docs-sidebar-mobile")}</details></aside>;
 }
 
 export function DocumentPager({ documents, route }: { documents: readonly RepositoryDocument[]; route: string }) {
