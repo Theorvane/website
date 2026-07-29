@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "exports": { ".": "./src/index.tsx" },
-  "scripts": { "lint": "eslint src", "typecheck": "tsc --noEmit", "test": "node --test test/*.test.mjs" },
+  "scripts": { "lint": "eslint src test", "typecheck": "tsc --noEmit", "test": "vitest run" },
   "peerDependencies": { "react": "^19.0.0" },
-  "devDependencies": { "@types/react": "^19.0.0" }
+  "devDependencies": { "@testing-library/react": "^16.3.0", "@types/react": "^19.0.0", "jsdom": "^28.1.0", "vitest": "^4.1.0" }
 }
