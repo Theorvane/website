@@ -21,6 +21,16 @@ describe("Theorvane homepage", () => {
 		);
 	});
 
+	it("offers a product index with all canonical destinations", () => {
+		render(createElement(HomePage));
+
+		expect(screen.getAllByRole("link", { name: /explore products/i })[0]?.getAttribute("href")).toBe("#products");
+		expect(screen.getByRole("heading", { name: /choose a focused tool/i })).toBeTruthy();
+		expect(screen.getAllByRole("link", { name: /typemcp/i }).some((link) => link.getAttribute("href") === "https://typemcp.theorvane.tech/")).toBe(true);
+		expect(screen.getAllByRole("link", { name: /typechain/i }).some((link) => link.getAttribute("href") === "https://typechain.theorvane.tech/")).toBe(true);
+		expect(screen.getAllByRole("link", { name: /openvideo/i }).some((link) => link.getAttribute("href") === "https://openvideo.theorvane.tech/")).toBe(true);
+	});
+
 	it("features TypeChain with its official typed-tool product destination", () => {
 		render(createElement(HomePage));
 

@@ -15,6 +15,16 @@ describe("TypeChain homepage", () => {
     expect(screen.getByRole("link", { name: /Theorvane/i }).getAttribute("href")).toBe("https://theorvane.tech/");
   });
 
+  it("leads with documentation and makes the ownership flow explicit", () => {
+    render(createElement(HomePage));
+
+    expect(screen.getAllByRole("link", { name: /read documentation/i }).some((link) => link.getAttribute("href") === "/docs")).toBe(true);
+    expect(screen.getAllByRole("link", { name: /getting started/i }).some((link) => link.getAttribute("href") === "/docs/getting-started")).toBe(true);
+    for (const stage of ["Declare", "Define", "Adapt", "Own"]) {
+      expect(screen.getByRole("heading", { name: stage })).toBeTruthy();
+    }
+  });
+
   it("presents the published package and the application-owned runtime boundary", () => {
     render(createElement(HomePage));
     expect(screen.getByRole("heading", { name: /typed tools\.\s*explicit boundaries/i })).toBeTruthy();
