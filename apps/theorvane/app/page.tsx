@@ -7,7 +7,7 @@ const siteUrl = "https://theorvane.tech/";
 const github = "https://github.com/Theorvane";
 const typeMcp = "https://typemcp.theorvane.tech/";
 const typeChain = "https://typechain.theorvane.tech/";
-const openVideo = "https://openvideo.theorvane.tech/";
+const openVideo = "https://open-video.app/";
 
 const products = [
 	["01", "TypeMCP", "A decorator-first TypeScript toolkit for MCP metadata declarations and immutable reads.", "MCP contracts", typeMcp],

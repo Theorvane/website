@@ -25,7 +25,7 @@ test("source documentation lists the independently deployable OpenVideo and Type
 
 	for (const content of [readme, guide]) {
 		assert.match(content, /apps\/openvideo/);
-		assert.match(content, /https:\/\/openvideo\.theorvane\.tech/);
+		assert.match(content, /https:\/\/open-video\.app/);
 		assert.match(content, /apps\/type-chain/);
 		assert.match(content, /https:\/\/typechain\.theorvane\.tech/);
 	}

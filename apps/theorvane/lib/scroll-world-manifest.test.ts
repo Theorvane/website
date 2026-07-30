@@ -24,7 +24,7 @@ describe("Theorvane Scroll World manifest", () => {
 			"studio-beacon": "#products",
 			"typemcp-contract-island": "https://typemcp.theorvane.tech/",
 			"typechain-composition-island": "https://typechain.theorvane.tech/",
-			"openvideo-local-studio": "https://openvideo.theorvane.tech/",
+			"openvideo-local-studio": "https://open-video.app/",
 			"product-constellation": "#products",
 		});
 	});

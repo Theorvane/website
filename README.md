@@ -7,7 +7,18 @@ A Next.js monorepo containing independently deployable public websites for **The
 - `apps/theorvane` — the Theorvane brand homepage at `https://theorvane.tech`
 - `apps/type-mcp` — the TypeMCP product site and technical documentation at `https://typemcp.theorvane.tech`
 - `apps/type-chain` — the TypeChain product site and technical documentation at `https://typechain.theorvane.tech`
-- `apps/openvideo` — the OpenVideo local-first hybrid AI video-editor product site at `https://openvideo.theorvane.tech`; current AI capabilities remain explicitly availability-scoped in the approved product direction
+- `apps/openvideo` — the OpenVideo local-first hybrid AI video-editor product site at `https://open-video.app`; current AI capabilities remain explicitly availability-scoped in the approved product direction
+
+## OpenVideo documentation
+
+The OpenVideo usage documentation is published at `https://open-video.app/docs` in English and `https://open-video.app/docs/ko` in Korean. Unlike the TypeMCP portal it is authored in this repository as typed content blocks under `apps/openvideo/lib/docs/`, because it documents how to use the desktop application rather than mirroring approved documents from a source repository.
+
+- `content.en.ts` and `content.ko.ts` hold one entry per page; both must cover every slug in the outline or `validateContent()` fails the build.
+- `manifest.ts` owns the outline, reading order, and locale-aware paths. English is served unprefixed; other locales sit under their own segment.
+- Screenshots live in `apps/openvideo/public/docs/` and are declared with fixed dimensions in `lib/docs/types.ts` so the browser reserves layout before they load.
+- Every page publishes a canonical URL, `hreflang` alternates for both locales, and `TechArticle` plus `BreadcrumbList` JSON-LD. The sitemap lists each localized route with its alternates.
+
+Claims in this documentation must match OpenVideo's actual build. Pre-release limits — no packaged installer, no auto-update, Sora reference images unsupported — are stated rather than omitted.
 
 ## TypeMCP documentation
 

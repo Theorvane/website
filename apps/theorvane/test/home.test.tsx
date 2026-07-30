@@ -28,7 +28,7 @@ describe("Theorvane homepage", () => {
 		expect(screen.getByRole("heading", { name: /choose a focused tool/i })).toBeTruthy();
 		expect(screen.getAllByRole("link", { name: /typemcp/i }).some((link) => link.getAttribute("href") === "https://typemcp.theorvane.tech/")).toBe(true);
 		expect(screen.getAllByRole("link", { name: /typechain/i }).some((link) => link.getAttribute("href") === "https://typechain.theorvane.tech/")).toBe(true);
-		expect(screen.getAllByRole("link", { name: /openvideo/i }).some((link) => link.getAttribute("href") === "https://openvideo.theorvane.tech/")).toBe(true);
+		expect(screen.getAllByRole("link", { name: /openvideo/i }).some((link) => link.getAttribute("href") === "https://open-video.app/")).toBe(true);
 	});
 
 	it("renders the five-scene Scroll World as semantic content with canonical destinations", () => {
@@ -40,7 +40,7 @@ describe("Theorvane homepage", () => {
 		expect(screen.getByRole("heading", { name: /three surfaces\. explicit junctions\./i })).toBeTruthy();
 		expect(screen.getByRole("link", { name: /typemcp contract island/i }).getAttribute("href")).toBe("https://typemcp.theorvane.tech/");
 		expect(screen.getByRole("link", { name: /typechain composition island/i }).getAttribute("href")).toBe("https://typechain.theorvane.tech/");
-		expect(screen.getByRole("link", { name: /openvideo local studio/i }).getAttribute("href")).toBe("https://openvideo.theorvane.tech/");
+		expect(screen.getByRole("link", { name: /openvideo local studio/i }).getAttribute("href")).toBe("https://open-video.app/");
 		expect(screen.getByRole("link", { name: /product constellation/i }).getAttribute("href")).toBe("#products");
 	});
 
@@ -60,7 +60,7 @@ describe("Theorvane homepage", () => {
 
 		expect(screen.getByRole("heading", { name: "OpenVideo" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: /explore openvideo/i }).getAttribute("href")).toBe(
-			"https://openvideo.theorvane.tech/",
+			"https://open-video.app/",
 		);
 		expect(screen.getByText(/local-first, open-source video editor/i)).toBeTruthy();
 		expect(screen.getByText(/no cloud uploads, accounts, or analytics/i)).toBeTruthy();
