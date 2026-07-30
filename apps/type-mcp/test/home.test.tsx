@@ -30,7 +30,7 @@ describe("TypeMCP homepage", () => {
 		expect(screen.getByRole("heading", { name: /decorator-first mcp/i })).toBeTruthy();
 		expect(
 			screen.getAllByText((_, element) =>
-				element?.tagName === "P" && element.textContent?.includes("Published @theorvane/type-mcp@0.2.0") === true,
+				element?.tagName === "P" && element.textContent?.includes("Published @theorvane/type-mcp@0.2.2") === true,
 			),
 		).toHaveLength(2);
 		expect(screen.getAllByText(/validated runtime/i)).toHaveLength(2);
@@ -43,6 +43,23 @@ describe("TypeMCP homepage", () => {
 		expect(screen.queryByText(/does not validate, compile, invoke, or transport/i)).toBeNull();
 		expect(screen.getAllByRole("link", { name: /npm package/i })[0]?.getAttribute("href")).toBe(
 			"https://www.npmjs.com/package/@theorvane/type-mcp",
+		);
+	});
+	it("renders factual source-code and website JSON-LD", () => {
+		render(createElement(HomePage));
+		const graph = JSON.parse(screen.getByTestId("typemcp-schema").textContent ?? "{}") as { "@graph"?: Array<Record<string, unknown>> };
+		expect(graph["@graph"]).toEqual(
+			expect.arrayContaining([
+				expect.objectContaining({
+					"@type": "SoftwareSourceCode",
+					name: "TypeMCP",
+					url: "https://typemcp.theorvane.tech/",
+					codeRepository: "https://github.com/Theorvane/type-mcp",
+					programmingLanguage: "TypeScript",
+					license: "https://opensource.org/licenses/MIT",
+				}),
+				expect.objectContaining({ "@type": "WebSite", name: "TypeMCP", url: "https://typemcp.theorvane.tech/" }),
+			]),
 		);
 	});
 });
