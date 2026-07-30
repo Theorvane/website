@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import { metadata } from "../app/layout";
 import RootLayout from "../app/layout";
 import HomePage from "../app/page";
+import { alt as ogAlt, contentType as ogContentType, size as ogSize } from "../app/opengraph-image";
 import robots from "../app/robots";
 import sitemap from "../app/sitemap";
 
@@ -24,9 +25,9 @@ describe("Theorvane technical SEO", () => {
 	it("publishes canonical and social metadata for the apex domain", () => {
 		expect(metadata.metadataBase?.toString()).toBe("https://theorvane.tech/");
 		expect(metadata.alternates?.canonical).toBe("/");
-		expect(metadata.robots).toEqual({ index: true, follow: true });
+		expect(metadata.robots).toMatchObject({ index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } });
 		expect(metadata.openGraph?.url?.toString()).toBe("https://theorvane.tech/");
-		expect((metadata.twitter as { card?: string } | undefined)?.card).toBe("summary");
+		expect((metadata.twitter as { card?: string } | undefined)?.card).toBe("summary_large_image");
 		expect(metadata.icons).toEqual({
 			icon: [{ url: "/icon.png", sizes: "460x460", type: "image/png" }],
 			apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
@@ -37,7 +38,6 @@ describe("Theorvane technical SEO", () => {
 	it("publishes crawl directives and a canonical sitemap", () => {
 		expect(robots().rules).toMatchObject({ userAgent: "*", allow: "/" });
 		expect(robots().sitemap).toBe("https://theorvane.tech/sitemap.xml");
-		expect(sitemap()).toEqual([{ url: "https://theorvane.tech/" }]);
 	});
 
 	it("renders accurate organization and website JSON-LD", () => {
@@ -50,5 +50,15 @@ describe("Theorvane technical SEO", () => {
 				expect.objectContaining({ "@type": "WebSite", name: "Theorvane", url: "https://theorvane.tech/" }),
 			]),
 		);
+	});
+	it("publishes a rendered social preview image at the documented size", () => {
+		expect(ogSize).toEqual({ width: 1200, height: 630 });
+		expect(ogContentType).toBe("image/png");
+		expect(ogAlt).toContain("Theorvane");
+	});
+
+	it("declares the canonical host and a dated sitemap entry", () => {
+		expect(robots().host).toBe("https://theorvane.tech");
+		expect(sitemap()).toEqual([{ url: "https://theorvane.tech/", lastModified: "2026-07-30", changeFrequency: "monthly", priority: 1 }]);
 	});
 });
