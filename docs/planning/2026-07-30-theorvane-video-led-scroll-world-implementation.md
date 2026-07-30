@@ -8,8 +8,8 @@
 
 **Tech Stack:** Next.js 16 App Router, React 19, TypeScript strict mode, Vitest + Testing Library, CSS custom properties/gradients/transforms, HTML video, `IntersectionObserver`, `matchMedia`, production `next build` inspection.
 
-**Design source:** `docs/superpowers/specs/2026-07-30-theorvane-immersive-scroll-cinematic-design.md`  
-**Issue:** #122  
+**Design source:** `docs/superpowers/specs/2026-07-30-theorvane-immersive-scroll-cinematic-design.md`
+**Issue:** #122
 **Branch:** `feat/122-immersive-scroll-cinematic`
 
 ---

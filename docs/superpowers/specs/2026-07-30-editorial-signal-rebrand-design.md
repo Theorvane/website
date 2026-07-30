@@ -1,7 +1,7 @@
 # Editorial Signal rebrand — design specification
 
-**Status:** approved for implementation  
-**Site:** `apps/theorvane`  
+**Status:** approved for implementation
+**Site:** `apps/theorvane`
 **Goal:** preserve the Theorvane product set, external destinations, and boundary-first message while replacing the current lime/olive cinematic site with an icon-derived editorial identity and a newly produced media system.
 
 ## 1. Non-negotiable product and content boundaries

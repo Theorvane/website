@@ -1,7 +1,7 @@
 # Theorvane immersive scroll-cinematic design
 
-**Issue:** #122  
-**Status:** Approved design; implementation and paid media generation remain separately gated.  
+**Issue:** #122
+**Status:** Approved design; implementation and paid media generation remain separately gated.
 **Supersedes:** The Theorvane-pilot presentation details in `2026-07-29-four-site-scroll-world-design.md`; the shared media-contract and product-boundary constraints in that document remain in force.
 
 ## 1. Outcome
