@@ -22,9 +22,22 @@ describe("TypeMCP documentation release callout", () => {
 });
 
 describe("TypeMCP documentation sidebar", () => {
-  it("starts as a closed disclosure for a compact mobile reading path", () => {
-    const { container } = render(<DocsSidebar documents={[{ document: { route: "/docs/getting-started", title: "Getting started", group: "Start" } }] as never} activeRoute="/docs/getting-started" />);
-    expect(container.querySelector("details")?.hasAttribute("open")).toBe(false);
+  const documents = [{ document: { route: "/docs/getting-started", title: "Getting started", group: "Start" } }] as never;
+
+  it("renders navigation the reader can always see", () => {
+    const { container } = render(<DocsSidebar documents={documents} activeRoute="/docs/getting-started" />);
+
+    // A closed <details> wrapper used to hide every link: browsers hide closed details content with
+    // ::details-content{content-visibility:hidden}, which no child display override can reveal.
+    expect(container.querySelector("details")).toBeNull();
+    expect(screen.getByRole("navigation", { name: "Documentation" })).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Getting started" }).getAttribute("aria-current")).toBe("page");
+  });
+
+  it("labels each manifest group", () => {
+    render(<DocsSidebar documents={documents} />);
+
+    expect(screen.getByText("Start").className).toBe("docs-sidebar-group");
   });
 });
 
