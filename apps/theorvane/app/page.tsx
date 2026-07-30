@@ -16,8 +16,8 @@ const products = [
 	{
 		description: "A decorator-first TypeScript toolkit for MCP metadata declarations and immutable reads.",
 		href: typeMcp,
-		image: "/editorial-signal/products/typemcp.webp",
-		imageAlt: "TypeMCP editorial artwork showing a layered porcelain contract plane.",
+		icon: "/products/typemcp.svg",
+		iconAlt: "TypeMCP official product mark",
 		name: "TypeMCP",
 		number: "01",
 		signal: "MCP contracts",
@@ -25,8 +25,8 @@ const products = [
 	{
 		description: "A decorator-first, type-safe authoring layer for LangChain JS tools and agents. It keeps schemas and integration boundaries explicit while applications retain ownership of models, credentials, policy enforcement, and deployment.",
 		href: typeChain,
-		image: "/editorial-signal/products/typechain.webp",
-		imageAlt: "TypeChain editorial artwork showing separate typed modules joined at one deliberate edge.",
+		icon: "/products/typechain.svg",
+		iconAlt: "TypeChain official product mark",
 		name: "TypeChain",
 		number: "02",
 		signal: "Typed tools",
@@ -34,8 +34,8 @@ const products = [
 	{
 		description: "A local-first, open-source video editor for recording, editing, and exporting footage on your device. No cloud uploads, accounts, or analytics.",
 		href: openVideo,
-		image: "/editorial-signal/products/openvideo.webp",
-		imageAlt: "OpenVideo editorial artwork showing a local obsidian archive case and porcelain film strips.",
+		icon: "/products/openvideo.svg",
+		iconAlt: "OpenVideo official product mark",
 		name: "OpenVideo",
 		number: "03",
 		signal: "Local workflow",

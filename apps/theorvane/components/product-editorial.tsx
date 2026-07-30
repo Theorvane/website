@@ -3,8 +3,8 @@ import { ExternalLink } from "@theorvane/ui";
 export interface EditorialProduct {
 	readonly description: string;
 	readonly href: string;
-	readonly image: string;
-	readonly imageAlt: string;
+	readonly icon: string;
+	readonly iconAlt: string;
 	readonly name: string;
 	readonly number: string;
 	readonly signal: string;
@@ -25,8 +25,9 @@ export function ProductEditorial({ products }: ProductEditorialProps) {
 						<p>{product.description}</p>
 						<ExternalLink href={product.href}>Explore {product.name} ↗</ExternalLink>
 					</div>
-					<figure className="product-editorial__art">
-						<img alt={product.imageAlt} decoding="async" src={product.image} />
+					<figure className="product-editorial__art" aria-hidden="true">
+						<div className="product-editorial__mark"><img alt={product.iconAlt} decoding="async" src={product.icon} /></div>
+						<span>{product.number}</span>
 					</figure>
 				</article>
 			))}

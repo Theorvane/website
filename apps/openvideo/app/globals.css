@@ -4,3 +4,51 @@
 .evidence-panel h2{margin:.35rem 0 .8rem;font-size:clamp(2.35rem,5vw,5rem);line-height:.9;letter-spacing:-.07em}.evidence-panel>div>p:last-child{max-width:34rem;line-height:1.65;color:var(--muted)}
 .evidence-panel aside{padding:1.25rem;border-radius:1rem;background:var(--ink);color:#fff;box-shadow:0 18px 40px color-mix(in srgb,var(--ink) 22%,transparent)}.evidence-panel aside>img{display:block;width:4rem;height:4rem;margin-bottom:1.25rem}.evidence-panel dl{margin:0}.evidence-panel dl div{display:grid;grid-template-columns:7rem 1fr;gap:1rem;padding:.8rem 0;border-top:1px solid rgb(255 255 255 / .2)}.evidence-panel dt{font:700 .68rem var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,#fff 65%,transparent)}.evidence-panel dd{margin:0;font:600 .88rem var(--font-mono);overflow-wrap:anywhere}
 @media(max-width:700px){.evidence-panel{grid-template-columns:1fr;margin:3.5rem auto}.evidence-panel dl div{grid-template-columns:1fr;gap:.3rem}}
+
+/* Approved product landing surfaces: scoped so documentation remains unchanged. */
+body:has(.product-surface){background:#030812;color:#f5f7f6}
+body:has(.product-surface) header{border-color:#ffffff27}
+body:has(.product-surface) header nav{color:#b7c4dd}
+body:has(.product-surface) .site-footer{border-color:#ffffff27;background:#030812;color:#f5f7f6}
+.product-surface{--surface:#081226;--signal:#4c83f2;--surface-line:#ffffff27;--surface-muted:#b7c4dd;background:radial-gradient(circle at 86% 2%,color-mix(in srgb,var(--signal) 19%,transparent),transparent 32%),#030812;color:#f5f7f6;padding-bottom:1px}
+.product-surface--typechain{--surface:#082118;--signal:#0aa66e;--surface-muted:#bdd7c9;background:radial-gradient(circle at 86% 2%,color-mix(in srgb,var(--signal) 20%,transparent),transparent 32%),#03150f}
+.product-surface--openvideo{--surface:#111622;--signal:#78f7bc;--surface-muted:#a5afc0;background:radial-gradient(circle at 83% 6%,#a690ff35,transparent 34%),#090b10}
+.product-surface .hero{min-height:clamp(38rem,68vw,48rem);padding-block:clamp(5rem,10vw,8rem);gap:clamp(2rem,7vw,6rem)}
+.product-surface .hero h1{font-size:clamp(3.6rem,7.8vw,7.5rem);line-height:.88;letter-spacing:-.08em;color:#f5f7f6}
+.product-surface .hero h1 em{color:var(--signal);font-family:Georgia,serif;font-weight:400}
+.product-surface .hero p:not(.eyebrow),.product-surface .lede{color:var(--surface-muted);font-size:1.08rem;line-height:1.65}
+.product-surface .eyebrow,.product-surface .capabilities b,.product-surface .architecture span{color:var(--signal)}
+.product-surface .button{border-color:var(--surface-line);color:#f5f7f6;background:transparent}.product-surface .button.primary{background:var(--signal);border-color:var(--signal);color:#04120d}
+.product-surface pre,.product-surface .terminal{background:color-mix(in srgb,var(--surface) 90%,#000);border:1px solid var(--surface-line);box-shadow:16px 16px 0 color-mix(in srgb,var(--signal) 17%,transparent);color:#d6ffe8}
+.product-surface .evidence-panel{margin-block:0 clamp(5rem,10vw,9rem);border-color:var(--surface-line);background:linear-gradient(135deg,color-mix(in srgb,var(--signal) 18%,var(--surface)),var(--surface));color:#f5f7f6;box-shadow:none}
+.product-surface .evidence-panel>div>p:last-child{color:var(--surface-muted)}.product-surface .evidence-panel aside{background:#020a08;border:1px solid var(--surface-line);box-shadow:16px 16px 0 color-mix(in srgb,var(--signal) 18%,transparent)}
+.product-surface .capabilities{border-block:1px solid var(--surface-line);padding-block:2rem 3rem}.product-surface .capabilities article{border-color:var(--surface-line)}.product-surface .capabilities p,.product-surface .architecture li,.product-surface .integration p,.product-surface .start p,.product-surface .features p,.product-surface .agent p,.product-surface .providers p,.product-surface .local p{color:var(--surface-muted)}
+.product-surface .architecture,.product-surface .start,.product-surface .agent,.product-surface .providers,.product-surface .local,.product-surface .faq{border-color:var(--surface-line)}
+.product-surface .integration{background:color-mix(in srgb,var(--surface) 82%,#000);border-block:1px solid var(--surface-line)}.product-surface .integration aside{background:color-mix(in srgb,var(--signal) 20%,var(--surface));border:1px solid var(--surface-line)}
+.product-surface .features article,.product-surface .tool-list li,.product-surface .provider-grid div,.product-surface .faq details{border-color:var(--surface-line)}
+.product-surface .site-footer,.product-surface + .site-footer{background:#030812;color:#f5f7f6}.product-surface--typechain + .site-footer{background:#03150f}.product-surface--openvideo + .site-footer{background:#090b10}
+@media(max-width:700px){.product-surface .hero{min-height:auto;padding-block:4.5rem}.product-surface .hero h1{font-size:clamp(3.4rem,16vw,5.8rem)}.product-surface .capabilities{padding-block:1.5rem 2.5rem}}
+
+/* Preserve readable inherited text from the earlier light landing in the dark surface. */
+.product-surface h2,.product-surface h3,.product-surface strong,.product-surface .integration h2,.product-surface .site-footer a,.product-surface + .site-footer a{color:#f5f7f6}
+.product-surface .integration aside strong,.product-surface .integration aside a{color:#f5f7f6}
+.product-surface .integration aside p,.product-surface .footer-brand p,.product-surface .footer-legal,.product-surface + .site-footer p,.product-surface + .site-footer .footer-legal{color:var(--surface-muted)}
+.product-surface .footer-nav strong,.product-surface + .site-footer .footer-nav strong{color:var(--signal)}
+
+@media(max-width:700px){
+  body:has(.product-surface){overflow-x:hidden}
+  body:has(.product-surface) header{flex-wrap:wrap;align-items:center;gap:.5rem;padding-block:1rem}
+  body:has(.product-surface) header nav{flex:1 1 100%;justify-content:flex-start;flex-wrap:wrap;gap:.25rem .75rem;font-size:.8rem}
+  body:has(.product-surface) header nav a{min-height:34px}
+  .product-surface .hero{grid-template-columns:minmax(0,1fr)!important;gap:2rem!important}
+  .product-surface .hero>*,.product-surface .hero div{min-width:0}
+  .product-surface .hero pre,.product-surface .terminal{width:100%;max-width:100%;overflow:auto}
+  .product-surface .hero h1{overflow-wrap:anywhere}
+  .product-surface .actions{gap:.6rem}.product-surface .button{padding:.75rem .9rem}
+}
+
+@media(max-width:700px){
+  .product-surface .hero h1{font-size:clamp(3rem,13vw,4.35rem)!important}
+  .product-surface p,.product-surface code,.product-surface dd,.product-surface li{max-width:100%;overflow-wrap:anywhere;word-break:break-word}
+  .product-surface .actions{max-width:100%}.product-surface .button{max-width:100%;overflow-wrap:anywhere}
+}
