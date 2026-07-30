@@ -9,6 +9,10 @@ describe("Theorvane homepage", () => {
 		render(createElement(HomePage));
 
 		expect(screen.getByRole("heading", { name: /precise tools for/i })).toBeTruthy();
+		const hero = screen.getByRole("heading", { name: /precise tools for/i }).closest("section");
+		expect(hero?.id).toBe("top");
+		expect(hero?.querySelector("img")?.getAttribute("src")).toBe("/editorial-signal/hero/theorvane-editorial-signal.webp");
+		expect(hero?.querySelector("img")?.getAttribute("alt")).toBe("");
 		expect(screen.getByRole("main")).toBeTruthy();
 		expect(screen.getByRole("navigation", { name: /primary/i })).toBeTruthy();
 		expect(screen.getByRole("link", { name: /explore typemcp/i }).getAttribute("href")).toBe(
@@ -31,18 +35,20 @@ describe("Theorvane homepage", () => {
 		expect(screen.getAllByRole("link", { name: /openvideo/i }).some((link) => link.getAttribute("href") === "https://openvideo.theorvane.tech/")).toBe(true);
 	});
 
-	it("renders the five-scene Scroll World as semantic content with canonical destinations", () => {
+	it("renders the three-scene Editorial Signal passage as semantic content with canonical destinations", () => {
 		render(createElement(HomePage));
 
-		expect(screen.getByRole("region", { name: /theorvane product world/i })).toBeTruthy();
-		expect(screen.getByTestId("cinematic-handoff")).toBeTruthy();
-		expect(screen.getByRole("navigation", { name: /world scenes/i })).toBeTruthy();
-		expect(screen.getByRole("link", { name: /boundary atlas/i }).getAttribute("href")).toBe("#products");
-		expect(screen.getByRole("heading", { name: /three surfaces\. explicit junctions\./i })).toBeTruthy();
-		expect(screen.getByRole("link", { name: /typemcp contract island/i }).getAttribute("href")).toBe("https://typemcp.theorvane.tech/");
-		expect(screen.getByRole("link", { name: /typechain composition island/i }).getAttribute("href")).toBe("https://typechain.theorvane.tech/");
-		expect(screen.getByRole("link", { name: /openvideo local studio/i }).getAttribute("href")).toBe("https://openvideo.theorvane.tech/");
-		expect(screen.getByRole("link", { name: /product constellation/i }).getAttribute("href")).toBe("#products");
+		const passage = screen.getByRole("region", { name: "Editorial Signal passage" });
+		const articles = Array.from(passage.querySelectorAll("article"));
+		expect(articles).toHaveLength(3);
+		expect(articles.map((article) => article.querySelector("h2")?.textContent)).toEqual([
+			"Declare the contract.",
+			"Compose at the edge.",
+			"Keep the edit local.",
+		]);
+		expect(screen.getByRole("link", { name: "Visit TypeMCP ↗" }).getAttribute("href")).toBe("https://typemcp.theorvane.tech/");
+		expect(screen.getByRole("link", { name: "Visit TypeChain ↗" }).getAttribute("href")).toBe("https://typechain.theorvane.tech/");
+		expect(screen.getByRole("link", { name: "Visit OpenVideo ↗" }).getAttribute("href")).toBe("https://openvideo.theorvane.tech/");
 	});
 
 	it("features TypeChain with its official typed-tool product destination", () => {
