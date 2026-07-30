@@ -4,72 +4,40 @@ import { describe, expect, it } from "vitest";
 
 import HomePage from "../app/page";
 
+const destinations = [
+	["TypeMCP", "https://typemcp.theorvane.tech/", "/project-marks/typemcp.svg"],
+	["TypeChain", "https://typechain.theorvane.tech/", "/project-marks/typechain.svg"],
+	["OpenVideo", "https://open-video.app/", "/project-marks/openvideo.svg"],
+] as const;
+
 describe("Theorvane homepage", () => {
-	it("renders the brand promise, project link, and accessible landmarks", () => {
+	it("presents the developer-tool organization landing page with accessible landmarks", () => {
 		render(createElement(HomePage));
 
-		expect(screen.getByRole("heading", { name: /precise tools for/i })).toBeTruthy();
-		const hero = screen.getByRole("heading", { name: /precise tools for/i }).closest("section");
-		expect(hero?.id).toBe("top");
-		expect(hero?.querySelector("img")?.getAttribute("src")).toBe("/editorial-signal/hero/theorvane-editorial-signal.webp");
-		expect(hero?.querySelector("img")?.getAttribute("alt")).toBe("");
+		expect(screen.getByRole("heading", { name: /make the boundary/i })).toBeTruthy();
+		expect(screen.getByText("Open-source developer tools")).toBeTruthy();
+		expect(screen.getByText("Independent projects")).toBeTruthy();
+		expect(screen.getByText("Technical commitments,", { exact: false })).toBeTruthy();
 		expect(screen.getByRole("main")).toBeTruthy();
 		expect(screen.getByRole("navigation", { name: /primary/i })).toBeTruthy();
-		expect(screen.getByRole("link", { name: /explore typemcp/i }).getAttribute("href")).toBe(
-			"https://typemcp.theorvane.tech/",
-		);
-		expect(screen.getByText(/metadata declarations and immutable reads/i)).toBeTruthy();
-		expect(screen.queryByText(/building mcp servers with framework-neutral runtime contracts/i)).toBeNull();
-		expect(screen.getAllByRole("link", { name: /github organization/i })[0]?.getAttribute("href")).toBe(
-			"https://github.com/Theorvane",
-		);
+		expect(screen.getByRole("link", { name: /explore projects/i }).getAttribute("href")).toBe("#projects");
 	});
 
-	it("offers a product index with all canonical destinations", () => {
+	it("offers the three canonical product destinations from the project menu and cards", () => {
 		render(createElement(HomePage));
 
-		expect(screen.getAllByRole("link", { name: /explore products/i })[0]?.getAttribute("href")).toBe("#products");
-		expect(screen.getByRole("heading", { name: /choose a focused tool/i })).toBeTruthy();
-		expect(screen.getAllByRole("link", { name: /typemcp/i }).some((link) => link.getAttribute("href") === "https://typemcp.theorvane.tech/")).toBe(true);
-		expect(screen.getAllByRole("link", { name: /typechain/i }).some((link) => link.getAttribute("href") === "https://typechain.theorvane.tech/")).toBe(true);
-		expect(screen.getAllByRole("link", { name: /openvideo/i }).some((link) => link.getAttribute("href") === "https://open-video.app/")).toBe(true);
+		for (const [name, href] of destinations) {
+			expect(screen.getAllByRole("link", { name: new RegExp(name, "i") }).some((link) => link.getAttribute("href") === href)).toBe(true);
+			expect(screen.getByRole("link", { name: new RegExp(`Explore ${name}`, "i") }).getAttribute("href")).toBe(href);
+		}
 	});
 
-	it("renders the three-scene Editorial Signal passage as semantic content with canonical destinations", () => {
+	it("uses each official product mark within its project card", () => {
 		render(createElement(HomePage));
 
-		const passage = screen.getByRole("region", { name: "Editorial Signal passage" });
-		const articles = Array.from(passage.querySelectorAll("article"));
-		expect(articles).toHaveLength(3);
-		expect(articles.map((article) => article.querySelector("h2")?.textContent)).toEqual([
-			"Declare the contract.",
-			"Compose at the edge.",
-			"Keep the edit local.",
-		]);
-		expect(screen.getByRole("link", { name: "Visit TypeMCP ↗" }).getAttribute("href")).toBe("https://typemcp.theorvane.tech/");
-		expect(screen.getByRole("link", { name: "Visit TypeChain ↗" }).getAttribute("href")).toBe("https://typechain.theorvane.tech/");
-		expect(screen.getByRole("link", { name: "Visit OpenVideo ↗" }).getAttribute("href")).toBe("https://open-video.app/");
-	});
-
-	it("features TypeChain with its official typed-tool product destination", () => {
-		render(createElement(HomePage));
-
-		expect(screen.getByRole("heading", { name: "TypeChain" })).toBeTruthy();
-		expect(screen.getByRole("link", { name: /explore typechain/i }).getAttribute("href")).toBe(
-			"https://typechain.theorvane.tech/",
-		);
-		expect(screen.getByText(/decorator-first, type-safe authoring layer for LangChain JS tools and agents/i)).toBeTruthy();
-		expect(screen.getByText(/models, credentials, policy enforcement, and deployment/i)).toBeTruthy();
-	});
-
-	it("features OpenVideo with its official local-first product destination", () => {
-		render(createElement(HomePage));
-
-		expect(screen.getByRole("heading", { name: "OpenVideo" })).toBeTruthy();
-		expect(screen.getByRole("link", { name: /explore openvideo/i }).getAttribute("href")).toBe(
-			"https://open-video.app/",
-		);
-		expect(screen.getByText(/local-first, open-source video editor/i)).toBeTruthy();
-		expect(screen.getByText(/no cloud uploads, accounts, or analytics/i)).toBeTruthy();
+		for (const [name, , icon] of destinations) {
+			const card = screen.getByRole("heading", { name }).closest("article");
+			expect(card?.querySelector(`img[src="${icon}"]`)).toBeTruthy();
+		}
 	});
 });
