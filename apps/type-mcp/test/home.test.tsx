@@ -15,6 +15,13 @@ describe("TypeMCP homepage", () => {
 		expect(screen.getByRole("link", { name: /Theorvane/i }).getAttribute("href")).toBe("https://theorvane.tech/");
 	});
 
+	it("renders the official blue contract mark in its landing evidence surface", () => {
+		render(createElement(HomePage));
+
+		expect(screen.getByRole("region", { name: /contract inspection/i })).toBeTruthy();
+		expect(screen.getAllByAltText("TypeMCP").some((image) => image.getAttribute("src") === "/logo.svg")).toBe(true);
+	});
+
 	it("leads developers through the documentation-first MCP flow", () => {
 		render(createElement(HomePage));
 

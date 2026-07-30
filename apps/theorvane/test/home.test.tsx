@@ -25,6 +25,16 @@ describe("Theorvane homepage", () => {
 		);
 	});
 
+	it("publishes an organization footer that links every product", () => {
+		render(createElement(HomePage));
+
+		const footer = screen.getByRole("contentinfo");
+		expect(screen.getByRole("navigation", { name: /Theorvane footer/i })).toBeTruthy();
+		expect(footer.querySelector('a[href="https://typemcp.theorvane.tech/"]')).toBeTruthy();
+		expect(footer.querySelector('a[href="https://typechain.theorvane.tech/"]')).toBeTruthy();
+		expect(footer.querySelector('a[href="https://open-video.app/"]')).toBeTruthy();
+	});
+
 	it("offers a product index with all canonical destinations", () => {
 		render(createElement(HomePage));
 
