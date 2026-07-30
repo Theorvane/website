@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "openvideo",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--workspace", "@theorvane/openvideo-site"],
+      "port": 3000
+    },
+    {
+      "name": "type-mcp",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--workspace", "@theorvane/type-mcp-site", "--", "--port", "3001"],
+      "port": 3001
+    },
+    {
+      "name": "type-chain",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--workspace", "@theorvane/type-chain-site", "--", "--port", "3002"],
+      "port": 3002
+    }
+  ]
+}
