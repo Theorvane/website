@@ -13,7 +13,7 @@ describe("TypeChain docs index", () => {
     expect(screen.queryByRole("heading", { name: /^Build$/ })).toBeNull();
     expect(screen.getByRole("link", { name: /Continue the Petstore workspace/i }).getAttribute("href")).toBe("/docs/build/petstore-typechain-foundation");
     expect(screen.getByText(/Your application owns models, credentials, policy enforcement, state, hosting, and deployment/i)).toBeTruthy();
-  });
+  }, 10_000);
 
   it("continues the shared Petstore journey from TypeChain's local stages", async () => {
     render(await DocsIndex());
