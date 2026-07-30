@@ -1,4 +1,4 @@
-import { documentGroups, type PublicDocument } from "./types";
+import { defaultDocumentLocale, type DocumentEdition, documentGroups, documentLocales, type DocumentLocale, type PublicDocument } from "./types";
 
 // Canonical TypeChain documentation released on immutable main.
 export const sourceCommit = "90152f97834dacfe7211786bc98227185950e2e0";
@@ -19,6 +19,52 @@ const documents: readonly PublicDocument[] = [
   { sourcePath: "docs/architecture.md", route: "/docs/architecture", title: "Architecture", summary: "Decorator-first LangChain authoring architecture.", group: "Architecture", order: 1, classification: "published-with-boundary", sourceStatus: "TypeChain does not enforce runtime policy." },
 ];
 export const publicDocuments = Object.freeze(documents.map((document) => Object.freeze({ ...document })));
+/** The site path for a document in one locale. English keeps the unprefixed route. */
+export function localizedRoute(route: string, locale: DocumentLocale): string {
+  return locale === defaultDocumentLocale ? route : route.replace(/^\/docs/, `/docs/${locale}`);
+}
+
+export function documentLocale(route: string): DocumentLocale {
+  const prefixed = documentLocales.find((locale) => locale !== defaultDocumentLocale && (route === `/docs/${locale}` || route.startsWith(`/docs/${locale}/`)));
+  return prefixed ?? defaultDocumentLocale;
+}
+
+/** Locales this document is actually published in, so a switcher never offers a missing translation. */
+export function availableLocales(document: PublicDocument): readonly DocumentLocale[] {
+  return documentLocales.filter((locale) => locale === defaultDocumentLocale || document.translations?.[locale as Exclude<DocumentLocale, "en">]);
+}
+
+/**
+ * Every (document, locale) pair, with locale-dependent fields resolved. A translated edition carries
+ * its own route, title, summary, and classification evidence; curriculum links stay inside its locale.
+ */
+export function documentEditions(): readonly DocumentEdition[] {
+  return publicDocuments.flatMap((document) =>
+    availableLocales(document).map((locale) => {
+      if (locale === defaultDocumentLocale) return { locale, document, sourcePath: document.sourcePath, sourceStatus: document.sourceStatus };
+      const translation = document.translations![locale as Exclude<DocumentLocale, "en">]!;
+      const localized: PublicDocument = {
+        ...document,
+        route: localizedRoute(document.route, locale),
+        title: translation.title,
+        summary: translation.summary,
+        sourceStatus: translation.sourceStatus,
+        ...(document.prerequisites ? { prerequisites: document.prerequisites.map((route) => localizedRoute(route, locale)) } : {}),
+        ...(document.nextRoute ? { nextRoute: localizedRoute(document.nextRoute, locale) } : {}),
+      };
+      return { locale, document: localized, sourcePath: translation.sourcePath, sourceStatus: translation.sourceStatus };
+    }),
+  );
+}
+
+export function editionsForLocale(locale: DocumentLocale): readonly DocumentEdition[] {
+  return documentEditions().filter((edition) => edition.locale === locale);
+}
+
+export function findEdition(route: string): DocumentEdition | undefined {
+  return documentEditions().find((edition) => edition.document.route === route);
+}
+
 export function isSafeSourcePath(sourcePath: string): boolean { return /^docs\/(?:[A-Za-z0-9][A-Za-z0-9._-]*\/)*[A-Za-z0-9][A-Za-z0-9._-]*\.md$/.test(sourcePath) && !sourcePath.includes("..") && !sourcePath.includes("\\"); }
-export function validateManifest(manifest: readonly PublicDocument[]): void { if (!/^[0-9a-f]{40}$/.test(sourceCommit)) throw new Error("source commit must be a full SHA"); const routes = new Set<string>(); const paths = new Set<string>(); const orders = new Set<string>(); for (const document of manifest) { if (!isSafeSourcePath(document.sourcePath) || /(?:^|\/)(?:planning|superpowers)(?:\/|$)/.test(document.sourcePath)) throw new Error(`approved docs source path required: ${document.sourcePath}`); if (!document.route.startsWith("/docs/") || document.route.includes("..")) throw new Error(`approved docs route required: ${document.route}`); if (!document.sourceStatus.trim()) throw new Error(`source status evidence required: ${document.sourcePath}`); if (routes.has(document.route) || paths.has(document.sourcePath) || orders.has(`${document.group}:${document.order}`)) throw new Error(`duplicate manifest entry: ${document.route}`); if (!documentGroups.includes(document.group)) throw new Error(`unknown document group: ${document.group}`); routes.add(document.route); paths.add(document.sourcePath); orders.add(`${document.group}:${document.order}`); } }
+export function validateManifest(manifest: readonly PublicDocument[]): void { if (!/^[0-9a-f]{40}$/.test(sourceCommit)) throw new Error("source commit must be a full SHA"); const routes = new Set<string>(); const paths = new Set<string>(); const orders = new Set<string>(); for (const document of manifest) { if (!isSafeSourcePath(document.sourcePath) || /(?:^|\/)(?:planning|superpowers)(?:\/|$)/.test(document.sourcePath)) throw new Error(`approved docs source path required: ${document.sourcePath}`); if (!document.route.startsWith("/docs/") || document.route.includes("..")) throw new Error(`approved docs route required: ${document.route}`); if (!document.sourceStatus.trim()) throw new Error(`source status evidence required: ${document.sourcePath}`); if (routes.has(document.route) || paths.has(document.sourcePath) || orders.has(`${document.group}:${document.order}`)) throw new Error(`duplicate manifest entry: ${document.route}`); if (!documentGroups.includes(document.group)) throw new Error(`unknown document group: ${document.group}`); routes.add(document.route); paths.add(document.sourcePath); orders.add(`${document.group}:${document.order}`); for (const [locale, translation] of Object.entries(document.translations ?? {})) { if (!documentLocales.includes(locale as DocumentLocale) || locale === defaultDocumentLocale) throw new Error(`unknown translation locale: ${locale}`); if (!isSafeSourcePath(translation.sourcePath) || !translation.sourcePath.startsWith(`docs/${locale}/`)) throw new Error(`approved translation source path required: ${translation.sourcePath}`); if (!translation.title.trim() || !translation.summary.trim()) throw new Error(`translation title and summary required: ${translation.sourcePath}`); if (!translation.sourceStatus.trim()) throw new Error(`translation source status evidence required: ${translation.sourcePath}`); const localized = localizedRoute(document.route, locale as DocumentLocale); if (routes.has(localized) || paths.has(translation.sourcePath)) throw new Error(`duplicate manifest entry: ${localized}`); routes.add(localized); paths.add(translation.sourcePath); } } }
 validateManifest(publicDocuments);

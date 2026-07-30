@@ -32,7 +32,7 @@ describe("Theorvane homepage", () => {
 		expect(screen.getByRole("heading", { name: /choose a focused tool/i })).toBeTruthy();
 		expect(screen.getAllByRole("link", { name: /typemcp/i }).some((link) => link.getAttribute("href") === "https://typemcp.theorvane.tech/")).toBe(true);
 		expect(screen.getAllByRole("link", { name: /typechain/i }).some((link) => link.getAttribute("href") === "https://typechain.theorvane.tech/")).toBe(true);
-		expect(screen.getAllByRole("link", { name: /openvideo/i }).some((link) => link.getAttribute("href") === "https://openvideo.theorvane.tech/")).toBe(true);
+		expect(screen.getAllByRole("link", { name: /openvideo/i }).some((link) => link.getAttribute("href") === "https://open-video.app/")).toBe(true);
 	});
 
 	it("renders the three-scene Editorial Signal passage as semantic content with canonical destinations", () => {
@@ -48,7 +48,7 @@ describe("Theorvane homepage", () => {
 		]);
 		expect(screen.getByRole("link", { name: "Visit TypeMCP ↗" }).getAttribute("href")).toBe("https://typemcp.theorvane.tech/");
 		expect(screen.getByRole("link", { name: "Visit TypeChain ↗" }).getAttribute("href")).toBe("https://typechain.theorvane.tech/");
-		expect(screen.getByRole("link", { name: "Visit OpenVideo ↗" }).getAttribute("href")).toBe("https://openvideo.theorvane.tech/");
+		expect(screen.getByRole("link", { name: "Visit OpenVideo ↗" }).getAttribute("href")).toBe("https://open-video.app/");
 	});
 
 	it("features TypeChain with its official typed-tool product destination", () => {
@@ -67,7 +67,7 @@ describe("Theorvane homepage", () => {
 
 		expect(screen.getByRole("heading", { name: "OpenVideo" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: /explore openvideo/i }).getAttribute("href")).toBe(
-			"https://openvideo.theorvane.tech/",
+			"https://open-video.app/",
 		);
 		expect(screen.getByText(/local-first, open-source video editor/i)).toBeTruthy();
 		expect(screen.getByText(/no cloud uploads, accounts, or analytics/i)).toBeTruthy();

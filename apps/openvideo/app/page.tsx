@@ -1,6 +1,6 @@
 import { ExternalLink, SkipLink } from "@theorvane/ui";
 
-const siteUrl = "https://openvideo.theorvane.tech/";
+const siteUrl = "https://open-video.app/";
 const repositoryUrl = "https://github.com/Theorvane/openvideo";
 const releasesUrl = "https://github.com/Theorvane/openvideo/releases";
 const readmeUrl = "https://github.com/Theorvane/openvideo#readme";
@@ -40,15 +40,15 @@ const faq = [
 const schema = {
 	"@context": "https://schema.org",
 	"@graph": [
-		{ "@type": "SoftwareApplication", "@id": `${siteUrl}#application`, name: "OpenVideo", url: siteUrl, applicationCategory: "VideoApplication", operatingSystem: "macOS, Windows, Linux", description: "A local-first desktop video editor with an AI agent that operates the timeline, plus voice and video generation and local FFmpeg export.", isAccessibleForFree: true, license: "https://opensource.org/licenses/MIT", codeRepository: repositoryUrl },
-		{ "@type": "WebSite", "@id": `${siteUrl}#website`, name: "OpenVideo", url: siteUrl, publisher: { "@id": "https://theorvane.tech/#organization" } },
+		{ "@type": "SoftwareApplication", "@id": `${siteUrl}#application`, name: "OpenVideo", url: siteUrl, applicationCategory: "VideoApplication", operatingSystem: "macOS, Windows, Linux", description: "A local-first desktop video editor with an AI agent that operates the timeline, plus voice and video generation and local FFmpeg export.", isAccessibleForFree: true, license: "https://opensource.org/licenses/MIT", codeRepository: repositoryUrl, softwareRequirements: "Node.js 22 or newer; FFmpeg on the host machine for export", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, author: { "@id": "https://theorvane.tech/#organization" } },
+		{ "@type": "WebSite", "@id": `${siteUrl}#website`, name: "OpenVideo", url: siteUrl, inLanguage: "en", publisher: { "@id": "https://theorvane.tech/#organization" } },
 		{ "@type": "FAQPage", "@id": `${siteUrl}#faq`, mainEntity: faq.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
 	],
 };
 
 export default function HomePage() {
 	return <><SkipLink /><script data-testid="openvideo-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-		<header className="shell"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>VIDEO</span></a><nav aria-label="Primary"><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="#faq">FAQ</a><ExternalLink href={repositoryUrl}>GitHub ↗</ExternalLink></nav></header>
+		<header className="shell"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>VIDEO</span></a><nav aria-label="Primary"><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="/docs">Docs</a><a href="#faq">FAQ</a><ExternalLink href={repositoryUrl}>GitHub ↗</ExternalLink></nav></header>
 
 		<main id="main-content">
 			<section className="hero shell" id="top">
@@ -56,7 +56,7 @@ export default function HomePage() {
 					<p className="eyebrow">Open source · MIT · Local-first</p>
 					<h1>The video editor<br /><em>that edits with you.</em></h1>
 					<p className="lede">OpenVideo is a desktop editor with an agent at the controls. It reads your timeline, cuts clips, generates voice and video, and exports through your own FFmpeg. Your media stays on your machine, and you decide which model providers it may talk to — including none.</p>
-					<div className="actions"><ExternalLink className="button primary" href={repositoryUrl}>View source on GitHub ↗</ExternalLink><ExternalLink className="button" href={readmeUrl}>Read the docs ↗</ExternalLink></div>
+					<div className="actions"><ExternalLink className="button primary" href={repositoryUrl}>View source on GitHub ↗</ExternalLink><a className="button" href="/docs">Read the docs</a></div>
 				</div>
 				<section className="terminal" aria-label="Run OpenVideo from source">
 					<p>RUN FROM SOURCE</p>
@@ -105,6 +105,6 @@ export default function HomePage() {
 			</section>
 		</main>
 
-		<footer className="site-footer"><div className="shell footer-grid"><div className="footer-brand"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>VIDEO</span></a><p>A local-first desktop video editor with an agent that can drive it.</p></div><nav aria-label="OpenVideo footer" className="footer-nav"><div><strong>Explore</strong><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="#faq">FAQ</a></div><div><strong>Project</strong><ExternalLink href={repositoryUrl}>Repository ↗</ExternalLink><ExternalLink href={readmeUrl}>Documentation ↗</ExternalLink><ExternalLink href={releasesUrl}>Releases ↗</ExternalLink></div><div><strong>Company</strong><ExternalLink href={theorvaneUrl}>Theorvane ↗</ExternalLink></div></nav></div><div className="shell footer-legal"><span>© 2026 Theorvane. OpenVideo is open source under the MIT License.</span><span>Local by design.</span></div></footer>
+		<footer className="site-footer"><div className="shell footer-grid"><div className="footer-brand"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>VIDEO</span></a><p>A local-first desktop video editor with an agent that can drive it.</p></div><nav aria-label="OpenVideo footer" className="footer-nav"><div><strong>Explore</strong><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="#faq">FAQ</a></div><div><strong>Documentation</strong><a href="/docs">Documentation</a><a href="/docs/ko" hrefLang="ko">한국어 문서</a><a href="/docs/install">Install and run</a><ExternalLink href={readmeUrl}>README ↗</ExternalLink></div><div><strong>Project</strong><ExternalLink href={repositoryUrl}>Repository ↗</ExternalLink><ExternalLink href={releasesUrl}>Releases ↗</ExternalLink></div><div><strong>Company</strong><ExternalLink href={theorvaneUrl}>Theorvane ↗</ExternalLink></div></nav></div><div className="shell footer-legal"><span>© 2026 Theorvane. OpenVideo is open source under the MIT License.</span><span>Local by design.</span></div></footer>
 	</>;
 }

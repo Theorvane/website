@@ -9,7 +9,7 @@ const siteUrl = "https://theorvane.tech/";
 const github = "https://github.com/Theorvane";
 const typeMcp = "https://typemcp.theorvane.tech/";
 const typeChain = "https://typechain.theorvane.tech/";
-const openVideo = "https://openvideo.theorvane.tech/";
+const openVideo = "https://open-video.app/";
 
 const products = [
 	{

@@ -24,7 +24,7 @@ For every production-code task, add or amend the specified test first and run it
 - Modify: `apps/theorvane/test/home.test.tsx`
 - Create: `apps/theorvane/test/responsive-contract.test.ts`
 
-**Step 1: Write failing page tests.** Add assertions that the hero primary action is named `Explore products` and targets `#products`, and that the product index contains one canonical external destination for TypeMCP (`https://typemcp.theorvane.tech/`), TypeChain (`https://typechain.theorvane.tech/`), and OpenVideo (`https://openvideo.theorvane.tech/`). Assert that the principles and closing product CTA remain discoverable.
+**Step 1: Write failing page tests.** Add assertions that the hero primary action is named `Explore products` and targets `#products`, and that the product index contains one canonical external destination for TypeMCP (`https://typemcp.theorvane.tech/`), TypeChain (`https://typechain.theorvane.tech/`), and OpenVideo (`https://open-video.app/`). Assert that the principles and closing product CTA remain discoverable.
 
 **Step 2: Write a failing narrow-layout contract.** Read `app/globals.css` and assert that the compact breakpoint makes the product grid one column, stacks the hero actions, and permits navigation to wrap inside the viewport.
 

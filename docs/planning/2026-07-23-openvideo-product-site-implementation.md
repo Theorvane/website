@@ -2,7 +2,7 @@
 
 > **For Hermes:** Use subagent-driven-development skill to implement this plan task-by-task.
 
-**Goal:** Add a locally truthful, independently deployable OpenVideo Next.js site that is ready for Vercel deployment at `openvideo.theorvane.tech`.
+**Goal:** Add a locally truthful, independently deployable OpenVideo Next.js site that is ready for Vercel deployment at `open-video.app`.
 
 **Architecture:** Add a self-contained `apps/openvideo` Next.js App Router workspace using neutral shared packages. The application owns static page content, styles, canonical metadata, crawler routes, and tests. Vercel configuration remains external to repository code and uses the monorepo root plus app Root Directory.
 
@@ -94,4 +94,4 @@ Expected: PASS.
 
 **Step 2:** Push `feat/24-openvideo-product-site`; open a PR to `dev` with `Closes #24`, matching labels, assignee, and `sjungwon03-ai` reviewer request.
 
-**Step 3:** After latest-head review and CI pass, squash merge to `dev`; create a separately reviewed `dev` → `main` release PR. Only after that merge, create/link the Vercel `openvideo` project, attach `openvideo.theorvane.tech`, and verify production HTTPS plus page content.
+**Step 3:** After latest-head review and CI pass, squash merge to `dev`; create a separately reviewed `dev` → `main` release PR. Only after that merge, create/link the Vercel `openvideo` project, attach `open-video.app`, and verify production HTTPS plus page content.

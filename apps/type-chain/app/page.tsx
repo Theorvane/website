@@ -1,11 +1,21 @@
 import { ExternalLink, SkipLink } from "@theorvane/ui";
 
+const siteUrl = "https://typechain.theorvane.tech/";
 const github = "https://github.com/Theorvane/type-chain";
 const npm = "https://www.npmjs.com/package/@theorvane/type-chain";
+
+const schema = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{ "@type": "SoftwareSourceCode", "@id": `${siteUrl}#package`, name: "TypeChain", url: siteUrl, description: "Decorator-first, type-safe authoring for LangChain JS tools and agents, with model choice, credentials, policy, and deployment left to the application.", codeRepository: github, programmingLanguage: "TypeScript", runtimePlatform: "Node.js", license: "https://opensource.org/licenses/MIT", isAccessibleForFree: true, sameAs: npm, author: { "@id": "https://theorvane.tech/#organization" } },
+		{ "@type": "WebSite", "@id": `${siteUrl}#website`, name: "TypeChain", url: siteUrl, inLanguage: "en", publisher: { "@id": "https://theorvane.tech/#organization" } },
+	],
+};
 const stages = [["01", "Declare", "Use Stage 3 decorators to place names, descriptions, and schemas beside real methods."], ["02", "Define", "Read immutable, receiver-bound definitions without hiding the contract."], ["03", "Adapt", "Create LangChain tools or use the in-process TypeMCP bridge through focused adapters."], ["04", "Own", "Keep models, credentials, authorization, policy, state, hosting, and deployment in the application."]] as const;
 
 export default function HomePage() {
 	return <><SkipLink />
+		<script data-testid="typechain-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 		<header className="shell"><a className="logo" href="#top"><img className="logo__mark" src="/logo.svg" alt="" width="22" height="22" />TYPE<span>CHAIN</span></a><nav aria-label="Primary"><a href="#tools">Flow</a><a href="#boundaries">Boundaries</a><a href="/docs">Documentation</a><ExternalLink className="nav-cta" href={github}>GitHub ↗</ExternalLink></nav></header>
 		<main id="main-content"><section className="hero shell" id="top"><div><p className="eyebrow">TypeScript · LangChain · Stage 3 decorators</p><h1>Typed tools.<br /><em>Explicit boundaries.</em></h1><p>Published <code>@theorvane/type-chain@0.1.1</code> makes LangChain JS tools and agents easier to author without hiding schemas, policy, or application ownership.</p><div className="actions"><a className="button primary" href="/docs">Read documentation</a><a className="button" href="/docs/getting-started">Getting started</a><ExternalLink className="button" href={npm}>npm package ↗</ExternalLink></div></div><pre><code>{`@Tool({ name: "find_product",
   description: "Find a product.",

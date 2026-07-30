@@ -31,4 +31,21 @@ describe("TypeChain homepage", () => {
     expect(screen.getByText("@theorvane/type-chain@0.1.1")).toBeTruthy();
     expect(screen.getAllByRole("link", { name: /documentation/i }).some((link) => link.getAttribute("href") === "/docs")).toBe(true);
   });
+  it("renders factual source-code and website JSON-LD", () => {
+    render(createElement(HomePage));
+    const graph = JSON.parse(screen.getByTestId("typechain-schema").textContent ?? "{}") as { "@graph"?: Array<Record<string, unknown>> };
+    expect(graph["@graph"]).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          "@type": "SoftwareSourceCode",
+          name: "TypeChain",
+          url: "https://typechain.theorvane.tech/",
+          codeRepository: "https://github.com/Theorvane/type-chain",
+          programmingLanguage: "TypeScript",
+          license: "https://opensource.org/licenses/MIT",
+        }),
+        expect.objectContaining({ "@type": "WebSite", name: "TypeChain", url: "https://typechain.theorvane.tech/" }),
+      ]),
+    );
+  });
 });

@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { publicDocuments } from "./manifest";
+import { documentEditions } from "./manifest";
 import { syncDocuments } from "./sync";
 
 describe("syncDocuments", () => {
@@ -13,8 +13,8 @@ describe("syncDocuments", () => {
       await syncDocuments({
         outputDirectory,
         fetchDocument: async (sourcePath) => {
-          const document = publicDocuments.find((candidate) => candidate.sourcePath === sourcePath)!;
-          return `# ${sourcePath}\n\n${document.sourceStatus}\n`;
+          const edition = documentEditions().find((candidate) => candidate.sourcePath === sourcePath)!;
+          return `# ${sourcePath}\n\n${edition.sourceStatus}\n`;
         },
       });
 

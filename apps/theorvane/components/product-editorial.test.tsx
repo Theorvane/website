@@ -24,7 +24,7 @@ const products = [
 	},
 	{
 		description: "A local-first, open-source video editor for recording, editing, and exporting footage on your device.",
-		href: "https://openvideo.theorvane.tech/",
+		href: "https://open-video.app/",
 		image: "/editorial-signal/products/openvideo.webp",
 		imageAlt: "OpenVideo editorial artwork showing a local editing timeline.",
 		name: "OpenVideo",
