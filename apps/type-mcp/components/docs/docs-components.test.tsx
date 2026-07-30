@@ -24,20 +24,35 @@ describe("TypeMCP documentation release callout", () => {
 describe("TypeMCP documentation sidebar", () => {
   const documents = [{ document: { route: "/docs/getting-started", title: "Getting started", group: "Start" } }] as never;
 
-  it("renders navigation the reader can always see", () => {
+  it("renders a navigation copy the desktop reader can see", () => {
     const { container } = render(<DocsSidebar documents={documents} activeRoute="/docs/getting-started" />);
 
-    // A closed <details> wrapper used to hide every link: browsers hide closed details content with
-    // ::details-content{content-visibility:hidden}, which no child display override can reveal.
-    expect(container.querySelector("details")).toBeNull();
-    expect(screen.getByRole("navigation", { name: "Documentation" })).toBeTruthy();
-    expect(screen.getByRole("link", { name: "Getting started" }).getAttribute("aria-current")).toBe("page");
+    // The desktop copy must sit outside the disclosure, because a closed <details> hides its content
+    // through ::details-content and no child display override can reveal it.
+    const desktop = container.querySelector(".docs-sidebar-desktop");
+    expect(desktop).not.toBeNull();
+    expect(desktop!.closest("details")).toBeNull();
+    expect(container.querySelector("details .docs-sidebar-mobile")).not.toBeNull();
+  });
+
+  it("marks the active route in both copies", () => {
+    render(<DocsSidebar documents={documents} activeRoute="/docs/getting-started" />);
+
+    const links = screen.getAllByRole("link", { name: "Getting started" });
+    expect(links).toHaveLength(2);
+    for (const link of links) expect(link.getAttribute("aria-current")).toBe("page");
   });
 
   it("labels each manifest group", () => {
     render(<DocsSidebar documents={documents} />);
 
-    expect(screen.getByText("Start").className).toBe("docs-sidebar-group");
+    expect(screen.getAllByText("Start")[0]!.className).toBe("docs-sidebar-group");
+  });
+
+  it("omits a group with nothing published in it", () => {
+    render(<DocsSidebar documents={documents} />);
+
+    expect(screen.queryByText("Architecture")).toBeNull();
   });
 });
 

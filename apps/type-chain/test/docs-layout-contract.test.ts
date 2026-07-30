@@ -2,22 +2,23 @@ import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 
 describe("TypeChain documentation layout", () => {
-	it("keeps the sidebar visible without relying on a disclosure widget", async () => {
+	it("keeps a desktop navigation copy outside the disclosure", async () => {
 		const css = await readFile("app/globals.css", "utf8");
 
-		// Browsers hide closed <details> content with ::details-content{content-visibility:hidden}, so an
-		// override on a child's display no longer reveals it. The sidebar must not depend on that trick.
-		expect(css).not.toMatch(/\.docs-sidebar details/);
-		expect(css).not.toMatch(/\.docs-sidebar summary/);
-		expect(css).toMatch(/\.docs-sidebar\{[^}]*display:block[^}]*position:sticky/);
+		// A single nav inside a closed <details> is invisible: browsers hide closed details content with
+		// ::details-content{content-visibility:hidden}, which no child display rule can reveal. The layout
+		// therefore renders a desktop copy outside the disclosure and swaps to the mobile copy by CSS.
+		expect(css).not.toMatch(/details:not\(\[open\]\)\s*>\s*nav/);
+		expect(css).toMatch(/\.docs-sidebar \.docs-sidebar-mobile\{[^}]*display:none/);
+		expect(css).toMatch(/@media\(max-width:700px\)\{[\s\S]*?\.docs-sidebar \.docs-sidebar-desktop\{[^}]*display:none/);
+		expect(css).toMatch(/@media\(max-width:700px\)\{[\s\S]*?\.docs-sidebar \.docs-sidebar-mobile\{[^}]*display:block/);
 	});
 
-	it("reads the article before the index on narrow screens", async () => {
+	it("styles the group label the component actually renders", async () => {
 		const css = await readFile("app/globals.css", "utf8");
 
-		expect(css).toMatch(/@media\(max-width:700px\)\{[\s\S]*?\.docs-layout\{[^}]*grid-template-columns:1fr/);
-		expect(css).toMatch(/@media\(max-width:700px\)\{[\s\S]*?\.markdown-article\{[^}]*order:1/);
-		expect(css).toMatch(/@media\(max-width:700px\)\{[\s\S]*?\.docs-sidebar\{[^}]*order:3[^}]*position:static/);
+		// The stylesheet used to target .docs-sidebar h2 while the component renders p.docs-sidebar-group.
+		expect(css).toMatch(/\.docs-sidebar-group\{[^}]*text-transform:uppercase/);
 	});
 
 	it("keeps wide documentation blocks scrolling inside their own container", async () => {

@@ -13,6 +13,7 @@ const strings = {
   en: {
     groups: { Start: "Start", Guides: "Guides", Build: "Build", API: "API", Architecture: "Architecture", Product: "Product" },
     breadcrumb: "Documentation",
+    navigationSummary: "Documentation navigation",
     onThisPage: "On this page",
     previous: "Previous",
     next: "Next",
@@ -28,6 +29,7 @@ const strings = {
   ko: {
     groups: { Start: "시작하기", Guides: "가이드", Build: "만들기", API: "API", Architecture: "아키텍처", Product: "제품" },
     breadcrumb: "문서",
+    navigationSummary: "문서 내비게이션",
     onThisPage: "이 페이지 내용",
     previous: "이전",
     next: "다음",
@@ -97,12 +99,16 @@ export function DocsSidebar({ documents, activeRoute }: { documents: readonly Re
   const groups = ["Start", "Guides", "Build", "API", "Architecture", "Product"] as const;
   const locale = activeRoute ? documentLocale(activeRoute) : documents[0]?.locale ?? defaultDocumentLocale;
   const text = copy(locale);
-  return <nav className="docs-sidebar" aria-label={text.breadcrumb}>{groups.map((group) => {
+  // The navigation is rendered twice on purpose: a desktop copy outside the disclosure and a mobile copy
+  // inside it, because a closed <details> hides its content through ::details-content and no child
+  // display rule can reveal it. CSS shows exactly one at a time.
+  const navigation = (className?: string) => <nav className={className} aria-label={text.breadcrumb}>{groups.map((group) => {
     const entries = documents.filter((document) => document.document.group === group);
     // A group with no document in this locale would otherwise render as a bare heading.
     if (entries.length === 0) return null;
     return <section key={group}><p className="docs-sidebar-group">{text.groups[group]}</p>{entries.map((document) => <a key={document.document.route} href={document.document.route} aria-current={activeRoute === document.document.route ? "page" : undefined}>{document.document.title}</a>)}</section>;
   })}</nav>;
+  return <aside className="docs-sidebar">{navigation("docs-sidebar-desktop")}<details><summary>{text.navigationSummary}</summary>{navigation("docs-sidebar-mobile")}</details></aside>;
 }
 
 export function DocumentPager({ documents, route }: { documents: readonly RepositoryDocument[]; route: string }) {

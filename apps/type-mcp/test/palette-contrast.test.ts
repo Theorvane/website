@@ -23,8 +23,8 @@ async function tokens(): Promise<Record<string, string>> {
 }
 
 /**
- * The accent is drawn from the repository hero art, but the hero sits on near-black while this site
- * is light and also reverses white text onto the accent. Both directions must stay readable.
+ * The site is light and also reverses white text onto the accent, so both directions must stay
+ * readable: accent-on-background, white-on-accent, and body text on the pale accent surface.
  */
 describe("TypeMCP palette contrast", () => {
 	it("keeps hero-derived accent text legible on the page background", async () => {
@@ -40,7 +40,7 @@ describe("TypeMCP palette contrast", () => {
 	});
 
 	it("keeps body text legible on the pale accent surface", async () => {
-		const { "--accent-tint": tint, "--ink": ink } = await tokens();
+		const { "--mint": tint, "--ink": ink } = await tokens();
 		expect(contrast(ink as string, tint as string)).toBeGreaterThanOrEqual(4.5);
 	});
 });

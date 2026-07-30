@@ -61,7 +61,16 @@ export function DocsLanguageSwitch({ route, locale, locales }: { route: string; 
 
 export function DocsSidebar({ documents, activeRoute }: { documents: readonly RepositoryDocument[]; activeRoute?: string }) {
   const groups = ["Start", "Guides", "Build", "API", "Architecture", "Product"] as const;
-  return <nav className="docs-sidebar" aria-label="Documentation">{groups.map((group) => <section key={group}><p className="docs-sidebar-group">{group}</p>{documents.filter((document) => document.document.group === group).map((document) => <a key={document.document.route} href={document.document.route} aria-current={activeRoute === document.document.route ? "page" : undefined}>{document.document.title}</a>)}</section>)}</nav>;
+  // The navigation is rendered twice on purpose: a desktop copy outside the disclosure and a mobile copy
+  // inside it, because a closed <details> hides its content through ::details-content and no child
+  // display rule can reveal it. CSS shows exactly one at a time.
+  const navigation = (className?: string) => <nav className={className} aria-label="Documentation">{groups.map((group) => {
+    const entries = documents.filter((document) => document.document.group === group);
+    // A group with no document would otherwise render as a bare heading.
+    if (entries.length === 0) return null;
+    return <section key={group}><p className="docs-sidebar-group">{group}</p>{entries.map((document) => <a key={document.document.route} href={document.document.route} aria-current={activeRoute === document.document.route ? "page" : undefined}>{document.document.title}</a>)}</section>;
+  })}</nav>;
+  return <aside className="docs-sidebar">{navigation("docs-sidebar-desktop")}<details><summary>Documentation navigation</summary>{navigation("docs-sidebar-mobile")}</details></aside>;
 }
 
 export function DocumentPager({ documents, route }: { documents: readonly RepositoryDocument[]; route: string }) {
