@@ -3,9 +3,9 @@ import { constants } from "node:fs";
 import { open, type FileHandle } from "node:fs/promises";
 import { join, resolve } from "node:path";
 
-import { publicDocuments, sourceCommit } from "./manifest";
+import { documentEditions, editionsForLocale, findEdition, sourceCommit } from "./manifest";
 import { parseDocument, type ParsedDocument } from "./parse";
-import type { PublicDocument } from "./types";
+import { defaultDocumentLocale, type DocumentLocale, type PublicDocument } from "./types";
 
 const cacheRoot = resolve(process.cwd(), ".generated-docs");
 const publicationRetryDelayMs = 5;
@@ -119,35 +119,38 @@ export async function readTrustedText(root: string, sourcePath: string, { onPubl
 
 async function validatedCache(): Promise<CacheMetadata> {
   const metadata = JSON.parse(await readTrustedText(cacheRoot, "metadata.json")) as CacheMetadata;
-  if (metadata.sourceCommit !== sourceCommit || metadata.documents.length !== publicDocuments.length) throw new Error("Documentation cache metadata does not match the public manifest");
-  for (const document of publicDocuments) {
-    const entry = metadata.documents.find((candidate) => candidate.sourcePath === document.sourcePath && candidate.route === document.route);
-    if (!entry) throw new Error(`Documentation cache metadata is missing ${document.sourcePath}`);
-    const content = await readTrustedText(cacheRoot, document.sourcePath);
-    if (hash(content) !== entry.sha256) throw new Error(`Documentation cache hash mismatch for ${document.sourcePath}`);
+  const editions = documentEditions();
+  if (metadata.sourceCommit !== sourceCommit || metadata.documents.length !== editions.length) throw new Error("Documentation cache metadata does not match the public manifest");
+  for (const { document, sourcePath } of editions) {
+    const entry = metadata.documents.find((candidate) => candidate.sourcePath === sourcePath && candidate.route === document.route);
+    if (!entry) throw new Error(`Documentation cache metadata is missing ${sourcePath}`);
+    const content = await readTrustedText(cacheRoot, sourcePath);
+    if (hash(content) !== entry.sha256) throw new Error(`Documentation cache hash mismatch for ${sourcePath}`);
   }
   return metadata;
 }
 
 export interface RepositoryDocument extends ParsedDocument {
   readonly document: PublicDocument;
+  readonly locale: DocumentLocale;
   readonly markdown: string;
   readonly sourceUrl: string;
 }
 
 export async function getDocument(route: string): Promise<RepositoryDocument | undefined> {
   await validatedCache();
-  const document = publicDocuments.find((candidate) => candidate.route === route);
-  if (!document) return undefined;
-  const markdown = await readTrustedText(cacheRoot, document.sourcePath);
-  return { document, markdown, sourceUrl: `https://github.com/Theorvane/type-mcp/blob/${sourceCommit}/${document.sourcePath}`, ...parseDocument(markdown, document) };
+  const edition = findEdition(route);
+  if (!edition) return undefined;
+  const markdown = await readTrustedText(cacheRoot, edition.sourcePath);
+  return { document: edition.document, locale: edition.locale, markdown, sourceUrl: `https://github.com/Theorvane/type-mcp/blob/${sourceCommit}/${edition.sourcePath}`, ...parseDocument(markdown, edition.document, edition.sourcePath) };
 }
 
-export async function getAllDocuments(): Promise<readonly RepositoryDocument[]> {
+/** Every document published in one locale, in manifest order. */
+export async function getAllDocuments(locale: DocumentLocale = defaultDocumentLocale): Promise<readonly RepositoryDocument[]> {
   const results: RepositoryDocument[] = [];
-  for (const document of publicDocuments) {
-    const result = await getDocument(document.route);
-    if (!result) throw new Error(`Document disappeared from approved manifest: ${document.route}`);
+  for (const edition of editionsForLocale(locale)) {
+    const result = await getDocument(edition.document.route);
+    if (!result) throw new Error(`Document disappeared from approved manifest: ${edition.document.route}`);
     results.push(result);
   }
   return results;

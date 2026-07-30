@@ -26,7 +26,7 @@ function buildCurriculum(): readonly CurriculumDocument[] {
 
 describe("TypeMCP public documentation manifest", () => {
   it("pins exactly the approved public documents to a full commit SHA", () => {
-    expect(sourceCommit).toBe("c58f8f495d7c4eb05e2081a5fdd2a61995c1dece");
+    expect(sourceCommit).toBe("9124c25519f325b46a49156c0e5c212e4ee43df2");
     expect(publicDocuments).toHaveLength(20);
     expect(publicDocuments.map((document) => document.route)).toEqual([
       "/docs/getting-started",

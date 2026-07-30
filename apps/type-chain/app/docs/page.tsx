@@ -10,7 +10,19 @@ export const metadata: Metadata = {
   title: "Documentation | TypeChain",
   description: "Install TypeChain and compose typed tools, agents, policy guards, and TypeMCP bridges.",
   alternates: { canonical: "/docs" },
-  openGraph: { title: "Documentation | TypeChain", description: "Technical documentation for TypeChain's published package and explicit runtime boundaries.", url: `${canonicalBase}/docs` },
+  openGraph: { type: "website", title: "Documentation | TypeChain", description: "Technical documentation for TypeChain's published package and explicit runtime boundaries.", url: `${canonicalBase}/docs`, siteName: "TypeChain", locale: "en_US" },
+  twitter: { card: "summary_large_image", title: "Documentation | TypeChain", description: "Technical documentation for TypeChain's published package and explicit runtime boundaries." },
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "CollectionPage", "@id": `${canonicalBase}/docs#page`, name: "Documentation", url: `${canonicalBase}/docs`, inLanguage: "en", isPartOf: { "@id": `${canonicalBase}/#website` }, about: { "@id": `${canonicalBase}/#package` } },
+    { "@type": "BreadcrumbList", "@id": `${canonicalBase}/docs#breadcrumbs`, itemListElement: [
+      { "@type": "ListItem", position: 1, name: "TypeChain", item: `${canonicalBase}/` },
+      { "@type": "ListItem", position: 2, name: "Documentation", item: `${canonicalBase}/docs` },
+    ] },
+  ],
 };
 
 export default async function DocsIndex() {
@@ -24,6 +36,7 @@ export default async function DocsIndex() {
 
   return <>
     <a className="skip-link" href="#docs-content">Skip to documentation</a>
+    <script data-testid="typechain-docs-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     <header className="docs-header"><a className="logo" href="/">TYPE<span>CHAIN</span></a><nav aria-label="Primary"><a href="/">Product</a><a href="/docs" aria-current="page">Documentation</a><a href="https://github.com/Theorvane/type-chain" target="_blank" rel="noopener noreferrer">GitHub <span className="sr-only">(opens in a new tab)</span></a><a href="https://www.npmjs.com/package/@theorvane/type-chain" target="_blank" rel="noopener noreferrer">npm <span className="sr-only">(opens in a new tab)</span></a></nav></header>
     <main className="docs-layout"><DocsSidebar documents={documents} /><article id="docs-content" className="docs-index">
       <p className="eyebrow">TypeChain technical documentation</p><div className="docs-title-row"><h1>TypeChain documentation</h1><span className="docs-status">Published · 0.1.1</span></div>

@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { publicDocuments } from "./manifest";
+import { documentEditions } from "./manifest";
 import { readTrustedText } from "./repository";
 import { syncDocuments } from "./sync";
 
@@ -28,8 +28,8 @@ describe("readTrustedText", () => {
     let readerRetried!: () => void;
     const readerObservedGap = new Promise<void>((resolveRetry) => { readerRetried = resolveRetry; });
     const fetchDocument = async (sourcePath: string) => {
-      const document = publicDocuments.find((candidate) => candidate.sourcePath === sourcePath)!;
-      return `# ${sourcePath}\n\n${document.sourceStatus}\n\nSafe cache\n`;
+      const edition = documentEditions().find((candidate) => candidate.sourcePath === sourcePath)!;
+      return `# ${sourcePath}\n\n${edition.sourceStatus}\n\nSafe cache\n`;
     };
     try {
       await syncDocuments({ outputDirectory: root, fetchDocument });

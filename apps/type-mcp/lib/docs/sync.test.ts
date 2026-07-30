@@ -3,13 +3,13 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { publicDocuments } from "./manifest";
+import { documentEditions } from "./manifest";
 import { syncDocuments } from "./sync";
 
 function fetchWithMarker(marker: string) {
   return async (sourcePath: string) => {
-    const document = publicDocuments.find((candidate) => candidate.sourcePath === sourcePath)!;
-    return `# ${sourcePath}\n\n${document.sourceStatus}\n\n${marker}\n`;
+    const edition = documentEditions().find((candidate) => candidate.sourcePath === sourcePath)!;
+    return `# ${sourcePath}\n\n${edition.sourceStatus}\n\n${marker}\n`;
   };
 }
 
@@ -26,7 +26,7 @@ describe("syncDocuments", () => {
       await syncDocuments({ outputDirectory, fetchDocument: fetchWithMarker("detail") });
       const metadata = JSON.parse(await readFile(join(outputDirectory, "metadata.json"), "utf8")) as { sourceCommit: string; documents: { sourcePath: string; route: string; sha256: string }[] };
       expect(metadata.sourceCommit).toMatch(/^[0-9a-f]{40}$/);
-      expect(metadata.documents).toHaveLength(publicDocuments.length);
+      expect(metadata.documents).toHaveLength(documentEditions().length);
       expect(metadata.documents[0]).toMatchObject({ sourcePath: "docs/guides/getting-started.md", route: "/docs/getting-started" });
       expect(metadata.documents).toEqual(expect.arrayContaining([
         expect.objectContaining({ sourcePath: "docs/guides/petstore-project-setup.md", route: "/docs/build/petstore-project-setup" }),
@@ -82,9 +82,9 @@ describe("syncDocuments", () => {
       releaseFirst.resolve();
       await Promise.all([first, second]);
       const metadata = JSON.parse(await readFile(join(outputDirectory, "metadata.json"), "utf8")) as { documents: { sourcePath: string }[] };
-      expect(metadata.documents).toHaveLength(publicDocuments.length);
-      for (const document of publicDocuments) {
-        await expect(readFile(join(outputDirectory, document.sourcePath), "utf8")).resolves.toContain("second cache");
+      expect(metadata.documents).toHaveLength(documentEditions().length);
+      for (const { sourcePath } of documentEditions()) {
+        await expect(readFile(join(outputDirectory, sourcePath), "utf8")).resolves.toContain("second cache");
       }
     } finally {
       await rm(outputDirectory, { recursive: true, force: true });
