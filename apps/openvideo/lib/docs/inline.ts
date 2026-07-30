@@ -8,6 +8,14 @@ export type InlineToken =
 const pattern = /`([^`]+)`|\*\*([^*]+)\*\*|\[([^\]]+)\]\(([^)\s]+)\)/g;
 
 /**
+ * Content is authored in this repository, so a hostile href cannot arrive today. The guard matches the
+ * posture the synced portals already take, so it stays correct if a page ever renders untrusted text.
+ */
+function safeHref(href: string): string {
+	return /^(?:javascript|data|vbscript):/i.test(href) ? "#" : href;
+}
+
+/**
  * Parses the documentation inline vocabulary: `code`, **strong**, and [label](href).
  * Anything else is emitted verbatim, so prose never depends on escaping rules.
  */
@@ -22,7 +30,7 @@ export function parseInline(text: string): readonly InlineToken[] {
 		const [raw, code, strong, label, href] = match;
 		if (code !== undefined) tokens.push({ kind: "code", text: code });
 		else if (strong !== undefined) tokens.push({ kind: "strong", text: strong });
-		else if (label !== undefined && href !== undefined) tokens.push({ kind: "link", text: label, href });
+		else if (label !== undefined && href !== undefined) tokens.push({ kind: "link", text: label, href: safeHref(href) });
 
 		cursor = start + raw.length;
 	}

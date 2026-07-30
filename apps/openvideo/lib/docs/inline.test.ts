@@ -19,6 +19,14 @@ describe("documentation inline vocabulary", () => {
 		expect(parseInline("`**not strong**`")).toEqual([{ kind: "code", text: "**not strong**" }]);
 	});
 
+	it("refuses a scheme that could execute, matching the synced portals", () => {
+		for (const href of ["javascript:alert1", "JavaScript:alert1", "data:text/html,<script>", "vbscript:msgbox"]) {
+			expect(parseInline(`[click](${href})`)).toEqual([{ kind: "link", text: "click", href: "#" }]);
+		}
+		expect(parseInline("[docs](/docs/install)")).toEqual([{ kind: "link", text: "docs", href: "/docs/install" }]);
+		expect(parseInline("[site](https://open-video.app/)")).toEqual([{ kind: "link", text: "site", href: "https://open-video.app/" }]);
+	});
+
 	it("emits unmatched markup verbatim rather than dropping prose", () => {
 		expect(parseInline("100% local, no * emphasis")).toEqual([{ kind: "text", text: "100% local, no * emphasis" }]);
 	});

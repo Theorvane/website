@@ -15,3 +15,6 @@ apps/theorvane/public/scroll-world/.work/
 apps/theorvane/public/scroll-world/*.local.json
 .DS_Store
 .claude/launch.json
+apps/*/.generated-docs.staging-*/
+apps/*/.generated-docs.previous/
+apps/*/.generated-docs.lock/
