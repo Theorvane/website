@@ -18,7 +18,7 @@ export default function HomePage() {
 		<SkipLink />
 		<script data-testid="typemcp-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 		<header className="shell"><a className="logo" href="#top"><img className="logo__mark" src="/logo.svg" alt="" width="22" height="22" />type<span>mcp</span></a><nav aria-label="Primary"><a href="#flow">Flow</a><a href="#architecture">Architecture</a><a href="/docs">Documentation</a><a href="#integrations">Integrations</a><ExternalLink className="nav-cta" href={github}>View on GitHub ↗</ExternalLink></nav></header>
-		<main id="main-content">
+		<main className="product-surface product-surface--typemcp" data-testid="typemcp-contract-surface" id="main-content">
 			<section className="hero shell" id="top"><div><p className="eyebrow">TypeScript · MCP · Explicit contracts</p><h1>Decorator-first MCP.<br /><em>Built for boundaries.</em></h1><p>Published <code>@theorvane/type-mcp@0.2.2</code> turns strict TypeScript declarations into a validated runtime, while applications retain ownership of hosting and policy.</p><div className="actions"><a className="button primary" href="/docs">Read documentation</a><ExternalLink className="button" href={github}>View on GitHub ↗</ExternalLink><ExternalLink className="button" href={npm}>npm package ↗</ExternalLink></div></div><pre><code>{`import { z } from "zod";
 import { McpServer, McpTool } from "@theorvane/type-mcp";
 

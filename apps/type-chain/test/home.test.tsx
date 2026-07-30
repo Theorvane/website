@@ -15,9 +15,10 @@ describe("TypeChain homepage", () => {
     expect(screen.getByRole("link", { name: /Theorvane/i }).getAttribute("href")).toBe("https://theorvane.tech/");
   });
 
-  it("renders the official green chain mark in its ownership evidence surface", () => {
+  it("delivers the approved dark Ownership Surface instead of an appended generic panel", () => {
     render(createElement(HomePage));
 
+    expect(screen.getByTestId("typechain-ownership-surface")).toBeTruthy();
     expect(screen.getByRole("region", { name: /ownership map/i })).toBeTruthy();
     expect(screen.getAllByAltText("TypeChain").some((image) => image.getAttribute("src") === "/logo.svg")).toBe(true);
   });
