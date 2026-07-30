@@ -50,7 +50,7 @@ export default function HomePage() {
 	return <><SkipLink /><script data-testid="openvideo-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 		<header className="shell"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>VIDEO</span></a><nav aria-label="Primary"><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="/docs">Docs</a><a href="#faq">FAQ</a><ExternalLink href={repositoryUrl}>GitHub ↗</ExternalLink></nav></header>
 
-		<main id="main-content">
+		<main className="product-surface product-surface--openvideo" data-testid="openvideo-workspace-surface" id="main-content">
 			<section className="hero shell" id="top">
 				<div>
 					<p className="eyebrow">Open source · MIT · Local-first</p>
