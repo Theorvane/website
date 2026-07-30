@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdir, mkdtemp, rename, rm, writeFile } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
 
-import { isSafeSourcePath, publicDocuments, sourceCommit } from "./manifest";
+import { documentEditions, isSafeSourcePath, sourceCommit } from "./manifest";
 
 export interface SyncOptions {
   readonly outputDirectory: string;
@@ -71,20 +71,21 @@ export async function syncDocuments({ outputDirectory, fetchDocument, renameDire
 
   try {
     const documents = [] as { sourcePath: string; route: string; sha256: string }[];
-    for (const document of publicDocuments) {
+    // Every locale of every approved document; a translation proves its classification with its own wording.
+    for (const { document, sourcePath, sourceStatus } of documentEditions()) {
       let content: string;
       try {
-        content = await fetchDocument(document.sourcePath);
+        content = await fetchDocument(sourcePath);
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
-        throw new Error(`Unable to retrieve ${document.sourcePath} for ${document.route}: ${message}`);
+        throw new Error(`Unable to retrieve ${sourcePath} for ${document.route}: ${message}`);
       }
-      if (!hasH1(content)) throw new Error(`Invalid documentation source ${document.sourcePath} for ${document.route}: missing level-one heading`);
-      if (!content.includes(document.sourceStatus)) throw new Error(`Release classification mismatch for ${document.sourcePath} at ${document.route}: expected source status evidence for ${document.classification}`);
-      const destination = containedPath(stagingDirectory, document.sourcePath);
+      if (!hasH1(content)) throw new Error(`Invalid documentation source ${sourcePath} for ${document.route}: missing level-one heading`);
+      if (!content.includes(sourceStatus)) throw new Error(`Release classification mismatch for ${sourcePath} at ${document.route}: expected source status evidence for ${document.classification}`);
+      const destination = containedPath(stagingDirectory, sourcePath);
       await mkdir(dirname(destination), { recursive: true });
       await writeFile(destination, content, "utf8");
-      documents.push({ sourcePath: document.sourcePath, route: document.route, sha256: sha256(content) });
+      documents.push({ sourcePath, route: document.route, sha256: sha256(content) });
     }
     const metadata: CacheMetadata = { sourceCommit, documents };
     await writeFile(join(stagingDirectory, "metadata.json"), `${JSON.stringify(metadata, null, 2)}\n`, "utf8");

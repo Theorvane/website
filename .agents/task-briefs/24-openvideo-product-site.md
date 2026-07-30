@@ -2,7 +2,7 @@
 
 **Issue:** #24
 **Branch:** `feat/24-openvideo-product-site`
-**Canonical host:** `https://openvideo.theorvane.tech`
+**Canonical host:** `https://open-video.app`
 
 ## Deliverable
 

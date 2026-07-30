@@ -7,7 +7,7 @@ This repository delivers four independently deployable public Next.js applicatio
 - `apps/theorvane/`: the Theorvane brand site, canonical at `https://theorvane.tech`
 - `apps/type-mcp/`: the TypeMCP product site, canonical at `https://typemcp.theorvane.tech`
 - `apps/type-chain/`: the TypeChain product site, canonical at `https://typechain.theorvane.tech`
-- `apps/openvideo/`: the OpenVideo local-first product site, canonical at `https://openvideo.theorvane.tech`
+- `apps/openvideo/`: the OpenVideo local-first product site, canonical at `https://open-video.app`, with bilingual usage documentation at `/docs` (English) and `/docs/ko` (Korean)
 - `packages/`: neutral shared UI and design tokens only
 - `docs/`: approved product and design specifications
 - `.agents/`: tracked task briefs and agent operating aids; never imported by application runtime code
@@ -66,7 +66,7 @@ Keep labels focused; do not add unrelated labels merely for coverage.
 
 - Pin GitHub Actions to immutable full commit SHAs.
 - Do not put tokens, credentials, or secrets in repository files, logs, commits, or task briefs.
-- Preserve canonical host behavior: `www.theorvane.tech` redirects permanently to `theorvane.tech`.
+- Preserve canonical host behavior: `www.theorvane.tech` redirects permanently to `theorvane.tech`, and `openvideo.theorvane.tech` redirects permanently to `open-video.app`. The former OpenVideo subdomain must stay attached to its Vercel project for that redirect to be reached.
 - Keep website claims aligned with the published TypeMCP capability boundary.
 - Generated output such as `.next/`, `dist/`, coverage, logs, and `node_modules/` must not be committed.
 

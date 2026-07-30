@@ -36,7 +36,7 @@ describe("SignalPassage", () => {
 			},
 			{
 				alt: "OpenVideo editorial artwork showing a local edit held on-device.",
-				href: "https://openvideo.theorvane.tech/",
+				href: "https://open-video.app/",
 				image: "/editorial-signal/passage/local.webp",
 				link: "Visit OpenVideo ↗",
 				label: "Keep local",

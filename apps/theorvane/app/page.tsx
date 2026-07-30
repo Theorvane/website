@@ -1,6 +1,7 @@
 import { ExternalLink, SkipLink } from "@theorvane/ui";
 
 import { AmbientWorld } from "../components/ambient-world";
+import { EditorialCinematic } from "../components/editorial-cinematic";
 import { EditorialHero } from "../components/editorial-hero";
 import { ProductEditorial } from "../components/product-editorial";
 import { SignalPassage } from "../components/signal-passage";
@@ -9,7 +10,7 @@ const siteUrl = "https://theorvane.tech/";
 const github = "https://github.com/Theorvane";
 const typeMcp = "https://typemcp.theorvane.tech/";
 const typeChain = "https://typechain.theorvane.tech/";
-const openVideo = "https://openvideo.theorvane.tech/";
+const openVideo = "https://open-video.app/";
 
 const products = [
 	{
@@ -60,6 +61,7 @@ export default function HomePage() {
 		</header>
 		<main id="main-content">
 			<AmbientWorld />
+			<EditorialCinematic />
 			<EditorialHero>
 				<p className="eyebrow">Independent software studio · Seoul / internet</p>
 				<h1>Precise tools for<br /><em>the AI-native web.</em></h1>

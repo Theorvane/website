@@ -12,8 +12,12 @@ export const metadata: Metadata = {
 	description,
 	applicationName: "Theorvane",
 	keywords: ["AI-native web", "developer tools", "TypeScript", "MCP", "open source"],
+	authors: [{ name: "Theorvane", url: "https://theorvane.tech" }],
+	creator: "Theorvane",
+	publisher: "Theorvane",
+	category: "technology",
 	alternates: { canonical: "/" },
-	robots: { index: true, follow: true },
+	robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
 	openGraph: {
 		type: "website",
 		url: siteUrl,
@@ -22,7 +26,7 @@ export const metadata: Metadata = {
 		siteName: "Theorvane",
 		locale: "en_US",
 	},
-	twitter: { card: "summary", title, description },
+	twitter: { card: "summary_large_image", title, description },
 	icons: {
 		icon: [{ url: "/icon.png", sizes: "460x460", type: "image/png" }],
 		apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],

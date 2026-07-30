@@ -22,7 +22,7 @@ const scenes = [
 	{
 		alt: "OpenVideo editorial artwork showing a local edit held on-device.",
 		description: "Record, edit, and export on your device without cloud uploads, accounts, or analytics.",
-		href: "https://openvideo.theorvane.tech/",
+		href: "https://open-video.app/",
 		image: "/editorial-signal/passage/local.webp",
 		label: "Keep local",
 		link: "Visit OpenVideo ↗",

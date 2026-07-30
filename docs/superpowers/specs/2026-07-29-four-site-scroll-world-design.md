@@ -10,7 +10,7 @@ Create a shared scroll-driven cinematic presentation system for four independent
 - `theorvane.tech` — the brand and product index
 - `typemcp.theorvane.tech` — TypeMCP’s declared-contract boundaries
 - `typechain.theorvane.tech` — TypeChain’s optional composition boundaries
-- `openvideo.theorvane.tech` — OpenVideo’s released local workflow
+- `open-video.app` — OpenVideo’s released local workflow
 
 The design borrows only the *interaction pattern* of a scroll-scrubbed cinematic world: scrolling controls elapsed time in pre-rendered media. It does not copy another company’s images, wording, branding, or visual identity.
 
@@ -70,7 +70,7 @@ For every connector, the start image is extracted from the previous rendered div
 | `studio-beacon` | A compact night studio atop a luminous terrain grid; focused light reveals a precise working table. | Independent studio; durable, inspectable developer products. | `#products` |
 | `typemcp-contract-island` | A small TypeScript contract observatory: declaration cards flow through a visible compiler bridge toward an MCP gateway. | TypeMCP’s explicit declaration and MCP boundary. | `https://typemcp.theorvane.tech/` |
 | `typechain-composition-island` | A modular tool workshop with typed connections that stop at a clearly open application boundary. | TypeChain composition; applications retain ownership. | `https://typechain.theorvane.tech/` |
-| `openvideo-local-studio` | A local editing desk with camera, timeline rails, and an export case inside a contained workstation. | Local capture, local edit, local export. | `https://openvideo.theorvane.tech/` |
+| `openvideo-local-studio` | A local editing desk with camera, timeline rails, and an export case inside a contained workstation. | Local capture, local edit, local export. | `https://open-video.app/` |
 | `product-constellation` | The camera rises to reveal all three products as connected, independent islands surrounding the studio beacon. | Choose a focused tool; preserve system ownership. | `#products` |
 
 The final scene ends in a still frame with readable HTML headline and a product-index CTA. Generated media must not contain real words, product marks, or interface labels.

@@ -63,7 +63,9 @@ Until an implementation PR delivers each capability, public website copy must us
 
 `apps/openvideo/` remains the independently deployable Next.js App Router application in the npm-workspace/Turborepo repository. It owns its page composition, visual styling, metadata, crawler routes, and static tests; it depends only on the repository's neutral `@theorvane/ui` and `@theorvane/design-tokens` packages.
 
-A separate Vercel project builds from the monorepo root with `apps/openvideo` as its Root Directory and serves the canonical production hostname `https://openvideo.theorvane.tech`.
+A separate Vercel project builds from the monorepo root with `apps/openvideo` as its Root Directory and serves the canonical production hostname `https://open-video.app`.
+
+> Canonical host change, 2026-07-30: OpenVideo moved from the `openvideo.theorvane.tech` subdomain to its own apex domain `open-video.app`. The former hostname must stay attached to the Vercel project and issue a permanent (308) redirect to the new canonical origin so accumulated link equity transfers.
 
 ## Accessibility and responsive behavior
 
@@ -77,7 +79,7 @@ A separate Vercel project builds from the monorepo root with `apps/openvideo` as
 
 ## Technical SEO
 
-- Use `metadataBase` set to `https://openvideo.theorvane.tech` and a relative canonical alternate (`/`).
+- Use `metadataBase` set to `https://open-video.app` and a relative canonical alternate (`/`).
 - Provide truthful title, description, Open Graph, Twitter, and indexing directives.
 - Expose `robots.txt` and `sitemap.xml` containing only the canonical root URL.
 - Render factual `SoftwareApplication` and `WebSite` JSON-LD. The application is categorized as `VideoApplication`; no operating-system availability, price, AI availability, or provider relationship is fabricated.
