@@ -24,6 +24,7 @@ export default function HomePage() {
 findProduct({ id }: { id: string }) {
   return catalog.get(id);
 }`}</code></pre></section>
+			<section className="evidence-panel shell" aria-label="Ownership map"><div><p className="eyebrow">Ownership map</p><h2>Tools that fit.<br />Ownership stays.</h2><p>Integration is explicit without transferring runtime authority from your application.</p></div><aside><img src="/logo.svg" alt="TypeChain" width="64" height="64" /><dl><div><dt>TypeChain</dt><dd>Tool metadata</dd></div><div><dt>Adapter</dt><dd>Framework bridge</dd></div><div><dt>Your app</dt><dd>Runtime authority</dd></div></dl></aside></section>
 			<section className="capabilities shell" id="tools" aria-label="TypeChain ownership flow">{stages.map(([number, title, description]) => <article key={title}><b>{number}</b><h2>{title}</h2><p>{description}</p></article>)}</section>
 			<section className="architecture shell" id="boundaries"><p className="eyebrow">Runtime boundary</p><h2>Metadata in.<br />Ownership stays out.</h2><ol>{stages.map(([number, title, description]) => <li key={title}><span>{number}</span><strong>{title}</strong> — {description}</li>)}</ol></section>
 			<section className="start shell"><p className="eyebrow">Get started</p><h2>Start with a tool.<br />Keep the system yours.</h2><div className="actions"><a className="button primary" href="/docs/getting-started">Getting started</a><ExternalLink className="button" href={github}>View source ↗</ExternalLink></div></section></main>
