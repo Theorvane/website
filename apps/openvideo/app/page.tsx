@@ -65,6 +65,7 @@ export default function HomePage() {
 				</section>
 			</section>
 
+			<section className="evidence-panel shell" aria-label="Agent approval request"><div><p className="eyebrow">Agent approval request</p><h2>Edit locally.<br /><em>Direct the work.</em></h2><p>A write action asks for consent; read-only timeline inspection remains immediate.</p></div><aside><img src="/logo.svg" alt="OpenVideo" width="64" height="64" /><dl><div><dt>Request</dt><dd>Trim opening clip to 00:00:12.4</dd></div><div><dt>Impact</dt><dd>3.6 seconds of room tone</dd></div><div><dt>Status</dt><dd>Awaiting your approval</dd></div></dl></aside></section>
 			<section className="features shell" id="capabilities" aria-label="OpenVideo capabilities">
 				{capabilities.map(([number, verb, title, description]) => <article key={verb}><b>{number}</b><h2><span>{verb}</span> {title}</h2><p>{description}</p></article>)}
 			</section>

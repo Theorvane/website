@@ -15,6 +15,13 @@ describe("OpenVideo homepage", () => {
 		expect(screen.getByRole("link", { name: /Theorvane/i }).getAttribute("href")).toBe("https://theorvane.tech/");
 	});
 
+	it("renders the official play-timeline mark in an approval evidence surface", () => {
+		render(createElement(HomePage));
+
+		expect(screen.getByRole("region", { name: /agent approval request/i })).toBeTruthy();
+		expect(screen.getAllByAltText("OpenVideo").some((image) => image.getAttribute("src") === "/logo.svg")).toBe(true);
+	});
+
 	it("leads with the agent-driven editor rather than the capture-only workflow", () => {
 		render(createElement(HomePage));
 
