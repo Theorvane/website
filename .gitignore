@@ -14,3 +14,4 @@ apps/type-chain/.generated-docs/
 apps/theorvane/public/scroll-world/.work/
 apps/theorvane/public/scroll-world/*.local.json
 .DS_Store
+.claude/launch.json
