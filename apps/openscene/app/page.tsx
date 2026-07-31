@@ -1,8 +1,9 @@
 import { ExternalLink, SkipLink } from "@theorvane/ui";
 
+import { assetsFor, downloadUrl, releaseNotesUrl, releasesUrl, releaseTag, releaseVersion } from "../lib/releases";
+
 const siteUrl = "https://openscene.app/";
 const repositoryUrl = "https://github.com/Theorvane/openscene";
-const releasesUrl = "https://github.com/Theorvane/openscene/releases";
 const readmeUrl = "https://github.com/Theorvane/openscene#readme";
 const theorvaneUrl = "https://theorvane.tech/";
 const modelsDevUrl = "https://models.dev";
@@ -34,13 +35,21 @@ const faq = [
 	["Which providers can I use?", "Anything in the generated models.dev catalog that speaks the OpenAI or Anthropic wire format, plus Google Gemini natively. For OpenAI you can use an API key or a ChatGPT sign-in."],
 	["Where does my footage go?", "Into the project folder you chose, and nowhere else. A provider only ever receives what you ask the agent to send it."],
 	["Do I need FFmpeg?", "Yes, for export. OpenScene drives the FFmpeg on your machine rather than bundling its own, and refuses to start an export it cannot complete."],
-	["Is there an installer?", "Not yet. OpenScene runs from source today; there is no packaged build or auto-update, and this site will say so until there is."],
+	["Is there an installer?", `Yes, from ${releaseVersion}. macOS, Windows, and Linux builds are published on every release, and running from source stays supported. The macOS builds are signed with a Developer ID certificate and notarized; the Windows and Linux builds are unsigned, so Windows SmartScreen warns on first run.`],
+	["How do updates reach me?", "The application checks for a published release and asks before it updates. Nothing is downloaded or replaced without your answer, and a build you run from source updates when you pull and rebuild."],
 ] as const;
+
+/** Platform order follows the desktop share the project sees, not alphabetical order. */
+const downloads = [
+	{ platform: "macos" as const, label: "macOS", note: "Signed and notarized" },
+	{ platform: "windows" as const, label: "Windows", note: "Unsigned — SmartScreen warns on first run" },
+	{ platform: "linux" as const, label: "Linux", note: "Unsigned, as AppImage and deb normally are" },
+];
 
 const schema = {
 	"@context": "https://schema.org",
 	"@graph": [
-		{ "@type": "SoftwareApplication", "@id": `${siteUrl}#application`, name: "OpenScene", url: siteUrl, applicationCategory: "VideoApplication", operatingSystem: "macOS, Windows, Linux", description: "A local-first desktop video editor with an AI agent that operates the timeline, plus voice and video generation and local FFmpeg export.", isAccessibleForFree: true, license: "https://opensource.org/licenses/MIT", codeRepository: repositoryUrl, softwareRequirements: "Node.js 22 or newer; FFmpeg on the host machine for export", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, author: { "@id": "https://theorvane.tech/#organization" } },
+		{ "@type": "SoftwareApplication", "@id": `${siteUrl}#application`, name: "OpenScene", url: siteUrl, applicationCategory: "VideoApplication", operatingSystem: "macOS, Windows, Linux", description: "A local-first desktop video editor with an AI agent that operates the timeline, plus voice and video generation and local FFmpeg export.", isAccessibleForFree: true, license: "https://opensource.org/licenses/MIT", codeRepository: repositoryUrl, softwareVersion: releaseVersion, downloadUrl: `${siteUrl}#download`, softwareRequirements: "FFmpeg on the host machine for export; Node.js 22 or newer to run from source", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, author: { "@id": "https://theorvane.tech/#organization" } },
 		{ "@type": "WebSite", "@id": `${siteUrl}#website`, name: "OpenScene", url: siteUrl, inLanguage: "en", publisher: { "@id": "https://theorvane.tech/#organization" } },
 		{ "@type": "FAQPage", "@id": `${siteUrl}#faq`, mainEntity: faq.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
 	],
@@ -48,21 +57,39 @@ const schema = {
 
 export default function HomePage() {
 	return <><SkipLink /><script data-testid="openscene-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-		<header className="shell"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>SCENE</span></a><nav aria-label="Primary"><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="/docs">Docs</a><a href="#faq">FAQ</a><ExternalLink href={repositoryUrl}>GitHub ↗</ExternalLink></nav></header>
+		<header className="shell"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>SCENE</span></a><nav aria-label="Primary"><a href="#download">Download</a><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="/docs">Docs</a><a href="#faq">FAQ</a><ExternalLink href={repositoryUrl}>GitHub ↗</ExternalLink></nav></header>
 
-		<main className="product-surface product-surface--openvideo" data-testid="openvideo-workspace-surface" id="main-content">
+		<main className="product-surface product-surface--openscene" data-testid="openscene-workspace-surface" id="main-content">
 			<section className="hero shell" id="top">
 				<div>
 					<p className="eyebrow">Open source · MIT · Local-first</p>
 					<h1>The video editor<br /><em>that edits with you.</em></h1>
 					<p className="lede">OpenScene is a desktop editor with an agent at the controls. It reads your timeline, cuts clips, generates voice and video, and exports through your own FFmpeg. Your media stays on your machine, and you decide which model providers it may talk to — including none.</p>
-					<div className="actions"><ExternalLink className="button primary" href={repositoryUrl}>View source on GitHub ↗</ExternalLink><a className="button" href="/docs">Read the docs</a></div>
+					<div className="actions"><a className="button primary" href="#download">Download for desktop</a><ExternalLink className="button" href={repositoryUrl}>View source on GitHub ↗</ExternalLink><a className="button" href="/docs">Read the docs</a></div>
 				</div>
 				<section className="terminal" aria-label="Run OpenScene from source">
 					<p>RUN FROM SOURCE</p>
 					<ol data-testid="run-from-source">{runFromSource.map((line) => <li key={line}><code>{line}</code></li>)}</ol>
-					<span>Node 22+ · FFmpeg for export · no installer yet</span>
+					<span>Node 22+ · FFmpeg for export · or download a build below</span>
 				</section>
+			</section>
+
+			<section className="downloads shell" id="download" aria-label="Download OpenScene">
+				<p className="eyebrow">Download · {releaseTag}</p>
+				<h2>Every desktop,<br /><em>one release.</em></h2>
+				<p className="note">Packaged builds for all three platforms, published from the same tag. FFmpeg is still yours to install — OpenScene drives the one on your machine rather than bundling its own.</p>
+				<div className="download-grid" data-testid="download-grid">
+					{downloads.map(({ platform, label, note }) => (
+						<article key={platform}>
+							<h3>{label}</h3>
+							<ul>{assetsFor(platform).map((asset) => (
+								<li key={asset.file}><ExternalLink className="button" href={downloadUrl(asset)}>Download for {label} · {asset.variant}</ExternalLink></li>
+							))}</ul>
+							<p>{note}</p>
+						</article>
+					))}
+				</div>
+				<p className="note"><ExternalLink href={releaseNotesUrl}>Release notes for {releaseTag} ↗</ExternalLink> · <ExternalLink href={releasesUrl}>All releases ↗</ExternalLink></p>
 			</section>
 
 			<section className="evidence-panel shell" aria-label="Agent approval request"><div><p className="eyebrow">Agent approval request</p><h2>Edit locally.<br /><em>Direct the work.</em></h2><p>A write action asks for consent; read-only timeline inspection remains immediate.</p></div><aside><img src="/logo.svg" alt="OpenScene" width="64" height="64" /><dl><div><dt>Request</dt><dd>Trim opening clip to 00:00:12.4</dd></div><div><dt>Impact</dt><dd>3.6 seconds of room tone</dd></div><div><dt>Status</dt><dd>Awaiting your approval</dd></div></dl></aside></section>
@@ -106,6 +133,6 @@ export default function HomePage() {
 			</section>
 		</main>
 
-		<footer className="site-footer"><div className="shell footer-grid"><div className="footer-brand"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>SCENE</span></a><p>A local-first desktop video editor with an agent that can drive it.</p></div><nav aria-label="OpenScene footer" className="footer-nav"><div><strong>Explore</strong><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="#faq">FAQ</a></div><div><strong>Documentation</strong><a href="/docs">Documentation</a><a href="/docs/ko" hrefLang="ko">한국어 문서</a><a href="/docs/install">Install and run</a><ExternalLink href={readmeUrl}>README ↗</ExternalLink></div><div><strong>Project</strong><ExternalLink href={repositoryUrl}>Repository ↗</ExternalLink><ExternalLink href={releasesUrl}>Releases ↗</ExternalLink></div><div><strong>Company</strong><ExternalLink href={theorvaneUrl}>Theorvane ↗</ExternalLink></div></nav></div><div className="shell footer-legal"><span>© 2026 Theorvane. OpenScene is open source under the MIT License.</span><span>Local by design.</span></div></footer>
+		<footer className="site-footer"><div className="shell footer-grid"><div className="footer-brand"><a className="wordmark" href="#top"><img className="wordmark__mark" src="/logo.svg" alt="" width="24" height="24" />OPEN<span>SCENE</span></a><p>A local-first desktop video editor with an agent that can drive it.</p></div><nav aria-label="OpenScene footer" className="footer-nav"><div><strong>Explore</strong><a href="#download">Download</a><a href="#capabilities">Capabilities</a><a href="#agent">Agent</a><a href="#providers">Providers</a><a href="#faq">FAQ</a></div><div><strong>Documentation</strong><a href="/docs">Documentation</a><a href="/docs/ko" hrefLang="ko">한국어 문서</a><a href="/docs/install">Install and run</a><ExternalLink href={readmeUrl}>README ↗</ExternalLink></div><div><strong>Project</strong><ExternalLink href={repositoryUrl}>Repository ↗</ExternalLink><ExternalLink href={releasesUrl}>Releases ↗</ExternalLink></div><div><strong>Company</strong><ExternalLink href={theorvaneUrl}>Theorvane ↗</ExternalLink></div></nav></div><div className="shell footer-legal"><span>© 2026 Theorvane. OpenScene is open source under the MIT License.</span><span>Local by design.</span></div></footer>
 	</>;
 }

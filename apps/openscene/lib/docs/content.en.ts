@@ -1,9 +1,13 @@
+import { downloadUrl, releaseAssets, releaseTag } from "../releases";
+import type { Platform } from "../releases";
 import type { DocPage, LocaleStrings } from "./types";
+
+const platformLabels: Record<Platform, string> = { macos: "macOS", windows: "Windows", linux: "Linux" };
 
 export const enStrings: LocaleStrings = {
 	indexTitle: "OpenScene documentation",
-	indexSummary: "Install OpenScene from source, learn the workspace and timeline, put the Edit Agent to work, and connect only the model providers you want.",
-	indexLede: "OpenScene runs from source today — there is no packaged installer yet. Everything documented here is behaviour this build actually has; planned work is called out as not yet available.",
+	indexSummary: "Download OpenScene or run it from source, learn the workspace and timeline, put the Edit Agent to work, and connect only the model providers you want.",
+	indexLede: "OpenScene ships packaged builds for macOS, Windows, and Linux, and still runs from source. Everything documented here is behaviour this build actually has; planned work is called out as not yet available.",
 	sidebarLabel: "Documentation",
 	onThisPage: "On this page",
 	previous: "Previous",
@@ -19,7 +23,7 @@ const overview: DocPage = {
 	blocks: [
 		{ kind: "paragraph", text: "OpenScene is an open-source Electron application for editing video on your own machine. You open a folder as a project, put clips on a timeline, and export an H.264/AAC MP4 through the FFmpeg already installed on your system." },
 		{ kind: "paragraph", text: "What separates it from a conventional editor is the **Edit Agent**: a chat panel docked beside the timeline that calls the same operations the interface does. It can read your timeline, place and trim clips, generate voice or video, and start an export — and it asks for approval before anything that writes to your project." },
-		{ kind: "note", tone: "caution", text: "OpenScene is pre-release. It runs from source; there is no packaged installer and no auto-update. See [Install and run](/docs/install)." },
+		{ kind: "note", tone: "caution", text: "OpenScene is pre-release. Packaged builds are published for macOS, Windows, and Linux, and it still runs from source. See [Install and run](/docs/install)." },
 		{ kind: "heading", text: "What you get" },
 		{ kind: "list", items: [
 			"A real timeline — video and audio tracks, trim, split, move, duplicate, keyframes, transitions, per-track mix, undo and redo",
@@ -33,7 +37,7 @@ const overview: DocPage = {
 		{ kind: "heading", text: "Current boundaries" },
 		{ kind: "table", head: ["Works today", "Not yet"], rows: [
 			["Selected-window capture to local WebM", "Full-screen capture; microphone or system-audio mix in the recorder"],
-			["Local projects, media, timeline editing, undo and redo", "Cloud sync, hosted rendering, accounts, auto-update"],
+			["Local projects, media, timeline editing, undo and redo", "Cloud sync, hosted rendering, accounts"],
 			["Local H.264/AAC MP4 export", "Other export formats; frame-perfect multitrack mastering guarantees"],
 			["Agent-driven editing, generation, and export", "Unattended operation — writes always ask for approval"],
 			["Google Veo image-to-video via a reference image", "Sora reference images, which need a multipart upload path this build does not send"],
@@ -51,9 +55,13 @@ const overview: DocPage = {
 
 const install: DocPage = {
 	title: "Install and run",
-	summary: "Prerequisites, cloning the repository, pointing OpenScene at your FFmpeg, and verifying the build from source.",
+	summary: "Downloading a packaged build, or cloning the repository, pointing OpenScene at your FFmpeg, and verifying the build from source.",
 	blocks: [
-		{ kind: "note", tone: "caution", text: "There is no packaged installer or auto-update yet. OpenScene runs from source, and this page will say otherwise only when that changes." },
+		{ kind: "heading", text: "Download a packaged build" },
+		{ kind: "paragraph", text: `Packaged builds are published for macOS, Windows, and Linux on every release. ${releaseTag} is current:` },
+		{ kind: "table", head: ["Platform", "Build", "File"], rows: releaseAssets.map((asset) => [platformLabels[asset.platform], asset.variant, `[${asset.file}](${downloadUrl(asset)})`]) },
+		{ kind: "note", tone: "info", text: "The macOS builds are signed with a Developer ID certificate and notarized by Apple, so they open normally. The Windows builds are unsigned: SmartScreen warns on first run, and **More info → Run anyway** starts them. The Linux builds are unsigned, which is normal for AppImage and deb." },
+		{ kind: "paragraph", text: `Every platform still needs FFmpeg for export — see [Pointing at your FFmpeg](#pointing-at-your-ffmpeg) below. The rest of this page covers running from source, which stays supported alongside the packaged builds.` },
 		{ kind: "heading", text: "Prerequisites" },
 		{ kind: "list", items: [
 			"Node.js 22 or newer and npm 10 or newer",
@@ -73,7 +81,7 @@ const install: DocPage = {
 		{ kind: "paragraph", text: "Then choose the local model in the chat panel's model picker. Note that watching footage needs a vision-capable model — see [Providers and models](/docs/providers)." },
 		{ kind: "heading", text: "Verify from source" },
 		{ kind: "code", language: "bash", lines: ["npm run typecheck", "npm test", "npm run build"] },
-		{ kind: "paragraph", text: "`npm run build` compiles the main, preload, and renderer bundles into `out/`. It does not package an installer. Some behaviour can only be checked by hand: operating-system permissions, real provider calls, and final render quality." },
+		{ kind: "paragraph", text: "`npm run build` compiles the main, preload, and renderer bundles into `out/`. It does not package an installer — the published builds come from the release pipeline. Some behaviour can only be checked by hand: operating-system permissions, real provider calls, and final render quality." },
 	],
 };
 
@@ -322,7 +330,7 @@ const settings: DocPage = {
 		{ kind: "heading", text: "Local tool readiness" },
 		{ kind: "paragraph", text: "**Local Tools** reports whether the local runtime pieces export depends on are actually present, so a missing FFmpeg surfaces here instead of at the end of a render. Configure the path with `VIDEO_TOOL_FFMPEG_PATH` — see [Install and run](/docs/install)." },
 		{ kind: "heading", text: "Updates" },
-		{ kind: "note", tone: "caution", text: "There is no auto-update. **Updates** shows the installed version and explains that new releases reach this build by pulling the repository and rebuilding." },
+		{ kind: "note", tone: "info", text: "**Updates** shows the installed version. A packaged build checks for a published release and asks before it updates — nothing is downloaded or replaced without your answer. A build you run from source updates when you pull the repository and rebuild." },
 	],
 };
 
