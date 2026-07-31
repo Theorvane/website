@@ -6,7 +6,7 @@ const siteUrl = "https://theorvane.tech/";
 const github = "https://github.com/Theorvane";
 const typeMcp = "https://typemcp.theorvane.tech/";
 const typeChain = "https://typechain.theorvane.tech/";
-const openVideo = "https://open-video.app/";
+const openScene = "https://openscene.app/";
 
 const products = [
 	{
@@ -29,10 +29,10 @@ const products = [
 	},
 	{
 		description: "A local-first, open-source video editor for recording, editing, and exporting footage on your device. No cloud uploads, accounts, or analytics.",
-		href: openVideo,
-		icon: "/products/openvideo.svg",
-		iconAlt: "OpenVideo official product mark",
-		name: "OpenVideo",
+		href: openScene,
+		icon: "/products/openscene.svg",
+		iconAlt: "OpenScene official product mark",
+		name: "OpenScene",
 		number: "03",
 		signal: "Local workflow",
 	},
@@ -68,7 +68,7 @@ export default function HomePage() {
 						<div className="studio-orbit__core"><span>T</span></div>
 						<div className="studio-orbit__node studio-orbit__node--mcp"><img alt="" src="/products/typemcp.svg" /></div>
 						<div className="studio-orbit__node studio-orbit__node--chain"><img alt="" src="/products/typechain.svg" /></div>
-						<div className="studio-orbit__node studio-orbit__node--video"><img alt="" src="/products/openvideo.svg" /></div>
+						<div className="studio-orbit__node studio-orbit__node--scene"><img alt="" src="/products/openscene.svg" /></div>
 						<p>THE SYSTEM STAYS YOURS</p>
 					</div>
 				</div>
@@ -93,6 +93,6 @@ export default function HomePage() {
 
 			<section className="studio-close"><div className="shell studio-close__grid"><p className="eyebrow">Theorvane / Open by default</p><h2>Explore the products.<br /><em>Keep the system yours.</em></h2><div><a className="button primary" href="#products">Explore products</a><p>TypeScript-first · Protocol-aware · Open-source</p></div></div></section>
 		</main>
-		<footer className="studio-footer"><div className="shell studio-footer__grid"><div><a className="wordmark" href="#top">THEORVANE<span>®</span></a><p>Independent software studio building small, durable developer products.</p></div><nav aria-label="Theorvane footer"><div><strong>Products</strong><ExternalLink href={typeMcp}>TypeMCP ↗</ExternalLink><ExternalLink href={typeChain}>TypeChain ↗</ExternalLink><ExternalLink href={openVideo}>OpenVideo ↗</ExternalLink></div><div><strong>Studio</strong><a href="#principles">Principles</a><ExternalLink href={github}>GitHub ↗</ExternalLink></div></nav></div><div className="shell studio-footer__legal"><span>© {new Date().getFullYear()} Theorvane.</span><span>Built with intent.</span></div></footer>
+		<footer className="studio-footer"><div className="shell studio-footer__grid"><div><a className="wordmark" href="#top">THEORVANE<span>®</span></a><p>Independent software studio building small, durable developer products.</p></div><nav aria-label="Theorvane footer"><div><strong>Products</strong><ExternalLink href={typeMcp}>TypeMCP ↗</ExternalLink><ExternalLink href={typeChain}>TypeChain ↗</ExternalLink><ExternalLink href={openScene}>OpenScene ↗</ExternalLink></div><div><strong>Studio</strong><a href="#principles">Principles</a><ExternalLink href={github}>GitHub ↗</ExternalLink></div></nav></div><div className="shell studio-footer__legal"><span>© {new Date().getFullYear()} Theorvane.</span><span>Built with intent.</span></div></footer>
 	</>;
 }

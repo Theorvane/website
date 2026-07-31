@@ -8,7 +8,7 @@ import test from "node:test";
 const script = new URL("../scripts/validate-media-manifest.mjs", import.meta.url);
 
 const digest = (value) => createHash("sha256").update(value).digest("hex");
-const ids = ["studio-beacon", "typemcp-contract-island", "typechain-composition-island", "openvideo-local-studio", "product-constellation"];
+const ids = ["studio-beacon", "typemcp-contract-island", "typechain-composition-island", "openscene-local-studio", "product-constellation"];
 
 function validManifest() {
 	const variant = (aspectRatio, directory) => ({

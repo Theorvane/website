@@ -10,7 +10,7 @@
 
 ## Approved scope
 
-Refresh the public landing pages in `apps/theorvane`, `apps/type-mcp`, `apps/type-chain`, and `apps/openvideo`. They share a conversion and accessibility rhythm, but each keeps its own color, typography, product copy, and truthful runtime boundary.
+Refresh the public landing pages in `apps/theorvane`, `apps/type-mcp`, `apps/type-chain`, and `apps/openscene`. They share a conversion and accessibility rhythm, but each keeps its own color, typography, product copy, and truthful runtime boundary.
 
 ## Required evidence
 
@@ -18,4 +18,4 @@ Use focused RED/GREEN tests for the affected page contracts and responsive CSS c
 
 ## Prohibited claims
 
-Do not introduce fabricated social proof. Preserve the published TypeMCP and TypeChain package boundaries. Present OpenVideo AI functions only as planned if mentioned; do not describe them as released.
+Do not introduce fabricated social proof. Preserve the published TypeMCP and TypeChain package boundaries. Present OpenScene AI functions only as planned if mentioned; do not describe them as released.

@@ -373,7 +373,7 @@ expect(theorvaneScrollWorld.scenes.map((scene) => scene.id)).toEqual([
   "studio-beacon",
   "typemcp-contract-island",
   "typechain-composition-island",
-  "openvideo-local-studio",
+  "openscene-local-studio",
   "product-constellation",
 ]);
 expect(theorvaneScrollWorld.desktop.aspectRatio).toBe("16:9");
@@ -910,7 +910,7 @@ Include only non-secret facts:
 - desktop/mobile seam checklist;
 - reduced-motion/media-failure result;
 - exact verification command outcomes;
-- rollout recommendation for TypeMCP, TypeChain, and OpenVideo.
+- rollout recommendation for TypeMCP, TypeChain, and OpenScene.
 
 Do not write a claim that the rollout is authorized; it needs a new focused Issue and brief.
 
@@ -936,7 +936,7 @@ After latest-head approval and required checks, squash merge into `dev`, close/v
 
 **Step 6: Stop and report**
 
-Report pilot results, real media evidence, and exact release status. Do not begin TypeMCP, TypeChain, or OpenVideo generation until the user approves a new issue/brief based on the pilot report.
+Report pilot results, real media evidence, and exact release status. Do not begin TypeMCP, TypeChain, or OpenScene generation until the user approves a new issue/brief based on the pilot report.
 
 ---
 
@@ -949,4 +949,4 @@ Report pilot results, real media evidence, and exact release status. Do not begi
 - [x] Product claims and application-owned boundaries remain unchanged.
 - [x] Reduced motion, blocked media, keyboard navigation, and semantic fallback are verified.
 - [x] Every paid action has explicit user confirmation and halt conditions.
-- [x] The Theorvane pilot ends before any TypeMCP, TypeChain, or OpenVideo expansion begins.
+- [x] The Theorvane pilot ends before any TypeMCP, TypeChain, or OpenScene expansion begins.

@@ -35,10 +35,10 @@ describe("SignalPassage", () => {
 				label: "Compose",
 			},
 			{
-				alt: "OpenVideo editorial artwork showing a local edit held on-device.",
-				href: "https://open-video.app/",
+				alt: "OpenScene editorial artwork showing a local edit held on-device.",
+				href: "https://openscene.app/",
 				image: "/editorial-signal/passage/local.webp",
-				link: "Visit OpenVideo ↗",
+				link: "Visit OpenScene ↗",
 				label: "Keep local",
 			},
 		] as const;

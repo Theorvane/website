@@ -93,7 +93,7 @@ Specify a manifest with these IDs and required variants:
 ```json
 {
   "hero": { "desktop": { "poster": "...", "video": "..." }, "mobile": { "poster": "...", "video": "..." } },
-  "products": ["typemcp", "typechain", "openvideo"],
+  "products": ["typemcp", "typechain", "openscene"],
   "passage": ["declare", "compose", "local"]
 }
 ```
@@ -117,7 +117,7 @@ Produce:
 - hero desktop 16:9 and hero mobile 9:16 posters and silent loops;
 - TypeMCP (`declare`): porcelain folded contract planes and a magenta registration edge;
 - TypeChain (`compose`): independent modules at a precise open junction;
-- OpenVideo (`local`): contained physical edit / export object, no cloud symbolism;
+- OpenScene (`local`): contained physical edit / export object, no cloud symbolism;
 - one passage poster/loop each for declare, compose, local plus mobile variants.
 
 Use generated video only when native production is available; otherwise preserve the exact poster manifest and record a real blocker rather than fabricating a video. Encode generated loops as H.264 MP4 and derive poster WebP files from real frames.
@@ -191,7 +191,7 @@ git commit -m "feat(theorvane): add resilient editorial hero"
 
 ### Task 4: Replace product cards with semantic editorial features
 
-**Objective:** Present TypeMCP, TypeChain, and OpenVideo as a linear, responsive editorial product index.
+**Objective:** Present TypeMCP, TypeChain, and OpenScene as a linear, responsive editorial product index.
 
 **Files:**
 - Create: `apps/theorvane/components/product-editorial.tsx`
@@ -202,7 +202,7 @@ git commit -m "feat(theorvane): add resilient editorial hero"
 
 **Step 1: Write failing tests**
 
-Test that each feature exposes a numbered label, heading, descriptive still with meaningful alt text, and canonical outbound URL. Assert DOM order is TypeMCP → TypeChain → OpenVideo regardless of alternating desktop layout.
+Test that each feature exposes a numbered label, heading, descriptive still with meaningful alt text, and canonical outbound URL. Assert DOM order is TypeMCP → TypeChain → OpenScene regardless of alternating desktop layout.
 
 **Step 2: Run red test**
 

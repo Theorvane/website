@@ -17,7 +17,7 @@
 ## Guardrails
 
 - Do not generate assets, spend credits, purchase services, modify secrets, deploy, or change application product boundaries until the spec and production plan receive explicit review/approval.
-- Keep TypeMCP, TypeChain, and OpenVideo claims within their published capability boundaries.
+- Keep TypeMCP, TypeChain, and OpenScene claims within their published capability boundaries.
 - Preserve semantic content, reduced-motion, media-failure, keyboard, and low-bandwidth fallbacks.
 
 ## Design artifact

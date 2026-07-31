@@ -32,7 +32,7 @@ The world uses **dark technical dioramas**: warm black ground, mineral/steel for
 | 01 — Boundary Atlas | A studio beacon above a terrain grid; three independent surfaces are visible as separate structures. | “Three surfaces. Explicit junctions.” → `#products` |
 | 02 — TypeMCP Contract Island | Contract observatory; declaration forms pass through an open compiler bridge toward an MCP edge. | Explicit MCP declarations; runtime policy and deployment remain application-owned. → TypeMCP |
 | 03 — TypeChain Composition Island | Modular typed tool workshop; rails stop visibly before the consumer application horizon. | Typed composition at the edge; models, credentials, policy, state, and hosting remain application-owned. → TypeChain |
-| 04 — OpenVideo Local Studio | Contained local edit desk with capture object, timeline rails, and export case. | Capture, edit, and export stay on-device; no cloud uploads, accounts, or analytics. → OpenVideo |
+| 04 — OpenScene Local Studio | Contained local edit desk with capture object, timeline rails, and export case. | Capture, edit, and export stay on-device; no cloud uploads, accounts, or analytics. → OpenScene |
 | 05 — Product Constellation | Camera rises to the three independent product islands surrounding the beacon. | “Return with the system still yours.” → `#products` |
 
 Connector generation must use the real extracted last frame of clip *n* and real extracted first frame of clip *n+1*. A visible seam stops the batch until corrected.

@@ -4,7 +4,7 @@
 
 **Goal:** Refresh the four public Theorvane landing pages with a shared product-discovery rhythm while preserving their distinct visual identities and accurate product boundaries.
 
-**Architecture:** Keep each app self-contained in its existing Next.js App Router workspace. Update only static page composition, app-local CSS, and focused Vitest contracts. Theorvane becomes the product index; TypeMCP and TypeChain expose documentation-first developer flows with their published boundaries; OpenVideo foregrounds its released local workflow and privacy boundary.
+**Architecture:** Keep each app self-contained in its existing Next.js App Router workspace. Update only static page composition, app-local CSS, and focused Vitest contracts. Theorvane becomes the product index; TypeMCP and TypeChain expose documentation-first developer flows with their published boundaries; OpenScene foregrounds its released local workflow and privacy boundary.
 
 **Tech Stack:** Next.js 16 App Router, React 19, strict TypeScript, CSS custom properties, Vitest 4, Testing Library, npm workspaces, Turborepo.
 
@@ -24,7 +24,7 @@ For every production-code task, add or amend the specified test first and run it
 - Modify: `apps/theorvane/test/home.test.tsx`
 - Create: `apps/theorvane/test/responsive-contract.test.ts`
 
-**Step 1: Write failing page tests.** Add assertions that the hero primary action is named `Explore products` and targets `#products`, and that the product index contains one canonical external destination for TypeMCP (`https://typemcp.theorvane.tech/`), TypeChain (`https://typechain.theorvane.tech/`), and OpenVideo (`https://open-video.app/`). Assert that the principles and closing product CTA remain discoverable.
+**Step 1: Write failing page tests.** Add assertions that the hero primary action is named `Explore products` and targets `#products`, and that the product index contains one canonical external destination for TypeMCP (`https://typemcp.theorvane.tech/`), TypeChain (`https://typechain.theorvane.tech/`), and OpenScene (`https://openscene.app/`). Assert that the principles and closing product CTA remain discoverable.
 
 **Step 2: Write a failing narrow-layout contract.** Read `app/globals.css` and assert that the compact breakpoint makes the product grid one column, stacks the hero actions, and permits navigation to wrap inside the viewport.
 
@@ -188,13 +188,13 @@ git commit -m "feat(type-chain): clarify ownership-first evaluation flow"
 git push
 ```
 
-## Task 7: Add OpenVideo released-workflow contracts
+## Task 7: Add OpenScene released-workflow contracts
 
 **Objective:** Define a visible local capture-to-export flow without overstating AI availability.
 
 **Files:**
-- Modify: `apps/openvideo/test/home.test.tsx`
-- Modify: `apps/openvideo/test/responsive-contract.test.ts`
+- Modify: `apps/openscene/test/home.test.tsx`
+- Modify: `apps/openscene/test/responsive-contract.test.ts`
 
 **Step 1: Write failing page tests.** Assert that the local workflow contains `Capture`, `Edit`, and `Export`; that the privacy section lists recordings, projects, imported assets, voice profiles, and exports as local; and that no text claims AI-assisted editing, AI generation, or connected services are currently available.
 
@@ -205,20 +205,20 @@ git push
 Run:
 
 ```bash
-npm run test --workspace=@theorvane/openvideo-site
+npm run test --workspace=@theorvane/openscene-site
 ```
 
 Expected: FAIL because the structured workflow and complete local-storage boundary do not yet exist.
 
-## Task 8: Implement OpenVideo’s local workflow and privacy boundary
+## Task 8: Implement OpenScene’s local workflow and privacy boundary
 
 **Objective:** Improve product comprehension while keeping all current claims factual.
 
 **Files:**
-- Modify: `apps/openvideo/app/page.tsx`
-- Modify: `apps/openvideo/app/globals.css`
-- Modify: `apps/openvideo/test/home.test.tsx`
-- Modify: `apps/openvideo/test/responsive-contract.test.ts`
+- Modify: `apps/openscene/app/page.tsx`
+- Modify: `apps/openscene/app/globals.css`
+- Modify: `apps/openscene/test/home.test.tsx`
+- Modify: `apps/openscene/test/responsive-contract.test.ts`
 
 **Step 1: Implement the released workflow.** Keep the existing hero title and GitHub/release destinations. Rework the adjacent preview into three named semantic stages: `Capture` a selected window, `Edit` on a local timeline, and `Export` an MP4 to the device.
 
@@ -233,7 +233,7 @@ Expected: FAIL because the structured workflow and complete local-storage bounda
 Run:
 
 ```bash
-npm run test --workspace=@theorvane/openvideo-site
+npm run test --workspace=@theorvane/openscene-site
 ```
 
 Expected: PASS.
@@ -241,8 +241,8 @@ Expected: PASS.
 **Step 6: Commit and push.**
 
 ```bash
-git add apps/openvideo/app/page.tsx apps/openvideo/app/globals.css apps/openvideo/test/home.test.tsx apps/openvideo/test/responsive-contract.test.ts
-git commit -m "feat(openvideo): surface local capture-to-export workflow"
+git add apps/openscene/app/page.tsx apps/openscene/app/globals.css apps/openscene/test/home.test.tsx apps/openscene/test/responsive-contract.test.ts
+git commit -m "feat(openscene): surface local capture-to-export workflow"
 git push
 ```
 
@@ -289,7 +289,7 @@ Expected: only the four app page/CSS/test slices and their responsive tests are 
 npm run build --workspace=@theorvane/theorvane-site
 npm run build --workspace=@theorvane/type-mcp-site
 npm run build --workspace=@theorvane/type-chain-site
-npm run build --workspace=@theorvane/openvideo-site
+npm run build --workspace=@theorvane/openscene-site
 ```
 
 Start the corresponding production server only after its final build and verify the served document uses current assets.
