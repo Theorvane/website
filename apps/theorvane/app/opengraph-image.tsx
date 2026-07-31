@@ -46,7 +46,7 @@ export default function OpenGraphImage() {
 
 				<div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: muted }}>
 					<div style={{ display: "flex" }}>theorvane.tech</div>
-					<div style={{ display: "flex" }}>TypeMCP · TypeChain · OpenVideo</div>
+					<div style={{ display: "flex" }}>TypeMCP · TypeChain · OpenScene</div>
 				</div>
 			</div>
 		),

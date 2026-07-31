@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
-export const APPROVED_SCENE_IDS = ["studio-beacon", "typemcp-contract-island", "typechain-composition-island", "openvideo-local-studio", "product-constellation"];
+export const APPROVED_SCENE_IDS = ["studio-beacon", "typemcp-contract-island", "typechain-composition-island", "openscene-local-studio", "product-constellation"];
 const APPROVED_MODELS = new Set(["seedance_2_0"]);
 const checksum = /^[a-f0-9]{64}$/i;
 const rootPath = (value) => typeof value === "string" && value.startsWith("/") && !value.includes("?") && !value.includes("..") && !value.includes("//");

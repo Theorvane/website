@@ -17,15 +17,15 @@ test("root workspace defines public website apps and quality gates", async () =>
 	assert.ok(manifest.scripts?.build);
 });
 
-test("source documentation lists the independently deployable OpenVideo and TypeChain sites", async () => {
+test("source documentation lists the independently deployable OpenScene and TypeChain sites", async () => {
 	const [readme, guide] = await Promise.all([
 		readFile(project("README.md"), "utf8"),
 		readFile(project("AGENTS.md"), "utf8"),
 	]);
 
 	for (const content of [readme, guide]) {
-		assert.match(content, /apps\/openvideo/);
-		assert.match(content, /https:\/\/open-video\.app/);
+		assert.match(content, /apps\/openscene/);
+		assert.match(content, /https:\/\/openscene\.app/);
 		assert.match(content, /apps\/type-chain/);
 		assert.match(content, /https:\/\/typechain\.theorvane\.tech/);
 	}

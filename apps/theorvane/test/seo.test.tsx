@@ -59,6 +59,6 @@ describe("Theorvane technical SEO", () => {
 
 	it("declares the canonical host and a dated sitemap entry", () => {
 		expect(robots().host).toBe("https://theorvane.tech");
-		expect(sitemap()).toEqual([{ url: "https://theorvane.tech/", lastModified: "2026-07-30", changeFrequency: "monthly", priority: 1 }]);
+		expect(sitemap()).toEqual([{ url: "https://theorvane.tech/", lastModified: "2026-07-31", changeFrequency: "monthly", priority: 1 }]);
 	});
 });

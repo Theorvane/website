@@ -1,0 +1,9 @@
+@@ -93,7 +93,7 @@
+ 			<section className="studio-close"><div className="shell studio-close__grid"><p className="eyebrow">Theorvane / Open by default</p><h2>Explore the products.<br /><em>Keep the system yours.</em></h2><div><a className="button primary" href="#products">Explore products</a><p>TypeScript-first · Protocol-aware · Open-source</p></div></div></section>
+ 		</main>
+-		<footer className="studio-footer"><div className="shell studio-footer__grid"><div><a className="wordmark" href="#top">THEORVANE<span>®</span></a><p>Independent software studio building small, durable developer products.</p></div><nav aria-label="Theorvane footer"><div><strong>Products</strong><ExternalLink href={typeMcp}>TypeMCP ↗</ExternalLink><ExternalLink href={typeChain}>TypeChain ↗</ExternalLink><ExternalLink href={openVideo}>OpenVideo ↗</ExternalLink></div><div><strong>Studio</strong><a href="#principles">Principles</a><ExternalLink href={github}>GitHub ↗</ExternalLink></div></nav></div><div className="shell studio-footer__legal"><span>© {new Date().getFullYear()} Theorvane.</span><span>Built with intent.</span></div></footer>
++		<footer className="studio-footer"><div className="shell studio-footer__grid"><div><a className="wordmark" href="#top">THEORVANE<span>®</span></a><p>Independent software studio building small, durable developer products.</p></div><nav aria-label="Theorvane footer"><div><strong>Products</strong><ExternalLink href={typeMcp}>TypeMCP ↗</ExternalLink><ExternalLink href={typeChain}>TypeChain ↗</ExternalLink><ExternalLink href={openScene}>OpenScene ↗</ExternalLink></div><div><strong>Studio</strong><a href="#principles">Principles</a><ExternalLink href={github}>GitHub ↗</ExternalLink></div></nav></div><div className="shell studio-footer__legal"><span>© {new Date().getFullYear()} Theorvane.</span><span>Built with intent.</span></div></footer>
+ 	</>;
+ }
+ 
+ 
