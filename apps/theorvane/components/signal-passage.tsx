@@ -20,12 +20,12 @@ const scenes = [
 		title: "Compose at the edge.",
 	},
 	{
-		alt: "OpenVideo editorial artwork showing a local edit held on-device.",
+		alt: "OpenScene editorial artwork showing a local edit held on-device.",
 		description: "Record, edit, and export on your device without cloud uploads, accounts, or analytics.",
-		href: "https://open-video.app/",
+		href: "https://openscene.app/",
 		image: "/editorial-signal/passage/local.webp",
 		label: "Keep local",
-		link: "Visit OpenVideo ↗",
+		link: "Visit OpenScene ↗",
 		title: "Keep the edit local.",
 	},
 ] as const;

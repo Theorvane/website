@@ -7,7 +7,7 @@
 
 Add the approved RybbIt tracking script to the document head of each independently deployed Next.js application. Each app must carry its own immutable site ID:
 
-- OpenVideo: `765035acbe87`
+- OpenScene: `765035acbe87`
 - TypeMCP: `c37c7591084c`
 - Theorvane: `13051a0ca43f`
 
@@ -15,7 +15,7 @@ All scripts load from `https://rybbit.handgarden.kr/api/script.js` with deferred
 
 ## Non-goals
 
-- Do not modify the OpenVideo desktop application.
+- Do not modify the OpenScene desktop application.
 - Do not introduce another provider, consent UI, cookies, runtime configuration, or deployment configuration.
 
 ## Quality gates

@@ -8,7 +8,7 @@
 
 The homepage remains an English, canonical source for the independent Theorvane studio. It retains:
 
-- The three products and canonical destinations: TypeMCP, TypeChain, and OpenVideo.
+- The three products and canonical destinations: TypeMCP, TypeChain, and OpenScene.
 - The claims that runtime policy, models, credentials, hosting, and deployment remain application-owned.
 - Semantic landmarks, skip link, SEO metadata, canonical URLs, keyboard navigation, and reduced-motion behavior.
 - The application icon as the visual source of truth, not a decorative afterthought.
@@ -45,7 +45,7 @@ Lime, chartreuse, olive, green glows, and green grid imagery are removed. Magent
 2. **Hero: Studio statement** — two-column composition: left headline and two actions, right or full-bleed original loop. The hero media uses dark navy architecture, porcelain forms, and a single magenta diagonal event.
 3. **Manifesto strip** — three numbered studio principles in a porcelain interval, replacing the existing dark signal row.
 4. **Product index** — one editorial feature per product: number, title, short truthful boundary description, canonical link, and newly created still. Layout alternates media/text alignment but remains linear in DOM and on mobile.
-5. **Signal passage** — a short, three-scene visual transition rather than a 500vh story-card stack. The three scenes are: `Declare` (TypeMCP), `Compose` (TypeChain), `Keep local` (OpenVideo). The stage is a visible autoplaying loop; controls are not required because it is decorative, silent media. Adjacent text remains separate from the video plane.
+5. **Signal passage** — a short, three-scene visual transition rather than a 500vh story-card stack. The three scenes are: `Declare` (TypeMCP), `Compose` (TypeChain), `Keep local` (OpenScene). The stage is a visible autoplaying loop; controls are not required because it is decorative, silent media. Adjacent text remains separate from the video plane.
 6. **Proof and principles** — editorial proof block followed by the three studio principles, with an explicit boundary statement rather than pseudo-code decoration.
 7. **Closing CTA and footer** — porcelain/ink inversion, product index action, official destinations, copyright.
 

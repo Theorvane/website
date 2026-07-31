@@ -9,7 +9,7 @@ const siteUrl = "https://theorvane.tech/";
 const github = "https://github.com/Theorvane";
 const typeMcp = "https://typemcp.theorvane.tech/";
 const typeChain = "https://typechain.theorvane.tech/";
-const openVideo = "https://open-video.app/";
+const openScene = "https://openscene.app/";
 
 const products = [
 	{
@@ -32,10 +32,10 @@ const products = [
 	},
 	{
 		description: "A local-first, open-source video editor for recording, editing, and exporting footage on your device. No cloud uploads, accounts, or analytics.",
-		href: openVideo,
-		image: "/editorial-signal/products/openvideo.webp",
-		imageAlt: "OpenVideo editorial artwork showing a local obsidian archive case and porcelain film strips.",
-		name: "OpenVideo",
+		href: openScene,
+		image: "/editorial-signal/products/openscene.webp",
+		imageAlt: "OpenScene editorial artwork showing a local obsidian archive case and porcelain film strips.",
+		name: "OpenScene",
 		number: "03",
 		signal: "Local workflow",
 	},

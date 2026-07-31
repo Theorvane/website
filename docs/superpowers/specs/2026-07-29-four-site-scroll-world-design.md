@@ -10,17 +10,17 @@ Create a shared scroll-driven cinematic presentation system for four independent
 - `theorvane.tech` — the brand and product index
 - `typemcp.theorvane.tech` — TypeMCP’s declared-contract boundaries
 - `typechain.theorvane.tech` — TypeChain’s optional composition boundaries
-- `open-video.app` — OpenVideo’s released local workflow
+- `openscene.app` — OpenScene’s released local workflow
 
 The design borrows only the *interaction pattern* of a scroll-scrubbed cinematic world: scrolling controls elapsed time in pre-rendered media. It does not copy another company’s images, wording, branding, or visual identity.
 
-The first production slice is a fully validated Theorvane pilot. TypeMCP, TypeChain, and OpenVideo reuse the media-manifest and scrub-engine contract only after the pilot’s media quality, user experience, accessibility, and cost results are accepted.
+The first production slice is a fully validated Theorvane pilot. TypeMCP, TypeChain, and OpenScene reuse the media-manifest and scrub-engine contract only after the pilot’s media quality, user experience, accessibility, and cost results are accepted.
 
 The system must not create product claims. In particular:
 
 - TypeMCP remains declarations/compiler/stdio, an HTTP subpath, and a tools-only LangChain adapter. Consumer applications own models, auth, policy, graphs, state, persistence, hosting, and deployment.
 - TypeChain remains metadata plus optional LangChain, agent-builder, and in-process TypeMCP composition. Consumer applications own models, credentials, authorization, policy judgment, state, persistence, hosting, and deployment.
-- OpenVideo remains a local-first application for capture, edit, and export. It must not imply hosted, cloud, analytics, account, or AI-generation functionality.
+- OpenScene remains a local-first application for capture, edit, and export. It must not imply hosted, cloud, analytics, account, or AI-generation functionality.
 
 ## 2. Experience model
 
@@ -70,7 +70,7 @@ For every connector, the start image is extracted from the previous rendered div
 | `studio-beacon` | A compact night studio atop a luminous terrain grid; focused light reveals a precise working table. | Independent studio; durable, inspectable developer products. | `#products` |
 | `typemcp-contract-island` | A small TypeScript contract observatory: declaration cards flow through a visible compiler bridge toward an MCP gateway. | TypeMCP’s explicit declaration and MCP boundary. | `https://typemcp.theorvane.tech/` |
 | `typechain-composition-island` | A modular tool workshop with typed connections that stop at a clearly open application boundary. | TypeChain composition; applications retain ownership. | `https://typechain.theorvane.tech/` |
-| `openvideo-local-studio` | A local editing desk with camera, timeline rails, and an export case inside a contained workstation. | Local capture, local edit, local export. | `https://open-video.app/` |
+| `openscene-local-studio` | A local editing desk with camera, timeline rails, and an export case inside a contained workstation. | Local capture, local edit, local export. | `https://openscene.app/` |
 | `product-constellation` | The camera rises to reveal all three products as connected, independent islands surrounding the studio beacon. | Choose a focused tool; preserve system ownership. | `#products` |
 
 The final scene ends in a still frame with readable HTML headline and a product-index CTA. Generated media must not contain real words, product marks, or interface labels.
@@ -91,7 +91,7 @@ The final scene ends in a still frame with readable HTML headline and a product-
 4. **Composition bridge** — optional direct agent-builder and in-process TypeMCP bridge.
 5. **Application-owned horizon** — model, credentials, authorization, policy judgment, state, persistence, hosting, and deployment stay with the application.
 
-### 3.4 OpenVideo rollout map
+### 3.4 OpenScene rollout map
 
 1. **Capture room** — selected-window capture stays on the device.
 2. **Local media shelf** — files and projects remain local.
@@ -193,10 +193,10 @@ The pilot is accepted only if all of the following hold:
 - page performance and responsive QA meet the recorded budget;
 - reviewer approval and protected-branch CI pass.
 
-Only then may a new issue/brief advance TypeMCP, TypeChain, and OpenVideo from the rollout maps in section 3.
+Only then may a new issue/brief advance TypeMCP, TypeChain, and OpenScene from the rollout maps in section 3.
 
 ## 8. Explicit non-goals
 
 - No generated source code or visual media is committed before a dedicated asset review confirms licensing, quality, and repository size policy.
 - No direct production deployment, branch-protection change, secret mutation, account connection, TikTok action, credit purchase, analytics addition, or hosted product capability.
-- No version, API, dependency, package, or product-boundary changes in TypeMCP, TypeChain, or OpenVideo.
+- No version, API, dependency, package, or product-boundary changes in TypeMCP, TypeChain, or OpenScene.

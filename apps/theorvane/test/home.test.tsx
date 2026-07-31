@@ -32,7 +32,7 @@ describe("Theorvane homepage", () => {
 		expect(screen.getByRole("heading", { name: /choose a focused tool/i })).toBeTruthy();
 		expect(screen.getAllByRole("link", { name: /typemcp/i }).some((link) => link.getAttribute("href") === "https://typemcp.theorvane.tech/")).toBe(true);
 		expect(screen.getAllByRole("link", { name: /typechain/i }).some((link) => link.getAttribute("href") === "https://typechain.theorvane.tech/")).toBe(true);
-		expect(screen.getAllByRole("link", { name: /openvideo/i }).some((link) => link.getAttribute("href") === "https://open-video.app/")).toBe(true);
+		expect(screen.getAllByRole("link", { name: /openscene/i }).some((link) => link.getAttribute("href") === "https://openscene.app/")).toBe(true);
 	});
 
 	it("renders the three-scene Editorial Signal passage as semantic content with canonical destinations", () => {
@@ -48,7 +48,7 @@ describe("Theorvane homepage", () => {
 		]);
 		expect(screen.getByRole("link", { name: "Visit TypeMCP ↗" }).getAttribute("href")).toBe("https://typemcp.theorvane.tech/");
 		expect(screen.getByRole("link", { name: "Visit TypeChain ↗" }).getAttribute("href")).toBe("https://typechain.theorvane.tech/");
-		expect(screen.getByRole("link", { name: "Visit OpenVideo ↗" }).getAttribute("href")).toBe("https://open-video.app/");
+		expect(screen.getByRole("link", { name: "Visit OpenScene ↗" }).getAttribute("href")).toBe("https://openscene.app/");
 	});
 
 	it("features TypeChain with its official typed-tool product destination", () => {
@@ -62,12 +62,12 @@ describe("Theorvane homepage", () => {
 		expect(screen.getByText(/models, credentials, policy enforcement, and deployment/i)).toBeTruthy();
 	});
 
-	it("features OpenVideo with its official local-first product destination", () => {
+	it("features OpenScene with its official local-first product destination", () => {
 		render(createElement(HomePage));
 
-		expect(screen.getByRole("heading", { name: "OpenVideo" })).toBeTruthy();
-		expect(screen.getByRole("link", { name: /explore openvideo/i }).getAttribute("href")).toBe(
-			"https://open-video.app/",
+		expect(screen.getByRole("heading", { name: "OpenScene" })).toBeTruthy();
+		expect(screen.getByRole("link", { name: /explore openscene/i }).getAttribute("href")).toBe(
+			"https://openscene.app/",
 		);
 		expect(screen.getByText(/local-first, open-source video editor/i)).toBeTruthy();
 		expect(screen.getByText(/no cloud uploads, accounts, or analytics/i)).toBeTruthy();

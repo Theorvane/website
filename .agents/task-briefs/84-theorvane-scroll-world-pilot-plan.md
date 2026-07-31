@@ -17,4 +17,4 @@ This documentation task creates an executable plan only. It does not create an i
 - Verify TDD order and commands are exact for every code task.
 - Verify distinct native 16:9/9:16 media and actual-frame connector requirements remain mandatory.
 - Verify the cost gate needs explicit active-conversation approval for both calibration and the full production batch.
-- Verify all TypeMCP, TypeChain, and OpenVideo boundaries remain consumer/local-owned as defined in the merged design.
+- Verify all TypeMCP, TypeChain, and OpenScene boundaries remain consumer/local-owned as defined in the merged design.

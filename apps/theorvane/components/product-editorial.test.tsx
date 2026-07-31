@@ -24,10 +24,10 @@ const products = [
 	},
 	{
 		description: "A local-first, open-source video editor for recording, editing, and exporting footage on your device.",
-		href: "https://open-video.app/",
-		image: "/editorial-signal/products/openvideo.webp",
-		imageAlt: "OpenVideo editorial artwork showing a local editing timeline.",
-		name: "OpenVideo",
+		href: "https://openscene.app/",
+		image: "/editorial-signal/products/openscene.webp",
+		imageAlt: "OpenScene editorial artwork showing a local editing timeline.",
+		name: "OpenScene",
 		number: "03",
 		signal: "Local workflow",
 	},
@@ -41,7 +41,7 @@ describe("ProductEditorial", () => {
 		expect(articles.map((article) => article.querySelector("h3")?.textContent)).toEqual([
 			"TypeMCP",
 			"TypeChain",
-			"OpenVideo",
+			"OpenScene",
 		]);
 
 		for (const product of products) {
