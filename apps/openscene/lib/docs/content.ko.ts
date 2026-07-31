@@ -1,9 +1,13 @@
+import { downloadUrl, releaseAssets, releaseTag } from "../releases";
+import type { Platform } from "../releases";
 import type { DocPage, LocaleStrings } from "./types";
+
+const platformLabels: Record<Platform, string> = { macos: "macOS", windows: "Windows", linux: "Linux" };
 
 export const koStrings: LocaleStrings = {
 	indexTitle: "OpenScene 문서",
-	indexSummary: "소스에서 OpenScene을 실행하고, 워크스페이스와 타임라인을 익히고, Edit Agent를 활용하고, 원하는 모델 프로바이더만 연결하는 방법을 다룹니다.",
-	indexLede: "OpenScene은 현재 소스에서 실행합니다. 패키징된 설치 파일은 아직 없습니다. 이 문서에 적힌 내용은 모두 지금 빌드에 실제로 있는 동작이며, 예정된 작업은 아직 제공하지 않는다고 명시합니다.",
+	indexSummary: "OpenScene을 내려받거나 소스에서 실행하고, 워크스페이스와 타임라인을 익히고, Edit Agent를 활용하고, 원하는 모델 프로바이더만 연결하는 방법을 다룹니다.",
+	indexLede: "OpenScene은 macOS · Windows · Linux용 패키징 빌드를 제공하며, 소스에서 실행하는 방법도 그대로 지원합니다. 이 문서에 적힌 내용은 모두 지금 빌드에 실제로 있는 동작이며, 예정된 작업은 아직 제공하지 않는다고 명시합니다.",
 	sidebarLabel: "문서",
 	onThisPage: "이 페이지 내용",
 	previous: "이전",
@@ -19,7 +23,7 @@ const overview: DocPage = {
 	blocks: [
 		{ kind: "paragraph", text: "OpenScene은 내 컴퓨터에서 영상을 편집하는 오픈소스 Electron 애플리케이션입니다. 폴더를 하나 열어 프로젝트로 삼고, 타임라인에 클립을 올리고, 시스템에 이미 설치된 FFmpeg로 H.264/AAC MP4를 내보냅니다." },
 		{ kind: "paragraph", text: "일반적인 편집기와 다른 점은 **Edit Agent**입니다. 타임라인 옆에 고정된 채팅 패널이 인터페이스와 똑같은 작업을 호출합니다. 타임라인을 읽고, 클립을 배치하고 자르고, 음성과 영상을 생성하고, 내보내기를 시작할 수 있습니다. 그리고 프로젝트에 쓰기가 일어나는 작업은 그 전에 반드시 승인을 요청합니다." },
-		{ kind: "note", tone: "caution", text: "OpenScene은 정식 출시 전입니다. 소스에서 실행하며 패키징된 설치 파일과 자동 업데이트가 없습니다. [설치와 실행](/docs/ko/install)을 참고하세요." },
+		{ kind: "note", tone: "caution", text: "OpenScene은 정식 출시 전입니다. macOS · Windows · Linux용 패키징 빌드를 배포하며, 소스에서 실행하는 방법도 그대로 지원합니다. [설치와 실행](/docs/ko/install)을 참고하세요." },
 		{ kind: "heading", text: "제공하는 것" },
 		{ kind: "list", items: [
 			"제대로 된 타임라인 — 비디오·오디오 트랙, 자르기, 분할, 이동, 복제, 키프레임, 트랜지션, 트랙별 믹스, 되돌리기와 다시 실행",
@@ -33,7 +37,7 @@ const overview: DocPage = {
 		{ kind: "heading", text: "현재 경계" },
 		{ kind: "table", head: ["지금 되는 것", "아직 안 되는 것"], rows: [
 			["선택한 창을 로컬 WebM으로 캡처", "전체 화면 캡처, 레코더의 마이크·시스템 오디오 믹스"],
-			["로컬 프로젝트, 미디어, 타임라인 편집, 되돌리기/다시 실행", "클라우드 동기화, 호스팅 렌더링, 계정, 자동 업데이트"],
+			["로컬 프로젝트, 미디어, 타임라인 편집, 되돌리기/다시 실행", "클라우드 동기화, 호스팅 렌더링, 계정"],
 			["로컬 H.264/AAC MP4 내보내기", "다른 내보내기 포맷, 프레임 단위 정확도를 보장하는 멀티트랙 마스터링"],
 			["에이전트 주도 편집·생성·내보내기", "무인 실행 — 쓰기 작업은 항상 승인을 요청합니다"],
 			["레퍼런스 이미지를 이용한 Google Veo image-to-video", "Sora 레퍼런스 이미지 (이 빌드가 보내지 않는 multipart 업로드 경로가 필요)"],
@@ -51,9 +55,13 @@ const overview: DocPage = {
 
 const install: DocPage = {
 	title: "설치와 실행",
-	summary: "사전 요구사항, 저장소 클론, FFmpeg 경로 지정, 소스에서 빌드 검증까지.",
+	summary: "패키징 빌드 내려받기, 저장소 클론, FFmpeg 경로 지정, 소스에서 빌드 검증까지.",
 	blocks: [
-		{ kind: "note", tone: "caution", text: "패키징된 설치 파일과 자동 업데이트는 아직 없습니다. OpenScene은 소스에서 실행하며, 이 문서는 그 사실이 바뀔 때에만 다르게 적힐 것입니다." },
+		{ kind: "heading", text: "패키징 빌드 내려받기" },
+		{ kind: "paragraph", text: `릴리스마다 macOS · Windows · Linux용 패키징 빌드를 함께 배포합니다. 현재 버전은 ${releaseTag}입니다.` },
+		{ kind: "table", head: ["플랫폼", "빌드", "파일"], rows: releaseAssets.map((asset) => [platformLabels[asset.platform], asset.variant, `[${asset.file}](${downloadUrl(asset)})`]) },
+		{ kind: "note", tone: "info", text: "macOS 빌드는 Developer ID 인증서로 서명하고 Apple 공증을 받아 그대로 열립니다. Windows 빌드는 서명하지 않아 첫 실행에서 SmartScreen 경고가 뜨는데, **추가 정보 → 실행**을 누르면 시작됩니다. Linux 빌드도 서명하지 않으며, AppImage와 deb에서는 일반적인 방식입니다." },
+		{ kind: "paragraph", text: "어느 플랫폼이든 내보내기에는 FFmpeg이 필요합니다. 아래 [FFmpeg 경로 지정](#ffmpeg-경로-지정)을 참고하세요. 이 문서의 나머지는 소스에서 실행하는 방법이며, 패키징 빌드와 함께 계속 지원됩니다." },
 		{ kind: "heading", text: "사전 요구사항" },
 		{ kind: "list", items: [
 			"Node.js 22 이상, npm 10 이상",
@@ -73,7 +81,7 @@ const install: DocPage = {
 		{ kind: "paragraph", text: "그다음 채팅 패널의 모델 선택기에서 로컬 모델을 고르세요. 다만 영상을 보고 판단하는 기능에는 비전 지원 모델이 필요합니다. [프로바이더와 모델](/docs/ko/providers)을 참고하세요." },
 		{ kind: "heading", text: "소스에서 검증" },
 		{ kind: "code", language: "bash", lines: ["npm run typecheck", "npm test", "npm run build"] },
-		{ kind: "paragraph", text: "`npm run build`는 main, preload, 렌더러 번들을 `out/`으로 컴파일합니다. 설치 파일을 패키징하지는 않습니다. 운영체제 권한, 실제 프로바이더 호출, 최종 렌더 품질처럼 수동으로만 확인할 수 있는 동작도 있습니다." },
+		{ kind: "paragraph", text: "`npm run build`는 main, preload, 렌더러 번들을 `out/`으로 컴파일합니다. 설치 파일을 패키징하지는 않으며, 배포되는 빌드는 릴리스 파이프라인에서 만들어집니다. 운영체제 권한, 실제 프로바이더 호출, 최종 렌더 품질처럼 수동으로만 확인할 수 있는 동작도 있습니다." },
 	],
 };
 
@@ -322,7 +330,7 @@ const settings: DocPage = {
 		{ kind: "heading", text: "로컬 도구 준비 상태" },
 		{ kind: "paragraph", text: "**Local Tools**는 내보내기가 의존하는 로컬 런타임 요소가 실제로 있는지 알려주므로, FFmpeg가 없다면 렌더 마지막이 아니라 여기서 드러납니다. 경로는 `VIDEO_TOOL_FFMPEG_PATH`로 설정합니다 — [설치와 실행](/docs/ko/install) 참고." },
 		{ kind: "heading", text: "업데이트" },
-		{ kind: "note", tone: "caution", text: "자동 업데이트는 없습니다. **Updates**는 설치된 버전을 보여주고, 새 릴리스는 저장소를 pull해 다시 빌드하는 방식으로 반영된다고 안내합니다." },
+		{ kind: "note", tone: "info", text: "**Updates**는 설치된 버전을 보여줍니다. 패키징 빌드는 배포된 릴리스를 확인한 뒤 업데이트할지 먼저 묻습니다. 답하기 전에는 아무것도 내려받거나 교체하지 않습니다. 소스에서 실행하는 빌드는 저장소를 pull해 다시 빌드하면 반영됩니다." },
 	],
 };
 
