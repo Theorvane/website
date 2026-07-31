@@ -15,6 +15,14 @@ describe("OpenScene homepage", () => {
 		expect(screen.getByRole("link", { name: /Theorvane/i }).getAttribute("href")).toBe("https://theorvane.tech/");
 	});
 
+	it("delivers the approved dark Workspace Surface instead of an appended generic panel", () => {
+		render(createElement(HomePage));
+
+		expect(screen.getByTestId("openvideo-workspace-surface")).toBeTruthy();
+		expect(screen.getByRole("region", { name: /agent approval request/i })).toBeTruthy();
+		expect(screen.getAllByAltText("OpenScene").some((image) => image.getAttribute("src") === "/logo.svg")).toBe(true);
+	});
+
 	it("leads with the agent-driven editor rather than the capture-only workflow", () => {
 		render(createElement(HomePage));
 
