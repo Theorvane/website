@@ -7,7 +7,7 @@
 
 Add the approved RybbIt tracking script to the document head of each independently deployed Next.js application. Each app must carry its own immutable site ID:
 
-- OpenScene: `765035acbe87`
+- OpenScene: `c2c0972a916f` (superseded `765035acbe87` when the site moved to `openscene.app`, which is a distinct RybbIt site)
 - TypeMCP: `c37c7591084c`
 - Theorvane: `13051a0ca43f`
 

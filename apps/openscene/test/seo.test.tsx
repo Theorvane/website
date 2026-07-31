@@ -18,7 +18,7 @@ describe("OpenScene technical SEO", () => {
 
 		expect(script.props).toMatchObject({
 			src: "https://rybbit.handgarden.kr/api/script.js",
-			"data-site-id": "765035acbe87",
+			"data-site-id": "c2c0972a916f",
 			defer: true,
 		});
 	});

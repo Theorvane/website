@@ -2,8 +2,8 @@ import type { DocPage, LocaleStrings } from "./types";
 
 export const koStrings: LocaleStrings = {
 	indexTitle: "OpenScene 문서",
-	indexSummary: "소스에서 OpenScene를 실행하고, 워크스페이스와 타임라인을 익히고, Edit Agent를 활용하고, 원하는 모델 프로바이더만 연결하는 방법을 다룹니다.",
-	indexLede: "OpenScene는 현재 소스에서 실행합니다. 패키징된 설치 파일은 아직 없습니다. 이 문서에 적힌 내용은 모두 지금 빌드에 실제로 있는 동작이며, 예정된 작업은 아직 제공하지 않는다고 명시합니다.",
+	indexSummary: "소스에서 OpenScene을 실행하고, 워크스페이스와 타임라인을 익히고, Edit Agent를 활용하고, 원하는 모델 프로바이더만 연결하는 방법을 다룹니다.",
+	indexLede: "OpenScene은 현재 소스에서 실행합니다. 패키징된 설치 파일은 아직 없습니다. 이 문서에 적힌 내용은 모두 지금 빌드에 실제로 있는 동작이며, 예정된 작업은 아직 제공하지 않는다고 명시합니다.",
 	sidebarLabel: "문서",
 	onThisPage: "이 페이지 내용",
 	previous: "이전",
@@ -14,12 +14,12 @@ export const koStrings: LocaleStrings = {
 };
 
 const overview: DocPage = {
-	title: "OpenScene란",
+	title: "OpenScene이란",
 	summary: "조언만 하지 않고 직접 타임라인을 조작하는 에이전트를 갖춘, 로컬 우선 데스크톱 영상 편집기입니다.",
 	blocks: [
-		{ kind: "paragraph", text: "OpenScene는 내 컴퓨터에서 영상을 편집하는 오픈소스 Electron 애플리케이션입니다. 폴더를 하나 열어 프로젝트로 삼고, 타임라인에 클립을 올리고, 시스템에 이미 설치된 FFmpeg로 H.264/AAC MP4를 내보냅니다." },
+		{ kind: "paragraph", text: "OpenScene은 내 컴퓨터에서 영상을 편집하는 오픈소스 Electron 애플리케이션입니다. 폴더를 하나 열어 프로젝트로 삼고, 타임라인에 클립을 올리고, 시스템에 이미 설치된 FFmpeg로 H.264/AAC MP4를 내보냅니다." },
 		{ kind: "paragraph", text: "일반적인 편집기와 다른 점은 **Edit Agent**입니다. 타임라인 옆에 고정된 채팅 패널이 인터페이스와 똑같은 작업을 호출합니다. 타임라인을 읽고, 클립을 배치하고 자르고, 음성과 영상을 생성하고, 내보내기를 시작할 수 있습니다. 그리고 프로젝트에 쓰기가 일어나는 작업은 그 전에 반드시 승인을 요청합니다." },
-		{ kind: "note", tone: "caution", text: "OpenScene는 정식 출시 전입니다. 소스에서 실행하며 패키징된 설치 파일과 자동 업데이트가 없습니다. [설치와 실행](/docs/ko/install)을 참고하세요." },
+		{ kind: "note", tone: "caution", text: "OpenScene은 정식 출시 전입니다. 소스에서 실행하며 패키징된 설치 파일과 자동 업데이트가 없습니다. [설치와 실행](/docs/ko/install)을 참고하세요." },
 		{ kind: "heading", text: "제공하는 것" },
 		{ kind: "list", items: [
 			"제대로 된 타임라인 — 비디오·오디오 트랙, 자르기, 분할, 이동, 복제, 키프레임, 트랜지션, 트랙별 믹스, 되돌리기와 다시 실행",
@@ -53,20 +53,20 @@ const install: DocPage = {
 	title: "설치와 실행",
 	summary: "사전 요구사항, 저장소 클론, FFmpeg 경로 지정, 소스에서 빌드 검증까지.",
 	blocks: [
-		{ kind: "note", tone: "caution", text: "패키징된 설치 파일과 자동 업데이트는 아직 없습니다. OpenScene는 소스에서 실행하며, 이 문서는 그 사실이 바뀔 때에만 다르게 적힐 것입니다." },
+		{ kind: "note", tone: "caution", text: "패키징된 설치 파일과 자동 업데이트는 아직 없습니다. OpenScene은 소스에서 실행하며, 이 문서는 그 사실이 바뀔 때에만 다르게 적힐 것입니다." },
 		{ kind: "heading", text: "사전 요구사항" },
 		{ kind: "list", items: [
 			"Node.js 22 이상, npm 10 이상",
 			"FFmpeg — MP4 내보내기에 필요합니다",
-			"macOS 한정: 창 캡처를 쓴다면 OpenScene를 실행하는 터미널에 화면 기록 권한이 필요합니다",
+			"macOS 한정: 창 캡처를 쓴다면 OpenScene을 실행하는 터미널에 화면 기록 권한이 필요합니다",
 		] },
 		{ kind: "heading", text: "클론과 실행" },
 		{ kind: "code", language: "bash", lines: ["git clone https://github.com/Theorvane/openscene.git", "cd openscene", "npm install", "npm run dev"] },
 		{ kind: "paragraph", text: "`npm run dev`는 렌더러를 개발 모드로 두고 Electron 앱을 실행합니다. 첫 실행에서는 시작 페이지가 열리고, 여기서 첫 프로젝트로 열 폴더를 선택합니다." },
 		{ kind: "heading", text: "FFmpeg 지정하기" },
-		{ kind: "paragraph", text: "OpenScene는 자체 FFmpeg를 포함하지 않고 **사용자가 설치한** FFmpeg를 구동합니다. `PATH`의 절대 경로 디렉터리를 통해 `ffmpeg`를 찾을 수 있게 하거나, 바이너리를 명시적으로 지정하세요." },
+		{ kind: "paragraph", text: "OpenScene은 자체 FFmpeg를 포함하지 않고 **사용자가 설치한** FFmpeg를 구동합니다. `PATH`의 절대 경로 디렉터리를 통해 `ffmpeg`를 찾을 수 있게 하거나, 바이너리를 명시적으로 지정하세요." },
 		{ kind: "code", language: "bash", lines: ["VIDEO_TOOL_FFMPEG_PATH=/absolute/path/to/ffmpeg npm run dev"] },
-		{ kind: "note", tone: "info", text: "상대 경로 FFmpeg는 거부됩니다. 사용 가능한 FFmpeg가 없으면 OpenScene는 끝내지 못할 내보내기를 시작하지 않고 문제를 알립니다." },
+		{ kind: "note", tone: "info", text: "상대 경로 FFmpeg는 거부됩니다. 사용 가능한 FFmpeg가 없으면 OpenScene은 끝내지 못할 내보내기를 시작하지 않고 문제를 알립니다." },
 		{ kind: "heading", text: "클라우드 계정 없이 에이전트 쓰기" },
 		{ kind: "paragraph", text: "로컬 [Ollama](https://ollama.com) 엔진은 키도, 계정도, 네트워크 호출도 필요하지 않습니다." },
 		{ kind: "code", language: "bash", lines: ["ollama pull qwen2.5-coder", "ollama serve"] },
@@ -97,7 +97,7 @@ const projects: DocPage = {
 			["생성 결과", "음성·영상 작업 결과가 열려 있는 프로젝트의 에셋으로 들어옵니다"],
 		] },
 		{ kind: "note", tone: "info", text: "앱이 관리하는 프로젝트와 창 녹화 파일은 Electron 사용자 데이터 아래에 있습니다. 녹화 위치는 `VIDEO_TOOL_RECORDINGS_DIR=/absolute/path/to/recordings npm run dev`로 옮길 수 있습니다." },
-		{ kind: "paragraph", text: "프로젝트가 평범한 폴더이기 때문에 백업, 다른 컴퓨터로 이동, 버전 관리 등록은 모두 사용자의 선택이고 OpenScene가 관여할 필요가 없습니다." },
+		{ kind: "paragraph", text: "프로젝트가 평범한 폴더이기 때문에 백업, 다른 컴퓨터로 이동, 버전 관리 등록은 모두 사용자의 선택이고 OpenScene이 관여할 필요가 없습니다." },
 	],
 };
 
@@ -161,16 +161,16 @@ const timeline: DocPage = {
 
 const exportPage: DocPage = {
 	title: "내보내기",
-	summary: "OpenScene가 내 FFmpeg로 MP4를 렌더링하는 방식과, 시작하지 않는 경우.",
+	summary: "OpenScene이 내 FFmpeg로 MP4를 렌더링하는 방식과, 시작하지 않는 경우.",
 	blocks: [
-		{ kind: "paragraph", text: "내보내기는 사용자 컴퓨터의 FFmpeg 바이너리를 구동해 H.264/AAC MP4를 만듭니다. OpenScene는 자체 FFmpeg를 포함하지 않고, 타임라인을 업로드하지 않으며, 클라우드에서 렌더링하지 않습니다." },
+		{ kind: "paragraph", text: "내보내기는 사용자 컴퓨터의 FFmpeg 바이너리를 구동해 H.264/AAC MP4를 만듭니다. OpenScene은 자체 FFmpeg를 포함하지 않고, 타임라인을 업로드하지 않으며, 클라우드에서 렌더링하지 않습니다." },
 		{ kind: "heading", text: "내보내기 전에" },
 		{ kind: "list", ordered: true, items: [
 			"`PATH`의 절대 경로 디렉터리에서 `ffmpeg`를 찾을 수 있게 하거나, `VIDEO_TOOL_FFMPEG_PATH`로 바이너리를 지정합니다",
 			"Program Monitor에서 타임라인을 검토합니다. 미리보기이며 최종 렌더가 아닙니다",
 			"편집기에서 내보내기를 시작하거나, 에이전트에게 시작을 요청합니다",
 		] },
-		{ kind: "note", tone: "caution", text: "사용 가능한 FFmpeg가 없으면 OpenScene는 완료할 수 없는 내보내기를 시작하지 않고 문제를 알립니다. 상대 경로는 거부됩니다. [트러블슈팅](/docs/ko/troubleshooting)을 참고하세요." },
+		{ kind: "note", tone: "caution", text: "사용 가능한 FFmpeg가 없으면 OpenScene은 완료할 수 없는 내보내기를 시작하지 않고 문제를 알립니다. 상대 경로는 거부됩니다. [트러블슈팅](/docs/ko/troubleshooting)을 참고하세요." },
 		{ kind: "heading", text: "무엇이 기준인가" },
 		{ kind: "paragraph", text: "Program Monitor는 빠른 반복을 위해 만든 최선의 검토 화면입니다. 모니터와 내보낸 파일이 다르면 내보낸 파일이 맞습니다. 프레임 단위 정확도를 보장하는 멀티트랙 마스터링은 이 빌드가 주장하지 않는 영역입니다." },
 		{ kind: "heading", text: "에이전트가 시작하는 내보내기" },
@@ -296,7 +296,7 @@ const videoGeneration: DocPage = {
 		{ kind: "paragraph", text: "Google Veo는 레퍼런스 이미지로 image-to-video를 지원합니다. Sora 레퍼런스 이미지는 이 빌드에서 **사용할 수 없습니다**. 보내지 않는 multipart 업로드 경로가 필요하며, 스튜디오는 이미지를 조용히 버리지 않고 그 사실을 알립니다." },
 		{ kind: "note", tone: "info", text: "선택한 레퍼런스 이미지는 파일시스템 경로가 아니라 바이트로 렌더러 경계를 넘습니다. 앱의 다른 부분과 같은 규칙입니다. [데이터와 프라이버시](/docs/ko/data-and-privacy)를 참고하세요." },
 		{ kind: "heading", text: "비용과 승인" },
-		{ kind: "paragraph", text: "생성 비용은 프로바이더가 사용자에게 직접 청구하며, OpenScene가 그 사이에 끼어들지 않습니다. 에이전트가 `createVideoJob`으로 작업을 시작할 때 먼저 승인을 요청하는 이유도 같습니다." },
+		{ kind: "paragraph", text: "생성 비용은 프로바이더가 사용자에게 직접 청구하며, OpenScene이 그 사이에 끼어들지 않습니다. 에이전트가 `createVideoJob`으로 작업을 시작할 때 먼저 승인을 요청하는 이유도 같습니다." },
 	],
 };
 
@@ -360,13 +360,13 @@ const troubleshooting: DocPage = {
 	summary: "내보내기 실패, FFmpeg 누락, 캡처 권한, 프로바이더 오류, 에이전트 한계.",
 	blocks: [
 		{ kind: "heading", text: "내보내기가 시작되지 않습니다" },
-		{ kind: "paragraph", text: "OpenScene는 렌더링 전에 FFmpeg를 확인하고, 중간에 실패하는 대신 문제를 알립니다. `PATH`의 **절대 경로** 디렉터리에서 바이너리를 찾을 수 있는지 확인하거나 명시적으로 지정하세요. 상대 경로는 거부됩니다." },
+		{ kind: "paragraph", text: "OpenScene은 렌더링 전에 FFmpeg를 확인하고, 중간에 실패하는 대신 문제를 알립니다. `PATH`의 **절대 경로** 디렉터리에서 바이너리를 찾을 수 있는지 확인하거나 명시적으로 지정하세요. 상대 경로는 거부됩니다." },
 		{ kind: "code", language: "bash", lines: ["VIDEO_TOOL_FFMPEG_PATH=/absolute/path/to/ffmpeg npm run dev"] },
 		{ kind: "paragraph", text: "**설정 → Local Tools**가 로컬 런타임 준비 상태를 알려주므로 먼저 확인하세요." },
 		{ kind: "heading", text: "내보낸 결과가 Program Monitor와 다릅니다" },
 		{ kind: "paragraph", text: "모니터는 최선을 다하는 검토 화면이고 기준은 FFmpeg 출력입니다. 프레임 단위 정확도를 보장하는 멀티트랙 마스터링은 이 빌드가 약속하는 범위가 아닙니다 — [내보내기](/docs/ko/export) 참고." },
 		{ kind: "heading", text: "macOS에서 창 캡처에 아무것도 녹화되지 않습니다" },
-		{ kind: "paragraph", text: "macOS는 OpenScene를 실행하는 터미널에 화면 기록 권한을 요구합니다. 시스템 설정에서 권한을 준 뒤 앱을 다시 시작하세요. 전체 화면 캡처와 레코더의 마이크·시스템 오디오 믹스는 아직 제공하지 않습니다." },
+		{ kind: "paragraph", text: "macOS는 OpenScene을 실행하는 터미널에 화면 기록 권한을 요구합니다. 시스템 설정에서 권한을 준 뒤 앱을 다시 시작하세요. 전체 화면 캡처와 레코더의 마이크·시스템 오디오 믹스는 아직 제공하지 않습니다." },
 		{ kind: "heading", text: "선택기에 모델이 없습니다" },
 		{ kind: "paragraph", text: "연결한 프로바이더만 모델을 보여줍니다. **설정 → Providers**에서 하나를 연결한 뒤, **설정 → Models**에서 어떤 모델을 표시할지 고르세요. 아무것도 연결하지 않았다면 로컬 Ollama 모델을 실행하면 됩니다 — [설치와 실행](/docs/ko/install) 참고." },
 		{ kind: "heading", text: "에이전트가 제 영상을 보지 못합니다" },
