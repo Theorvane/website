@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import HomePage from "../app/page";
+import { downloadUrl, releaseAssets } from "../lib/releases";
 
 describe("OpenScene homepage", () => {
 	it("publishes a complete, accessible product footer", () => {
@@ -18,7 +19,7 @@ describe("OpenScene homepage", () => {
 	it("delivers the approved dark Workspace Surface instead of an appended generic panel", () => {
 		render(createElement(HomePage));
 
-		expect(screen.getByTestId("openvideo-workspace-surface")).toBeTruthy();
+		expect(screen.getByTestId("openscene-workspace-surface")).toBeTruthy();
 		expect(screen.getByRole("region", { name: /agent approval request/i })).toBeTruthy();
 		expect(screen.getAllByAltText("OpenScene").some((image) => image.getAttribute("src") === "/logo.svg")).toBe(true);
 	});
@@ -32,16 +33,34 @@ describe("OpenScene homepage", () => {
 		expect(screen.getByText(/your media stays on your machine/i)).toBeTruthy();
 	});
 
-	it("offers source and run-from-source instead of a download the project does not publish", () => {
+	it("offers both a packaged download and the run-from-source path", () => {
 		render(createElement(HomePage));
 
 		expect(screen.getByRole("link", { name: /view source on github/i }).getAttribute("href")).toBe(
 			"https://github.com/Theorvane/openscene",
 		);
-		// The repository publishes no releases or tags, so a download or
-		// installer call to action would be a claim the project cannot meet.
-		expect(screen.queryByRole("link", { name: /^download/i })).toBeNull();
 		expect(screen.getByTestId("run-from-source").textContent).toContain("npm run dev");
+	});
+
+	it("links a published asset for every desktop platform", () => {
+		render(createElement(HomePage));
+
+		// Each link is asserted against the release the site claims to offer, so a
+		// version bump that misses an asset fails here rather than 404ing on GitHub.
+		for (const asset of releaseAssets) {
+			const link = screen.getByRole("link", { name: new RegExp(`${asset.variant}$`, "i") });
+			expect(link.getAttribute("href")).toBe(downloadUrl(asset));
+		}
+
+		expect(screen.getByTestId("download-grid").textContent).toContain("SmartScreen");
+		expect(screen.getByRole("link", { name: /^download for desktop$/i }).getAttribute("href")).toBe("#download");
+	});
+
+	it("stops claiming there is no installer now that releases publish one", () => {
+		const { container } = render(createElement(HomePage));
+
+		expect(container.textContent).not.toMatch(/no installer yet|no packaged (build|installer)/i);
+		expect(container.textContent).toMatch(/signed with a Developer ID certificate and notarized/i);
 	});
 
 	it("names the capabilities the application actually ships", () => {

@@ -1,13 +1,13 @@
 # Icon-led Product Landings Design
 
 ## Goal
-Align TypeMCP, TypeChain, and OpenVideo with the approved Theorvane editorial direction while preserving factual product claims, canonical destinations, semantic navigation, and each product’s official mark. Expand Theorvane’s minimal footer into the organization-level product index.
+Align TypeMCP, TypeChain, and OpenScene with the approved Theorvane editorial direction while preserving factual product claims, canonical destinations, semantic navigation, and each product’s official mark. Expand Theorvane’s minimal footer into the organization-level product index.
 
 ## Visual system
 - **Shared composition:** dark editorial field, large display typography, an icon-led evidence panel, a four-step proof grid, and an information-rich footer.
 - **TypeMCP:** its official hexagonal node mark; cobalt/blue accent; evidence panel makes the declared input, output, and application-owned hosting boundary readable.
 - **TypeChain:** its official linked-chain mark; green accent; evidence panel distinguishes TypeChain metadata, the adapter, and application-owned runtime authority.
-- **OpenVideo:** its official rounded play/timeline mark; mint and violet accents; evidence panel makes the confirmation-before-write interaction tangible.
+- **OpenScene:** its official rounded play/timeline mark; mint and violet accents; evidence panel makes the confirmation-before-write interaction tangible.
 - **Theorvane:** preserve existing Editorial Signal hero and product passage. Replace only the sparse footer with an organization footer that exposes the three canonical product routes, principles, and GitHub.
 
 ## Accessibility and responsive behavior

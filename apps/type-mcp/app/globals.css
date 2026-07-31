@@ -15,7 +15,7 @@ body:has(.product-surface) header nav{color:#b7c4dd}
 body:has(.product-surface) .site-footer{border-color:#ffffff1f;background:#070a0f;color:#f5f7f6}
 .product-surface{--surface:#0a1019;--signal:#4c83f2;--surface-line:#ffffff20;--surface-muted:#b7c4dd;background:#070a0f;color:#f5f7f6;padding-bottom:1px}
 .product-surface--typechain{--surface:#0b1514;--signal:#0aa66e;--surface-muted:#bdd7c9;background:#070a0f}
-.product-surface--openvideo{--surface:#111622;--signal:#78f7bc;--surface-muted:#a5afc0;background:radial-gradient(circle at 83% 6%,#a690ff35,transparent 34%),#090b10}
+.product-surface--openscene{--surface:#111622;--signal:#78f7bc;--surface-muted:#a5afc0;background:radial-gradient(circle at 83% 6%,#a690ff35,transparent 34%),#090b10}
 .product-surface .hero{min-height:clamp(38rem,68vw,48rem);padding-block:clamp(5rem,10vw,8rem);gap:clamp(2rem,7vw,6rem)}
 .product-surface .hero h1{font-size:clamp(3.6rem,7.8vw,7.5rem);line-height:.88;letter-spacing:-.08em;color:#f5f7f6}
 .product-surface .hero h1 em{color:var(--signal);font-family:Georgia,serif;font-weight:400}
@@ -29,7 +29,7 @@ body:has(.product-surface) .site-footer{border-color:#ffffff1f;background:#070a0
 .product-surface .architecture,.product-surface .start,.product-surface .agent,.product-surface .providers,.product-surface .local,.product-surface .faq{border-color:var(--surface-line)}
 .product-surface .integration{background:color-mix(in srgb,var(--surface) 82%,#000);border-block:1px solid var(--surface-line)}.product-surface .integration aside{background:color-mix(in srgb,var(--signal) 10%,var(--surface));border:1px solid var(--surface-line)}
 .product-surface .features article,.product-surface .tool-list li,.product-surface .provider-grid div,.product-surface .faq details{border-color:var(--surface-line)}
-.product-surface .site-footer,.product-surface + .site-footer{background:#070a0f;color:#f5f7f6}.product-surface--typechain + .site-footer{background:#070a0f}.product-surface--openvideo + .site-footer{background:#090b10}
+.product-surface .site-footer,.product-surface + .site-footer{background:#070a0f;color:#f5f7f6}.product-surface--typechain + .site-footer{background:#070a0f}.product-surface--openscene + .site-footer{background:#090b10}
 @media(max-width:700px){.product-surface .hero{min-height:auto;padding-block:4.5rem}.product-surface .hero h1{font-size:clamp(3.4rem,16vw,5.8rem)}.product-surface .capabilities{padding-block:1.5rem 2.5rem}}
 
 /* Preserve readable inherited text from the earlier light landing in the dark surface. */
