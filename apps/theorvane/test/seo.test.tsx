@@ -16,7 +16,7 @@ describe("Theorvane technical SEO", () => {
 		const script = head.props.children;
 
 		expect(script.props).toMatchObject({
-			src: "https://rybbit.handgarden.kr/api/script.js",
+			src: "https://rybbit.sanhouse.kr/api/script.js",
 			"data-site-id": "13051a0ca43f",
 			defer: true,
 		});

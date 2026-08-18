@@ -11,7 +11,7 @@ Add the approved RybbIt tracking script to the document head of each independent
 - TypeMCP: `c37c7591084c`
 - Theorvane: `13051a0ca43f`
 
-All scripts load from `https://rybbit.handgarden.kr/api/script.js` with deferred loading.
+All scripts load from `https://rybbit.sanhouse.kr/api/script.js` with deferred loading.
 
 ## Non-goals
 

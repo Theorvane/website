@@ -11,7 +11,7 @@ describe("TypeMCP metadata", () => {
 		const script = head.props.children;
 
 		expect(script.props).toMatchObject({
-			src: "https://rybbit.handgarden.kr/api/script.js",
+			src: "https://rybbit.sanhouse.kr/api/script.js",
 			"data-site-id": "c37c7591084c",
 			defer: true,
 		});
