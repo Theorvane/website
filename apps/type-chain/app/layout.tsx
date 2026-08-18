@@ -32,7 +32,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 	return (
 		<html lang="en">
 			<head>
-				<script src="https://rybbit.handgarden.kr/api/script.js" data-site-id="6f862fa29286" defer />
+				<script src="https://rybbit.sanhouse.kr/api/script.js" data-site-id="6f862fa29286" defer />
 			</head>
 			<body>{children}</body>
 		</html>
