@@ -1,0 +1,10 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PlanGuard">
+  <defs>
+    <linearGradient id="pgTile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fb7185"/><stop offset="1" stop-color="#e11d48"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#pgTile)"/>
+  <path d="M32 12 49 19 49 32 Q49 43 32 52 Q15 43 15 32 L15 19 Z" fill="none" stroke="#1a0308" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M24 32 30 38 41 26" fill="none" stroke="#1a0308" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

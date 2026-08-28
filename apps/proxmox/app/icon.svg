@@ -1,0 +1,14 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Proxmox MCP">
+  <defs>
+    <linearGradient id="pmxTile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#0891b2"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#pmxTile)"/>
+  <!-- MCP hexagon framing a stacked host: virtualization behind a gated contract. -->
+  <path d="M32 12 49 22 49 42 32 52 15 42 15 22 Z" fill="none" stroke="#06110f" stroke-width="3.6" stroke-linejoin="round"/>
+  <rect x="23" y="26" width="18" height="5.6" rx="2" fill="#06110f"/>
+  <rect x="23" y="34.4" width="18" height="5.6" rx="2" fill="#06110f" opacity="0.55"/>
+  <circle cx="27.4" cy="28.8" r="1.5" fill="url(#pmxTile)"/>
+  <circle cx="27.4" cy="37.2" r="1.5" fill="url(#pmxTile)"/>
+</svg>
