@@ -33,6 +33,9 @@ describe("Theorvane homepage", () => {
 		expect(footer.querySelector('a[href="https://typemcp.theorvane.tech/"]')).toBeTruthy();
 		expect(footer.querySelector('a[href="https://typechain.theorvane.tech/"]')).toBeTruthy();
 		expect(footer.querySelector('a[href="https://openscene.app/"]')).toBeTruthy();
+		expect(footer.querySelector('a[href="https://labfox.theorvane.tech/"]')).toBeTruthy();
+		expect(footer.querySelector('a[href="https://planguard.theorvane.tech/"]')).toBeTruthy();
+		expect(footer.querySelector('a[href="https://proxmox.theorvane.tech/"]')).toBeTruthy();
 	});
 
 	it("offers a product index with all canonical destinations", () => {
@@ -77,5 +80,18 @@ describe("Theorvane homepage", () => {
 		);
 		expect(screen.getByText(/local-first, open-source video editor/i)).toBeTruthy();
 		expect(screen.getByText(/no cloud uploads, accounts, or analytics/i)).toBeTruthy();
+	});
+
+	it("features the expanded product lineup with dedicated site destinations", () => {
+		render(createElement(HomePage));
+
+		for (const [name, href] of [
+			["LabFox", "https://labfox.theorvane.tech/"],
+			["PlanGuard", "https://planguard.theorvane.tech/"],
+			["Proxmox MCP", "https://proxmox.theorvane.tech/"],
+		] as const) {
+			expect(screen.getByRole("heading", { name })).toBeTruthy();
+			expect(screen.getByRole("link", { name: `Explore ${name} ↗` }).getAttribute("href")).toBe(href);
+		}
 	});
 });
