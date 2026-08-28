@@ -345,6 +345,8 @@ const dataAndPrivacy: DocPage = {
 			"**No telemetry.** No analytics, crash reporting, or usage tracking",
 			"**No background network calls.** The app talks to a provider only when you ask it to, using a provider you connected",
 		] },
+		{ kind: "heading", text: "Advertising disclosure" },
+		{ kind: "paragraph", text: "A banner ad may appear above the tab bar on project screens (the timeline, generation and library tabs), and an interstitial ad may appear only after a video export completes successfully." },
 		{ kind: "heading", text: "Where your data lives" },
 		{ kind: "paragraph", text: "Projects are folders you choose. Assets, chat history, and generated results are written inside them. App-managed projects and window recordings live under Electron user data, and recordings can be redirected with `VIDEO_TOOL_RECORDINGS_DIR`." },
 		{ kind: "heading", text: "The process boundary" },

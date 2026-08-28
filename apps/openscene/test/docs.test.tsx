@@ -25,6 +25,13 @@ describe("OpenScene documentation routes", () => {
 		expect(main.getByRole("link", { name: "Install and run" }).getAttribute("href")).toBe("/docs/install");
 	});
 
+	it("renders the English data and privacy ad disclosure", async () => {
+		await renderRoute(["data-and-privacy"]);
+		const main = screen.getByRole("main");
+		expect(main.textContent).toContain("A banner ad may appear above the tab bar on project screens (the timeline, generation and library tabs), and an interstitial ad may appear only after a video export completes successfully.");
+		expect(main.textContent).not.toContain("in Settings");
+	});
+
 	it("renders a Korean page from its own path", async () => {
 		await renderRoute(["ko", "install"]);
 		expect(screen.getByRole("heading", { level: 1, name: "설치와 실행" })).toBeDefined();
