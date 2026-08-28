@@ -1,0 +1,10 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PlanGuard">
+  <defs>
+    <linearGradient id="pguard" gradientUnits="userSpaceOnUse" x1="12" y1="8" x2="52" y2="56">
+      <stop offset="0" stop-color="#fb7185"/><stop offset="1" stop-color="#e11d48"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield gating a change: the review that clears a plan before it merges. -->
+  <path d="M32 8 52 16 52 31 Q52 45 32 56 Q12 45 12 31 L12 16 Z" fill="none" stroke="url(#pguard)" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M23 32 30 39 42 25" fill="none" stroke="url(#pguard)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Proxmox MCP">
+  <defs>
+    <linearGradient id="pmx" gradientUnits="userSpaceOnUse" x1="10" y1="8" x2="54" y2="54">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#0891b2"/>
+    </linearGradient>
+  </defs>
+  <!-- MCP hexagon framing a stacked host: virtualization behind a gated contract. -->
+  <path d="M32 6 54 18 54 42 32 54 10 42 10 18 Z" fill="none" stroke="url(#pmx)" stroke-width="3.5" stroke-linejoin="round"/>
+  <rect x="21" y="23" width="22" height="6.5" rx="2.2" fill="url(#pmx)"/>
+  <rect x="21" y="33.5" width="22" height="6.5" rx="2.2" fill="url(#pmx)" opacity="0.5"/>
+  <circle cx="26" cy="26.25" r="1.7" fill="#0a0e1c"/>
+  <circle cx="26" cy="36.75" r="1.7" fill="#0a0e1c"/>
+</svg>
