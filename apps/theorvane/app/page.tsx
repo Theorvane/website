@@ -7,9 +7,9 @@ const github = "https://github.com/Theorvane";
 const typeMcp = "https://typemcp.theorvane.tech/";
 const typeChain = "https://typechain.theorvane.tech/";
 const openScene = "https://openscene.app/";
-const labFox = "https://github.com/Theorvane/labfox";
-const planGuard = "https://github.com/Theorvane/planguard";
-const proxmoxMcp = "https://github.com/Theorvane/proxmox-mcp";
+const labFox = "https://labfox.theorvane.tech/";
+const planGuard = "https://planguard.theorvane.tech/";
+const proxmoxMcp = "https://proxmox.theorvane.tech/";
 
 const products = [
 	{
