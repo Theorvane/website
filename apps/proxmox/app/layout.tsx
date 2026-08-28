@@ -25,7 +25,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="en">
-			{/* Analytics: add the Rybbit script here once a Proxmox MCP site id is provisioned. */}
+			<head>
+				<script src="https://rybbit.sanhouse.kr/api/script.js" data-site-id="fa6c186963f9" defer />
+			</head>
 			<body>{children}</body>
 		</html>
 	);
