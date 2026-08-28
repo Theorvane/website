@@ -7,6 +7,9 @@ const github = "https://github.com/Theorvane";
 const typeMcp = "https://typemcp.theorvane.tech/";
 const typeChain = "https://typechain.theorvane.tech/";
 const openScene = "https://openscene.app/";
+const labFox = "https://github.com/Theorvane/labfox";
+const planGuard = "https://github.com/Theorvane/planguard";
+const proxmoxMcp = "https://github.com/Theorvane/proxmox-mcp";
 
 const products = [
 	{
@@ -35,6 +38,33 @@ const products = [
 		name: "OpenScene",
 		number: "03",
 		signal: "Local workflow",
+	},
+	{
+		description: "A cross-platform GitLab workflow client for merge requests, code review, and CI/CD—on Android, iOS, Windows, and macOS, with self-hosted support.",
+		href: labFox,
+		icon: "/products/labfox.svg",
+		iconAlt: "LabFox official product mark",
+		name: "LabFox",
+		number: "04",
+		signal: "GitLab client",
+	},
+	{
+		description: "An AI-assisted review platform for Terraform pull requests. It surfaces the real risk in an infrastructure change before it merges, and leaves the apply in your hands.",
+		href: planGuard,
+		icon: "/products/planguard.svg",
+		iconAlt: "PlanGuard official product mark",
+		name: "PlanGuard",
+		number: "05",
+		signal: "Infra review",
+	},
+	{
+		description: "A safety-gated TypeMCP server for the Proxmox VE API. It exposes virtualization operations behind explicit, auditable boundaries instead of raw access.",
+		href: proxmoxMcp,
+		icon: "/products/proxmox-mcp.svg",
+		iconAlt: "Proxmox MCP official product mark",
+		name: "Proxmox MCP",
+		number: "06",
+		signal: "Safety-gated MCP",
 	},
 ] as const;
 
@@ -69,6 +99,9 @@ export default function HomePage() {
 						<div className="studio-orbit__node studio-orbit__node--mcp"><img alt="" src="/products/typemcp.svg" /></div>
 						<div className="studio-orbit__node studio-orbit__node--chain"><img alt="" src="/products/typechain.svg" /></div>
 						<div className="studio-orbit__node studio-orbit__node--scene"><img alt="" src="/products/openscene.svg" /></div>
+						<div className="studio-orbit__node studio-orbit__node--fox"><img alt="" src="/products/labfox.svg" /></div>
+						<div className="studio-orbit__node studio-orbit__node--guard"><img alt="" src="/products/planguard.svg" /></div>
+						<div className="studio-orbit__node studio-orbit__node--proxmox"><img alt="" src="/products/proxmox-mcp.svg" /></div>
 						<p>THE SYSTEM STAYS YOURS</p>
 					</div>
 				</div>
@@ -82,7 +115,7 @@ export default function HomePage() {
 			</section>
 
 			<section className="products shell" id="products">
-				<div className="products__heading"><p className="eyebrow">Product index / 02</p><h2>Choose a focused tool.</h2><p>Three products. Three concrete boundaries. No platform-shaped abstraction around them.</p></div>
+				<div className="products__heading"><p className="eyebrow">Product index / 02</p><h2>Choose a focused tool.</h2><p>Six products. Six concrete boundaries. No platform-shaped abstraction around them.</p></div>
 				<ProductEditorial products={products} />
 			</section>
 
@@ -93,6 +126,6 @@ export default function HomePage() {
 
 			<section className="studio-close"><div className="shell studio-close__grid"><p className="eyebrow">Theorvane / Open by default</p><h2>Explore the products.<br /><em>Keep the system yours.</em></h2><div><a className="button primary" href="#products">Explore products</a><p>TypeScript-first · Protocol-aware · Open-source</p></div></div></section>
 		</main>
-		<footer className="studio-footer"><div className="shell studio-footer__grid"><div><a className="wordmark" href="#top">THEORVANE<span>®</span></a><p>Independent software studio building small, durable developer products.</p></div><nav aria-label="Theorvane footer"><div><strong>Products</strong><ExternalLink href={typeMcp}>TypeMCP ↗</ExternalLink><ExternalLink href={typeChain}>TypeChain ↗</ExternalLink><ExternalLink href={openScene}>OpenScene ↗</ExternalLink></div><div><strong>Studio</strong><a href="#principles">Principles</a><ExternalLink href={github}>GitHub ↗</ExternalLink></div></nav></div><div className="shell studio-footer__legal"><span>© {new Date().getFullYear()} Theorvane.</span><span>Built with intent.</span></div></footer>
+		<footer className="studio-footer"><div className="shell studio-footer__grid"><div><a className="wordmark" href="#top">THEORVANE<span>®</span></a><p>Independent software studio building small, durable developer products.</p></div><nav aria-label="Theorvane footer"><div><strong>Products</strong><ExternalLink href={typeMcp}>TypeMCP ↗</ExternalLink><ExternalLink href={typeChain}>TypeChain ↗</ExternalLink><ExternalLink href={openScene}>OpenScene ↗</ExternalLink><ExternalLink href={labFox}>LabFox ↗</ExternalLink><ExternalLink href={planGuard}>PlanGuard ↗</ExternalLink><ExternalLink href={proxmoxMcp}>Proxmox MCP ↗</ExternalLink></div><div><strong>Studio</strong><a href="#principles">Principles</a><ExternalLink href={github}>GitHub ↗</ExternalLink></div></nav></div><div className="shell studio-footer__legal"><span>© {new Date().getFullYear()} Theorvane.</span><span>Built with intent.</span></div></footer>
 	</>;
 }
